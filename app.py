@@ -75,8 +75,8 @@ def AM_ssb_modulation(x,x1,inputs):
         y1 = (Am*np.cos(2*np.pi*fm*x1))#message signal
     y2 = (Am*np.cos(2*np.pi*fc*x1))#carrier signal
     
-    plot_graph(x = x, y = y_positive, title = "Modulated wave", name="AM_modulated1.png")
-    plot_graph(x = x, y = y_positive, title = "Modulated wave", name="AM_modulated2.png")
+    plot_graph(x = x, y = y_positive, title = "Modulated wave 1", name="AM_modulated1.png")
+    plot_graph(x = x, y = y_positive, title = "Modulated wave 2", name="AM_modulated2.png")
     plot_graph(x = x1, y = y1, title = "Message Signal", name="AM_message.png")
     plot_graph(x = x1, y = y2, title = "Carrier Signal", name="AM_carrier.png")
 

@@ -13,18 +13,30 @@
   <style>
     .inputs{
       display: flex;
-      gap: .5rem;
+      gap: 1rem;
       margin: 1rem auto;
       max-width: 100%;
       width: 100vw;
       flex-wrap: wrap;
       justify-content: space-evenly;
-    
+    }
+    .container-full{
+      padding: 1rem;
+    }
+    nav{
+    background: green;
+    color: white;
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    padding: 1.25rem 1rem;
     }
     .buttons{
       display: flex;
       justify-content: center;
-      gap: 1rem;
+      gap: 1.5rem;
     }
   </style>
   <script type = "text/JavaScript">
@@ -49,19 +61,25 @@
       </div>  
       <div class="input-wrapper">
           <label for="freqc">Carrier frequency</label>
-          <input type="number" id="freqc" name="fc" class="input-bar" placeholder="frequencyc value..">
+          <input required type="number" id="freqc" name="fc" class="input-bar" placeholder="frequencyc value..">
       </div>
       <div class="input-wrapper">
-          <label for="freqm">Message frequency</label>
-          <input type="number" id="freqm" name="fm" placeholder="frequencym value..">
+        <label for="freqm">
+            {%if index==4%}
+              Message Frequency 1
+            {%else%}
+              Message Frequency 
+            {%endif%}           
+          </label>
+          <input required type="number" id="freqm" name="fm" placeholder="frequencym value..">
       </div>
       <div class="input-wrapper">
           <label for="am">Message Amplitutde</label>
-          <input type="number" id="am" name="Am" placeholder="Am value..">
+          <input required type="number" id="am" name="Am" placeholder="Am value..">
       </div>
       <div class="input-wrapper">
           <label for="am">Carrier Amplitude</label>
-          <input type="number" id="am" name="Ac" placeholder="Ac value..">
+          <input required type="number" id="am" name="Ac" placeholder="Ac value..">
       </div>
       <br>
     </div>

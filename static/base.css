@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&display=swap');
+
 *{
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    font-family: 'Roboto', sans-serif;
 }
 
 .input-wrapper{
@@ -11,19 +14,11 @@
     border-radius: 1rem;
     background-color: rgb(163, 172, 33);
 }
-nav{
-    background: rgba(69, 151, 66, 0.466);
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 4px );
-    -webkit-backdrop-filter: blur( 4px );
-
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
-    padding: 1.25rem 1rem;
-}
 .heading{
     justify-content: center;
     text-align: center;
     padding: .5rem 1rem;
+    font-weight: 400;
 }
 .container-full{
     width: 100%;
@@ -39,7 +34,7 @@ label{
 input,select{
     padding: .25rem;
     font-size: 20px;
-    width: 200px;
+    width: 175px;
     text-align: center;
     border-radius: 1rem;
     border: 2px solid black;
