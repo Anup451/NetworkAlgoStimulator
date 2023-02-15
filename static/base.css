@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&display=swap');
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.input-wrapper{
+    display: flex;
+    flex-direction: column;
+    padding: .5rem;
+    border-radius: 1rem;
+    background-color: rgb(163, 172, 33);
+}
+.heading{
+    justify-content: center;
+    text-align: center;
+    padding: .5rem 1rem;
+    font-weight: 400;
+}
+.container-full{
+    width: 100%;
+    max-width: 100vw;
+}
+
+label{
+    margin-bottom: 5px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.back-button{
+    background-color: rgba(255, 255, 255, 0.504);
+    position: absolute;
+    top: 25px;
+    right: 5vw;
+}
+input,select{
+    padding: .25rem;
+    font-size: 20px;
+    width: 175px;
+    text-align: center;
+    border-radius: 1rem;
+    border: 2px solid black;
+}
+button{
+    background-color: green;
+    color: rgba(21, 18, 35, 0.638);
+    padding: .5rem;
+    border-radius: 10px;
+    font-weight: bold;
+}
+.plot-wrapper{
+    width: 100%;
+    max-width: 95vw;
+    margin: 0 auto 1rem auto;
+    border: 2px solid black;
+    background-color: rgba(0, 128, 0, 0.192);
+}
+.graph-plot{
+    width: 100%;
+    object-fit: contain;
+    padding: 1rem;
+}
