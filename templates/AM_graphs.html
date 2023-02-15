@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <style>
     .inputs{
@@ -29,7 +30,7 @@
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     backdrop-filter: blur( 4px );
     -webkit-backdrop-filter: blur( 4px );
-
+    position: relative;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     padding: 1.25rem 1rem;
     }
@@ -39,15 +40,15 @@
       gap: 1.5rem;
     }
   </style>
-  <script type = "text/JavaScript">
-     function AutoRefresh( t ) {
-        setTimeout("location.reload(true);", 5);
-     }
-</script>
 </head>
 <body>
   <nav>
     <h1 class="heading">{{title}}</h1>
+    <button class="back-button">
+      <a href="/AM">
+        <i class="fa-solid fa-arrow-left"></i>
+      </a>
+    </button>
   </nav>
 <div class="container-full">
   <form action="/AM/{{index}}" method="POST">
@@ -81,7 +82,6 @@
           <label for="am">Carrier Amplitude</label>
           <input required type="number" id="am" name="Ac" placeholder="Ac value..">
       </div>
-      <br>
     </div>
     <div class="buttons">
       <button type="submit">Get Graph</button>
