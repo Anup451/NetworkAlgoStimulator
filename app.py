@@ -209,7 +209,7 @@ def DM_page():
     return redirect(url_for('DigitalModulation'))
 
 
-@app.route('/DM/<dmtygit pe>', methods=['GET','POST'])
+@app.route('/DM/<dmtype>', methods=['GET','POST'])
 def DigitalModulation(dmtype):
     print("dmtype == ", dmtype)
     if (request.method=='POST'):
