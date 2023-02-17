@@ -36,9 +36,11 @@ def plot_axis(fig):
 def AM_main_graph(x,x1,inputs):
     [Am,Ac,fm,fc,message_signal] = inputs
     if(message_signal=="sin"):
+        demodulated_wave = Ac*Am*np.sin(2*np.pi*fm*x)
         y= Ac*(1+((Am/Ac)*np.sin(2*np.pi*fm*x)))*np.cos(2*np.pi*fc*x)
         y1 = Am*np.sin(2*np.pi*fm*x1)#message signal
     else:
+        demodulated_wave = Ac*Am*np.cos(2*np.pi*fm*x)
         y= Ac*(1+((Am/Ac)*np.cos(2*np.pi*fm*x)))*np.cos(2*np.pi*fc*x)
         y1 = Am*np.cos(2*np.pi*fm*x1)
     y2 = Ac*np.cos(2*np.pi*fc*x1)#carrier signal need to change into scatterplot
@@ -46,16 +48,17 @@ def AM_main_graph(x,x1,inputs):
     plot_graph(x = x, y = y, title = "Modulated wave",color='r', name="AM_modulated1.png")
     plot_graph(x = x1, y = y1, title = "Message Signal",color='y', name="AM_message.png")
     plot_graph(x = x1, y = y2, title = "Carrier Signal",color='g', name="AM_carrier.png")
+    plot_graph(x = x, y = demodulated_wave, title="demodulated wave", name="AM_demodulated.png")
 
 
 def AM_double_sideband_modulation(x,x1,inputs):
     [Am,Ac,fm,fc,message_signal,phi] = inputs
     if message_signal=="sin":
-        demodulated_wave = Ac**2/2*np.cos(phi)*np.cos(2*np.pi*fm*x)
+        demodulated_wave = Ac**2/2*np.cos(phi)*np.sin(2*np.pi*fm*x)
         y = (Am*np.sin(2*np.pi*fm*x))*(Ac*np.cos(2*np.pi*fc*x))
         y1 = (Am*np.sin(2*np.pi*fm*x1))#message signal
     else:
-        demodulated_wave = Ac**2/2*np.cos(phi)*np.sin(2*np.pi*fm*x)
+        demodulated_wave = Ac**2/2*np.cos(phi)*np.cos(2*np.pi*fm*x)
         y = (Am*np.cos(2*np.pi*fm*x))*(Ac*np.cos(2*np.pi*fc*x))
         y1 = (Am*np.cos(2*np.pi*fm*x1))#message signal
     y2 = (Am*np.cos(2*np.pi*fc*x1))#carrier signal
@@ -70,26 +73,27 @@ def AM_double_sideband_modulation(x,x1,inputs):
 def AM_ssb_modulation(x,x1,inputs):
     [Am,Ac,fm,fc,message_signal] = inputs
     if message_signal=="sin":
-        demodulated_wave = Am*Ac**2*np.cos(2*np.pi*fm*x)/4
+        demodulated_wave = (Am*Ac**2*np.sin(2*np.pi*fm*x))/4
         y_positive = (Am*np.sin(2*np.pi*fm*x))*(Ac*np.cos(2*np.pi*fc*x)) + Am*np.cos(2*np.pi*fm*x)*Ac*np.cos(2*np.pi*fc*x)
         y_negative = (Am*np.sin(2*np.pi*fm*x))*(Ac*np.cos(2*np.pi*fc*x)) - Am*np.cos(2*np.pi*fm*x)*Ac*np.cos(2*np.pi*fc*x)
         y1 = (Am*np.sin(2*np.pi*fm*x1))#message signal
     else:
-        demodulated_wave = Am*Ac**2*np.sin(2*np.pi*fm*x)/4
+        demodulated_wave = Am*Ac**2*np.cos(2*np.pi*fm*x)/4
         y_positive = (Am*np.cos(2*np.pi*fm*x))*(Ac*np.cos(2*np.pi*fc*x)) + Am*np.sin(2*np.pi*fm*x)*Ac*np.cos(2*np.pi*fc*x)
         y_negative = (Am*np.cos(2*np.pi*fm*x))*(Ac*np.cos(2*np.pi*fc*x)) - Am*np.sin(2*np.pi*fm*x)*Ac*np.cos(2*np.pi*fc*x)
         y1 = (Am*np.cos(2*np.pi*fm*x1))#message signal
     y2 = (Am*np.cos(2*np.pi*fc*x1))#carrier signal
     
     plot_graph(x = x, y = y_positive,color='r', title = "Modulated wave 1", name="AM_modulated1.png")
-    plot_graph(x = x, y = y_positive,color='b', title = "Modulated wave 2", name="AM_modulated2.png")
+    plot_graph(x = x, y = y_negative,color='b', title = "Modulated wave 2", name="AM_modulated2.png")
     plot_graph(x = x1, y = y1,color='g', title = "Message Signal", name="AM_message.png")
     plot_graph(x = x1, y = y2,color='m', title = "Carrier Signal", name="AM_carrier.png")
     plot_graph(x=x, y=demodulated_wave,color='r', title="demodulated wave", name="AM_demodulated.png")
 
 
 def AM_QAM(x,x1,inputs):
-    if message_signal=="sin":
+    [Am,Ac,fm,fc,message_signal,message_signal_2] = inputs
+    if message_signal=="sin" and message_signal_2=="sin":
         y_positive = (Am*np.sin(2*np.pi*fm*x))*(Ac*cos(2*np.pi*fc*x)) + Am*np.cos(2*np.pi*fm*x)*Ac*np.cos(2*np.pi*fc*x)
         y_negative = (Am*np.sin(2*np.pi*fm*x))*(Ac*cos(2*np.pi*fc*x)) - Am*np.cos(2*np.pi*fm*x)*Ac*np.cos(2*np.pi*fc*x)
         y11 = (Am*np.sin(2*np.pi*fm*x1))#message signal
@@ -135,6 +139,8 @@ def Amplitutde_Modulation(index):
             inputs.append(phi)
             AM_double_sideband_modulation(x, x1, inputs)
         elif index == 4:
+            message_signal_2 = request.form['message_signal_2']
+            inputs.append(message_signal_2)
             AM_QAM(x,x1,inputs) 
     return render_template('AM_graphs.html',index=index,title=title[index])
 
