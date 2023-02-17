@@ -8,7 +8,7 @@ import seaborn as sns
 
 app=Flask(__name__,static_url_path='/static')
 
-def plot_graph(x,y,title,name,xlabel="Volts",ylabel="Frequncy"):
+def plot_graph(x,y,title,name,xlabel="Volts",ylabel="Frequncy",color="b"):
     fig, ax = plt.subplots()
     fig = plt.figure(figsize=(20,6))
     s = [1 for i in x]
@@ -17,7 +17,7 @@ def plot_graph(x,y,title,name,xlabel="Volts",ylabel="Frequncy"):
     plt.title(title)
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
-    plt.scatter(x,y,s)
+    plt.scatter(x,y,s,c=color)
     fig.tight_layout()
     plt.savefig(f'static/results/{name}',bbox_inches='tight')
     fig.clear()
@@ -43,43 +43,49 @@ def AM_main_graph(x,x1,inputs):
         y1 = Am*np.cos(2*np.pi*fm*x1)
     y2 = Ac*np.cos(2*np.pi*fc*x1)#carrier signal need to change into scatterplot
 
-    plot_graph(x = x, y = y, title = "Modulated wave", name="AM_modulated1.png")
-    plot_graph(x = x1, y = y1, title = "Message Signal", name="AM_message.png")
-    plot_graph(x = x1, y = y2, title = "Carrier Signal", name="AM_carrier.png")
+    plot_graph(x = x, y = y, title = "Modulated wave",color='r', name="AM_modulated1.png")
+    plot_graph(x = x1, y = y1, title = "Message Signal",color='y', name="AM_message.png")
+    plot_graph(x = x1, y = y2, title = "Carrier Signal",color='g', name="AM_carrier.png")
 
 
 def AM_double_sideband_modulation(x,x1,inputs):
-    [Am,Ac,fm,fc,message_signal] = inputs
+    [Am,Ac,fm,fc,message_signal,phi] = inputs
     if message_signal=="sin":
+        demodulated_wave = Ac**2/2*np.cos(phi)*np.cos(2*np.pi*fm*x)
         y = (Am*np.sin(2*np.pi*fm*x))*(Ac*np.cos(2*np.pi*fc*x))
         y1 = (Am*np.sin(2*np.pi*fm*x1))#message signal
     else:
+        demodulated_wave = Ac**2/2*np.cos(phi)*np.sin(2*np.pi*fm*x)
         y = (Am*np.cos(2*np.pi*fm*x))*(Ac*np.cos(2*np.pi*fc*x))
         y1 = (Am*np.cos(2*np.pi*fm*x1))#message signal
     y2 = (Am*np.cos(2*np.pi*fc*x1))#carrier signal
-    plot_graph(x = x, y = y, title = "Modulated wave", name="AM_modulated1.png")
-    plot_graph(x = x1, y = y1, title = "Message Signal", name="AM_message.png")
-    plot_graph(x = x1, y = y2, title = "Carrier Signal", name="AM_carrier.png")
+    plot_graph(x = x, y = y, title = "Modulated wave",color='r', name="AM_modulated1.png")
+    plot_graph(x = x1, y = y1, title = "Message Signal",color='y', name="AM_message.png")
+    plot_graph(x = x1, y = y2, title = "Carrier Signal",color='g', name="AM_carrier.png")
+    plot_graph(x=x, y=demodulated_wave, title="demodulated wave",color='m', name="AM_demodulated.png")
+
 
 
 
 def AM_ssb_modulation(x,x1,inputs):
     [Am,Ac,fm,fc,message_signal] = inputs
     if message_signal=="sin":
+        demodulated_wave = Am*Ac**2*np.cos(2*np.pi*fm*x)/4
         y_positive = (Am*np.sin(2*np.pi*fm*x))*(Ac*np.cos(2*np.pi*fc*x)) + Am*np.cos(2*np.pi*fm*x)*Ac*np.cos(2*np.pi*fc*x)
         y_negative = (Am*np.sin(2*np.pi*fm*x))*(Ac*np.cos(2*np.pi*fc*x)) - Am*np.cos(2*np.pi*fm*x)*Ac*np.cos(2*np.pi*fc*x)
         y1 = (Am*np.sin(2*np.pi*fm*x1))#message signal
     else:
+        demodulated_wave = Am*Ac**2*np.sin(2*np.pi*fm*x)/4
         y_positive = (Am*np.cos(2*np.pi*fm*x))*(Ac*np.cos(2*np.pi*fc*x)) + Am*np.sin(2*np.pi*fm*x)*Ac*np.cos(2*np.pi*fc*x)
         y_negative = (Am*np.cos(2*np.pi*fm*x))*(Ac*np.cos(2*np.pi*fc*x)) - Am*np.sin(2*np.pi*fm*x)*Ac*np.cos(2*np.pi*fc*x)
         y1 = (Am*np.cos(2*np.pi*fm*x1))#message signal
     y2 = (Am*np.cos(2*np.pi*fc*x1))#carrier signal
     
-    plot_graph(x = x, y = y_positive, title = "Modulated wave 1", name="AM_modulated1.png")
-    plot_graph(x = x, y = y_positive, title = "Modulated wave 2", name="AM_modulated2.png")
-    plot_graph(x = x1, y = y1, title = "Message Signal", name="AM_message.png")
-    plot_graph(x = x1, y = y2, title = "Carrier Signal", name="AM_carrier.png")
-
+    plot_graph(x = x, y = y_positive,color='r', title = "Modulated wave 1", name="AM_modulated1.png")
+    plot_graph(x = x, y = y_positive,color='b', title = "Modulated wave 2", name="AM_modulated2.png")
+    plot_graph(x = x1, y = y1,color='g', title = "Message Signal", name="AM_message.png")
+    plot_graph(x = x1, y = y2,color='m', title = "Carrier Signal", name="AM_carrier.png")
+    plot_graph(x=x, y=demodulated_wave,color='r', title="demodulated wave", name="AM_demodulated.png")
 
 
 def AM_QAM(x,x1,inputs):
@@ -125,6 +131,8 @@ def Amplitutde_Modulation(index):
         elif index == 2:
             AM_ssb_modulation(x, x1, inputs)
         elif index == 3:
+            phi  = float(request.form['phi'])
+            inputs.append(phi)
             AM_double_sideband_modulation(x, x1, inputs)
         elif index == 4:
             AM_QAM(x,x1,inputs) 

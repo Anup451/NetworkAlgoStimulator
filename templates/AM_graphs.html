@@ -78,6 +78,13 @@
           <label for="am">Message Amplitutde</label>
           <input required type="number" id="am" name="Am" placeholder="Am value..">
       </div>
+      {% if index == 3 %}
+      <div class="input-wrapper">
+        <label for="am">Phi</label>
+        <input required type="number" id="phi" name="phi" placeholder="phi">
+      </div>
+      {% endif %}
+  
       <div class="input-wrapper">
           <label for="am">Carrier Amplitude</label>
           <input required type="number" id="am" name="Ac" placeholder="Ac value..">
@@ -94,6 +101,8 @@
   {% if index == 2 %}
   <img src="/static/results/AM_modulated2.png" class="graph-plot">
   {% endif %}
+
+  <img src='/static/results/AM_demodulated.png' class="graph-plot"/>
   <img src='/static/results/AM_message.png' class="graph-plot"/>
   <img src='/static/results/AM_carrier.png' class="graph-plot"/>
 </div>
