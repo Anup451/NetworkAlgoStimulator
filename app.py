@@ -203,7 +203,13 @@ def Amplitutde_Modulation(index):
 
     return render_template('AM_graphs.html',index=index,title=title[index])
 
-@app.route('/dm/<dmtype>', methods=['GET','POST'])
+@app.route('/DM',methods=['GET'])
+def DM_page():
+    # return render_template('Digital_Modulation.html')
+    return redirect(url_for('DigitalModulation'))
+
+
+@app.route('/DM/<dmtygit pe>', methods=['GET','POST'])
 def DigitalModulation(dmtype):
     print("dmtype == ", dmtype)
     if (request.method=='POST'):
@@ -221,7 +227,7 @@ def DigitalModulation(dmtype):
       if dmtype.upper() == 'BASK':
           BASK(Tb,fc,inputBinarySeq)
 
-    return render_template('DigitalModulation.html',dmtype=dmtype.upper())
+    return render_template('Digital_Modulation.html',dmtype=dmtype.upper())
 
 if __name__ == "__main__":
     app.run(debug=True)
