@@ -2,13 +2,13 @@ from flask import Flask,render_template,request,redirect,url_for
 import pandas as pd
 import sys
 import matplotlib
-matplotlib.use('WebAgg')
 import math
 import matplotlib.pyplot as plt
 import numpy as np
 import os
 from amplitutde_modulation import *
 from util import *
+matplotlib.use('WebAgg')
 
 app=Flask(__name__,static_url_path='/static')
 
@@ -361,8 +361,7 @@ def Amplitutde_Modulation(am_type):
 
 @app.route('/DM',methods=['GET'])
 def DM_page():
-    # return render_template('Digital_Modulation.html')
-    return redirect(url_for('DigitalModulation'))
+    return render_template('Digital_Modulation.html')
 
 
 # ---------- Digital Modulation ---------------------
