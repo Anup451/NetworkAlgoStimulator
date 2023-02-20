@@ -16,10 +16,19 @@
       display: flex;
       gap: 1rem;
       margin: 1rem auto;
+      align-items: center;
       max-width: 100%;
       width: 100vw;
       flex-wrap: wrap;
       justify-content: space-evenly;
+    }
+    .input-wrapper.wrap{
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+    }
+    .wrap select{
+      width: 100px;
     }
     .container-full{
       padding: 1rem;
@@ -51,33 +60,58 @@
     </button>
   </nav>
 <div class="container-full">
-  <form action="/AM/{{index}}" method="POST">
+  <form action="/AM/{{am_type}}" method="POST">
     <div class="inputs">
-      <div class="input-wrapper">
+      {% if index == 4 %}
+      <div class="input-wrapper wrap">
+        <div style="display: flex;flex-direction: column;border-radius:1rem;text-align: center;border: 2px solid white;padding: .5rem;">
           <label for="signal_type" class="form-label">Message_type</label>
           <select name="message_signal" class="input-bar">
             <option value="sin">Sin</option>
             <option value="cos" selected>Cos</option>
-          </select>
+          </select>  
+        </div>
+        <div style="display: flex;flex-direction: column;border-radius:1rem;text-align: center;border: 2px solid white;padding: .5rem;">
+          <label for="signal_type_2" class="form-label">Message_type</label>
+          <select name="message_signal_2" class="input-bar">
+            <option value="sin">Sin</option>
+            <option value="cos" selected>Cos</option>
+            <option value="tri">Triangle</option>
+            <option value="ramp">Ramp</option>  
+          </select>  
+        </div>
       </div>  
+      {% else %}
+      <div class="input-wrapper">
+        <label for="signal_type" class="form-label">Message_type</label>
+        <select name="message_signal" class="input-bar">
+          <option value="sin">Sin</option>
+          <option value="cos" selected>Cos</option>
+          <option value="tri">Triangle</option>
+          <option value="ramp">Ramp</option>
+        </select>
+      </div>  
+      {% endif %}
       <div class="input-wrapper">
           <label for="freqc">Carrier frequency</label>
           <input required type="number" id="freqc" name="fc" class="input-bar" placeholder="frequencyc value..">
       </div>
       <div class="input-wrapper">
-        <label for="freqm">
-            {%if index==4%}
-              Message Frequency 1
-            {%else%}
-              Message Frequency 
-            {%endif%}           
-          </label>
+        <label for="freqm">Message frequncy</label>
           <input required type="number" id="freqm" name="fm" placeholder="frequencym value..">
       </div>
       <div class="input-wrapper">
           <label for="am">Message Amplitutde</label>
           <input required type="number" id="am" name="Am" placeholder="Am value..">
       </div>
+
+      {% if index == 3 %}
+      <div class="input-wrapper">
+        <label for="am">Phi</label>
+        <input required type="number" id="phi" name="phi" placeholder="phi">
+      </div>
+      {% endif %}
+
       <div class="input-wrapper">
           <label for="am">Carrier Amplitude</label>
           <input required type="number" id="am" name="Ac" placeholder="Ac value..">
@@ -95,7 +129,15 @@
   <img src="/static/results/AM_modulated2.png" class="graph-plot">
   {% endif %}
   <img src='/static/results/AM_message.png' class="graph-plot"/>
+  <img src='/static/results/AM_demodulated.png' class="graph-plot"/>
+  {%if index == 4%}
+  <img src='/static/results/AM_demodulated_1.png' class="graph-plot"/>
+  <img src='/static/results/AM_message_1.png' class="graph-plot"/>  
+  {%endif%}
   <img src='/static/results/AM_carrier.png' class="graph-plot"/>
+  {%if index == 4%}
+  <img src="/static/results/AM_carrier_1.png" class="graph-plot">
+  {%endif%}
 </div>
 </body>
 </html>

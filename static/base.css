@@ -63,3 +63,12 @@ button{
     object-fit: contain;
     padding: 1rem;
 }
+button:hover{
+    cursor: pointer;
+}
+.graph-plot:hover{
+    cursor: zoom-in;
+}
+.graph-plot.max:hover{
+    cursor: zoom-out;
+}

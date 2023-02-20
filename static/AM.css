@@ -7,6 +7,8 @@
 
 .container{
     background-color: rgb(232, 231, 227);
+    width: 100vw;
+    transition: 0.3s;
 }
 
 p, h2{
