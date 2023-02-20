@@ -6,165 +6,45 @@ matplotlib.use('WebAgg')
 import math
 import matplotlib.pyplot as plt
 import numpy as np
-import seaborn as sns
 import os
-
+from amplitutde_modulation import *
+from util import *
 
 app=Flask(__name__,static_url_path='/static')
 
 if __name__ == "__main__":
     app.run(debug=True)
 
-def triangular(x,A):
-    return np.absolute(np.fmod(np.absolute(x),2*A)-A)
 
-
-def plot_graph(x,y,title,name,xlabel="Volts",ylabel="Frequncy",color="b",condition="scatter"):
-    plt.style.use('seaborn')
-    fig, ax = plt.subplots()
-    fig = plt.figure(figsize=(20,3))
-    plot_axis(fig,ax)
-    s = [1 for i in x]
-    plt.title(title)
-    plt.xlabel(xlabel)
-    plt.ylabel(ylabel)
-    if condition=="scatter":
-        plt.scatter(x,y,s,c=color)
-    elif condition=="plot":
-        plt.plot(x,y,s,c=color)
-    fig.tight_layout()
-    plt.savefig(f'static/results/{name}',bbox_inches='tight')
-    plt.close()
-
-
-def plot_axis(fig,ax):
-    ax = fig.add_subplot(1, 1, 1)
-    ax.spines['left'].set_position('center')
-    ax.spines['bottom'].set_position('zero')
-    ax.spines['right'].set_color('none')
-    ax.spines['top'].set_color('none')
-    ax.xaxis.set_ticks_position('bottom')
-    ax.yaxis.set_ticks_position('left')
-
-
-def AM_main_graph(x,inputs):
-    [Am,Ac,fm,fc,message_signal] = inputs
-    carrier = Ac*np.cos(2*np.pi*fc*x)
-    if(message_signal=="sin"):
-        message = Am*np.sin(2*np.pi*fm*x)
-        demodulated_wave = Ac*Am*np.sin(2*np.pi*fm*x)
-    elif message_signal=='cos':
-        demodulated_wave = Ac*Am*np.cos(2*np.pi*fm*x)
-        message = Am*np.cos(2*np.pi*fm*x)
-    elif message_signal=='tri':
-        message = triangular(x, Am)
-        demodulated_wave = triangular(x, 0.01*Am*Ac)
-    modulated_wave = carrier+message*np.cos(2*np.pi*fc*x)
-        
-    plot_graph(x = x, y = modulated_wave, title = "Modulated wave",color='r', name="AM_modulated1.png")
-    plot_graph(x = x, y = message, title = "Message Signal",color='y', name="AM_message.png")
-    plot_graph(x = x, y = carrier, title = "Carrier Signal",color='g', name="AM_carrier.png")
-    plot_graph(x = x, y = demodulated_wave, title="demodulated wave", name="AM_demodulated.png")
-
-
-def AM_double_sideband_modulation(x,inputs):
-    [Am,Ac,fm,fc,message_signal,phi] = inputs
-    carrier = Am*np.cos(2*np.pi*fc*x)
-    if message_signal=="sin":
-        demodulated_wave = Ac**2/2*np.cos(phi)*np.sin(2*np.pi*fm*x)
-        message = Am*np.sin(2*np.pi*fm*x)
-    elif message_signal=='tri':
-        message = triangular(x, Am)
-        demodulated_wave = triangular(x, 0.01*Am*Ac)
-    elif message_signal=='cos':
-        demodulated_wave = Ac**2/2*np.cos(phi)*np.cos(2*np.pi*fm*x)
-        message = Am*np.cos(2*np.pi*fm*x)
-
-    modulated_wave = message*carrier
-
-    plot_graph(x = x, y = modulated_wave, title = "Modulated wave", color ='r', name = "AM_modulated1.png")
-    plot_graph(x = x, y = message, title = "Message Signal", color = 'y', name = "AM_message.png")
-    plot_graph(x = x, y = carrier, title = "Carrier Signal", color = 'g', name = "AM_carrier.png")
-    plot_graph(x = x, y = demodulated_wave, title="demodulated wave", color = 'm', name = "AM_demodulated.png")
-
-
-
-def AM_ssb_modulation(x,inputs):
-    [Am,Ac,fm,fc,message_signal] = inputs
-    if message_signal=="sin":
-        demodulated_wave = (Am*Ac**2*np.sin(2*np.pi*fm*x))/4
-        y_positive = (Am*np.sin(2*np.pi*fm*x))*(Ac*np.cos(2*np.pi*fc*x)) + Am*np.cos(2*np.pi*fm*x)*Ac*np.cos(2*np.pi*fc*x)
-        y_negative = (Am*np.sin(2*np.pi*fm*x))*(Ac*np.cos(2*np.pi*fc*x)) - Am*np.cos(2*np.pi*fm*x)*Ac*np.cos(2*np.pi*fc*x)
-        y1 = (Am*np.sin(2*np.pi*fm*x))#message signal
-    else:
-        demodulated_wave = Am*Ac**2*np.cos(2*np.pi*fm*x)/4
-        y_positive = (Am*np.cos(2*np.pi*fm*x))*(Ac*np.cos(2*np.pi*fc*x)) + Am*np.sin(2*np.pi*fm*x)*Ac*np.cos(2*np.pi*fc*x)
-        y_negative = (Am*np.cos(2*np.pi*fm*x))*(Ac*np.cos(2*np.pi*fc*x)) - Am*np.sin(2*np.pi*fm*x)*Ac*np.cos(2*np.pi*fc*x)
-        y1 = (Am*np.cos(2*np.pi*fm*x))#message signal
-    y2 = (Am*np.cos(2*np.pi*fc*x))#carrier signal
-    
-    plot_graph(x = x, y = y_positive,color='r', title = "Modulated wave 1", name="AM_modulated1.png")
-    plot_graph(x = x, y = y_negative,color='b', title = "Modulated wave 2", name="AM_modulated2.png")
-    plot_graph(x = x, y = y1,color='g', title = "Message Signal", name="AM_message.png")
-    plot_graph(x = x, y = y2,color='m', title = "Carrier Signal", name="AM_carrier.png")
-    plot_graph(x=x, y=demodulated_wave,color='r', title="demodulated wave", name="AM_demodulated.png")
-
-
-def AM_QAM(x,inputs):
-    [Am,Ac,fm,fc,message_signal,message_signal_2] = inputs
-    c1 = Ac*np.cos(2*np.pi*fc*x)
-    c2 = Ac*np.sin(2*np.pi*fc*x)
-
-    if message_signal=="sin":
-        m1 = Am*np.sin(2*np.pi*fm*x)
-    else:
-        m1 = Am*np.cos(2*np.pi*fm*x)
-    
-    if message_signal_2 == "sin":
-        m2 = Am*np.sin(2*np.pi*fm*x)
-    else:
-        m2 = Am*np.cos(2*np.pi*fm*x)
-# def AM_QAM(x,x1,inputs):
-#     if message_signal=="sin":
-#         y_positive = (Am*np.sin(2*np.pi*fm*x))*(Ac*cos(2*np.pi*fc*x)) + Am*np.cos(2*np.pi*fm*x)*Ac*np.cos(2*np.pi*fc*x)
-#         y_negative = (Am*np.sin(2*np.pi*fm*x))*(Ac*cos(2*np.pi*fc*x)) - Am*np.cos(2*np.pi*fm*x)*Ac*np.cos(2*np.pi*fc*x)
-#         y11 = (Am*np.sin(2*np.pi*fm*x1))#message signal
-#         y12 = (Am*np*sin(2*np*fm*x1))
-#     else:
-#         y = (Am*np.cos(2*np.pi*fm*x))*(Ac*cos(2*np.pi*fc*x))
-#         y1 = (Am*np.cos(2*np.pi*fm*x1))#message signal
-#     y2 = (Am*np.cos(2*np.pi*fc*x1))#carrier signal
-
-
-def FM_MAIN(x,x1,inputs):
+def FM_MAIN(x,inputs):
     [Am,Ac,fm,fc,message_signal,K] = inputs
     if(message_signal=="sin"):
-            y= Ac*np.cos(2*np.pi*fc*x+(K*Am/fm)*np.sin(2*np.pi*fm*x))
-            y1 = Am*np.sin(2*np.pi*fm*x1)#message signal
+        y= Ac*np.cos(2*np.pi*fc*x+(K*Am/fm)*np.sin(2*np.pi*fm*x))
+        y1 = Am*np.sin(2*np.pi*fm*x1)#message signal
     else:
-            y= Ac*np.cos(2*np.pi*fc*x+(K*Am/fm)*np.sin(2*np.pi*fm*x))
-            y1 = Am*np.cos(2*np.pi*fm*x1)
-    y2 = Ac*np.cos(2*np.pi*fc*x1)#carrier signal need to change into scatterplot
+        y= Ac*np.cos(2*np.pi*fc*x+(K*Am/fm)*np.sin(2*np.pi*fm*x))
+        y1 = Am*np.cos(2*np.pi*fm*x)
+    y2 = Ac*np.cos(2*np.pi*fc*x)#carrier signal need to change into scatterplot
         
     plot_graph(x = x, y = y, title = "Modulated wave", name="FM_modulated1.png")
-    plot_graph(x = x1, y = y1, title = "Message Signal", name="FM_message.png")
-    plot_graph(x = x1, y = y2, title = "Carrier Signal", name="FM_carrier.png")
+    plot_graph(x = x, y = y1, title = "Message Signal", name="FM_message.png")
+    plot_graph(x = x, y = y2, title = "Carrier Signal", name="FM_carrier.png")
     
     
-def PHASE_MAIN(x,x1,inputs):
+def PHASE_MAIN(x,inputs):
     [Am,Ac,fm,fc,message_signal,K] = inputs
     if(message_signal=="sin"):
-            y= Ac*np.cos(2*np.pi*fc*x+(K*Am)*np.cos(2*np.pi*fm*x))
-            y1 = Am*np.sin(2*np.pi*fm*x1)#message signal
+        y= Ac*np.cos(2*np.pi*fc*x+(K*Am)*np.cos(2*np.pi*fm*x))
+        y1 = Am*np.sin(2*np.pi*fm*x)#message signal
     else:
-            y= Ac*np.cos(2*np.pi*fc*x+(K*Am)*np.cos(2*np.pi*fm*x))
-            y1 = Am*np.cos(2*np.pi*fm*x1)       
+        y= Ac*np.cos(2*np.pi*fc*x+(K*Am)*np.cos(2*np.pi*fm*x))
+        y1 = Am*np.cos(2*np.pi*fm*x)       
     
-    y2 = Ac*np.cos(2*np.pi*fc*x1)#carrier signal need to change into scatterplot
+    y2 = Ac*np.cos(2*np.pi*fc*x)#carrier signal need to change into scatterplot
         
     plot_graph(x = x, y = y, title = "Modulated wave", name="FM_modulated1.png")
-    plot_graph(x = x1, y = y1, title = "Message Signal", name="FM_message.png")
-    plot_graph(x = x1, y = y2, title = "Carrier Signal", name="FM_carrier.png")    
+    plot_graph(x = x, y = y1, title = "Message Signal", name="FM_message.png")
+    plot_graph(x = x, y = y2, title = "Carrier Signal", name="FM_carrier.png")    
     
 
 
@@ -182,14 +62,12 @@ def FM(index):
         K = int(request.form['K'])
         inputs = [Am,Ac,fm,fc,message_signal,K]
         x = np.linspace(-200,200,10000) #domain for the modulated_wave
-        x1 = np.linspace(-200,200,20000) #domain for the carrier and message signal
         s = [1 for i in x]
-        s1 = [1 for i in x1]
         if(index==1):
-            FM_MAIN(x,x1,inputs)
+            FM_MAIN(x,inputs)
             
         elif(index==2):
-            PHASE_MAIN(x,x1,inputs)   
+            PHASE_MAIN(x,inputs)   
             
         # elif(index==3):
         #     PULSE_MAIN(x,x1,inputs) 
@@ -271,17 +149,6 @@ def BASK(Tb, fc, inputBinarySeq):
   # plt.show()
 
 
-
-    modulated_wave = m1*Ac*np.cos(2*np.pi*fc*x) + m2*Ac*np.sin(2*np.pi*fc*x)
-    
-    plot_graph(x = x, y = modulated_wave,color='r', title = "Modulated wave 1", name="AM_modulated1.png")
-    plot_graph(x = x, y = m1,color='b', title = "Message Signal", name="AM_message.png")
-    plot_graph(x = x, y = m2,color='g', title = "Message Signal", name="AM_message_1.png")
-    plot_graph(x = x, y = c1,color='m', title = "Carrier Signal", name="AM_carrier.png")
-    plot_graph(x = x, y = c2,color='y', title = "Carrier Signal", name="AM_carrier_1.png")
-    plot_graph(x = x, y=m1,color='r', title="demodulated wave", name="AM_demodulated.png")
-    plot_graph(x = x, y=m2,color='c', title="demodulated wave", name="AM_demodulated_1.png")
-
 @app.route('/',methods=['GET'])
 def home():
     return redirect(url_for("AM_page"))
@@ -302,7 +169,7 @@ def Amplitutde_Modulation(am_type):
             os.remove(os.path.join('./static/results', images))
     
     title = {"MAIN":"Amplitutde Modulation","SSB":"SSB Modulation","DSBSC":"DSB Modulation","QAM":"QAM Modulation"}
-
+    print(am_type)
     if (request.method=='POST'):
         fm=int (request.form['fm'])
         fc=int (request.form['fc'])
@@ -325,7 +192,7 @@ def Amplitutde_Modulation(am_type):
             message_signal_2 = request.form['message_signal_2']
             inputs.append(message_signal_2)
             AM_QAM(x,inputs) 
-    return render_template('AM_graphs.html',am_type=am_type,title=title[am_type])
+    return render_template('AM_graphs.html',am_type=am_type.upper(),title=title[am_type])
 
 
 
