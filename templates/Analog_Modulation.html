@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analog modulation</title>
     <link rel="stylesheet" href="/static/AM.css">
+    <script src="/static/js/scritpt.js" defer></script>
 </head>
 <body>
     
@@ -13,9 +14,18 @@
         <div class="nav">
             <h1>Analog modulation</h1>
         </div>
+        <div class="selection-section">
+            <ul class="nav-list-horizontal">
+                <li class="nav-item" id="amplitude">
+                    Ampliutde modulation
+                </li>
+                <li class="nav-item active" id="frequency">
+                    Frequency Modulation
+                </li>
+            </ul>
+        </div>
         <div class="container">
-
-            <div class="content">
+            <div class="content" id="Amplitude-modulation-section">
                 <a class="card-link" href="/AM/MAIN" id="AM_main" >
                     <div class="box card" id="box-1">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/Amplitudemodulation.gif?20150401022946" alt="">
@@ -73,20 +83,8 @@
 
                         </p>
                     </div>
-                </a>
-                <a class="card-link" href="/FM/1">
-                    <div class="box card" id="box-2">
-                        <img src="https://www.etti.unibw.de/labalive/experiment/fm/teaser/fm-signal-spectra.png" alt="">
-                        <h2 class="card-heading">
-                            Spectra of FM signals
-                        </h2>
-                        <p>
-                            Frequency modulation signal spectra show sidebands for sinewave modulation. 
-                            In this experiment we take a look how they change with the modulating signal amplitude.
-                        </p>
-                    </div>    
-                </a>
-                 <!--<a class="card-link" href="">
+                </a>                 
+                <!--<a class="card-link" href="">
                     <div class="box card" id="box-3">
                         <img src="https://www.etti.unibw.de/labalive/experiment/fmtransmitterrecordaudiodemo/teaser/mod-18.gif" alt="">
                         <h2 class="card-heading">
@@ -132,6 +130,21 @@
                         <p>In order to deepen amplitude and frequency modulation and demodulation an experiment was designed.</p>
                     </div>
                 </a> -->
+            </div>
+            <div class="content" id="Frequency-modulation-section">
+                <a class="card-link" href="/FM/1">
+                    <div class="box card" id="box-2">
+                        <img src="https://www.etti.unibw.de/labalive/experiment/fm/teaser/fm-signal-spectra.png" alt="">
+                        <h2 class="card-heading">
+                            Spectra of FM signals
+                        </h2>
+                        <p>
+                            Frequency modulation signal spectra show sidebands for sinewave modulation. 
+                            In this experiment we take a look how they change with the modulating signal amplitude.
+                        </p>
+                    </div>    
+                </a>
+
             </div>
         </div>
     </div>

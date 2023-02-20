@@ -20,7 +20,7 @@ def FM_MAIN(x,inputs):
     [Am,Ac,fm,fc,message_signal,K] = inputs
     if(message_signal=="sin"):
         y= Ac*np.cos(2*np.pi*fc*x+(K*Am/fm)*np.sin(2*np.pi*fm*x))
-        y1 = Am*np.sin(2*np.pi*fm*x1)#message signal
+        y1 = Am*np.sin(2*np.pi*fm*x)#message signal
     else:
         y= Ac*np.cos(2*np.pi*fc*x+(K*Am/fm)*np.sin(2*np.pi*fm*x))
         y1 = Am*np.cos(2*np.pi*fm*x)
@@ -70,7 +70,7 @@ def FM(index):
             PHASE_MAIN(x,inputs)   
             
         # elif(index==3):
-        #     PULSE_MAIN(x,x1,inputs) 
+        #     PULSE_MAIN(x,inputs) 
     return render_template('fm_graphs.html',title=title[index],index=index)
 
 
@@ -155,15 +155,13 @@ def home():
 
 @app.route('/AM',methods=['GET'])
 def AM_page():
-    return render_template('Amplitude_Modulation.html')
+    return render_template('Analog_Modulation.html')
 
 @app.route('/AM/<am_type>',methods=['GET','POST'])
 def Amplitutde_Modulation(am_type):  
-    
     root_dir = os.path.dirname(os.getcwd()) 
     res_dir = os.path.join(root_dir,"static","results")
     results = os.listdir('./static/results')
-
     for images in results:
         if images.endswith(".png"):
             os.remove(os.path.join('./static/results', images))
@@ -188,7 +186,7 @@ def Amplitutde_Modulation(am_type):
             phi  = float(request.form['phi'])
             inputs.append(phi)
             AM_double_sideband_modulation(x, inputs)
-        elif index == "QAM":
+        elif am_type == "QAM":
             message_signal_2 = request.form['message_signal_2']
             inputs.append(message_signal_2)
             AM_QAM(x,inputs) 
