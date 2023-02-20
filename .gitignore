@@ -1,2 +1,4 @@
 /static/results/*.png
-*.pyc
+/__pycache__/*
+cython_debug/
+__pycache__/

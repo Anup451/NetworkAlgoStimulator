@@ -124,6 +124,89 @@ def AM_QAM(x,inputs):
         m2 = Am*np.sin(2*np.pi*fm*x)
     else:
         m2 = Am*np.cos(2*np.pi*fm*x)
+# def AM_QAM(x,x1,inputs):
+#     if message_signal=="sin":
+#         y_positive = (Am*np.sin(2*np.pi*fm*x))*(Ac*cos(2*np.pi*fc*x)) + Am*np.cos(2*np.pi*fm*x)*Ac*np.cos(2*np.pi*fc*x)
+#         y_negative = (Am*np.sin(2*np.pi*fm*x))*(Ac*cos(2*np.pi*fc*x)) - Am*np.cos(2*np.pi*fm*x)*Ac*np.cos(2*np.pi*fc*x)
+#         y11 = (Am*np.sin(2*np.pi*fm*x1))#message signal
+#         y12 = (Am*np*sin(2*np*fm*x1))
+#     else:
+#         y = (Am*np.cos(2*np.pi*fm*x))*(Ac*cos(2*np.pi*fc*x))
+#         y1 = (Am*np.cos(2*np.pi*fm*x1))#message signal
+#     y2 = (Am*np.cos(2*np.pi*fc*x1))#carrier signal
+
+
+# BASK - Binary Amplitude Shift Key
+def BASK(Tb, fc, inputBinarySeq):
+
+  t = np.arange(0, 1+Tb/100, Tb/100)
+  c = np.sqrt(2/Tb)*np.sin(2*np.pi*fc*t)  # Equation for the carrier signal as a function of time
+
+  # Generate the message signal
+  # N = 8  # Set the number of data elements N
+  # m = np.random.rand(N)
+  # m = np.array([1,0,1,0,0,1,0])
+
+  m = inputBinarySeq
+  N = len(m)
+
+  t1 = 0
+  t2 = Tb
+
+  for i in range(N):
+      t = np.arange(t1, t2+0.01, 0.01)  # To obtain each data element, generate a random number m in [0,1]
+      if m[i] > 0.5:  # If m > 0.5 assign value of m=1, else assign m=0
+          m[i] = 1
+          m_s = np.ones(len(t))
+      else:
+          m[i] = 0
+          m_s = np.zeros(len(t))
+
+      message = np.zeros((N, len(t)))
+      message[i, :] = m_s
+
+      # Product of carrier and message
+      ask_sig = c * m_s  # The modulated signal is the product of the message signal level (dc level) and the carrier signal level (analog level)
+
+      t1 = t1 + (Tb + 0.01)
+      t2 = t2 + (Tb + 0.01)
+
+      # Plotting the message signal
+      plt.subplot(5, 1, 2)
+      plt.axis([0, N, -2, 2])
+      plt.plot(t, message[i, :], 'r')
+      plt.title('message signal')
+      plt.xlabel('t')
+      plt.ylabel('m(t)')
+      plt.grid(True)
+
+      # Plotting the BASK signal (modulated signal)
+      plt.subplot(5, 1, 4)
+      plt.plot(t, ask_sig)
+      plt.title('Amplitude Shift Keying')
+      plt.xlabel('t --->')
+      plt.ylabel('s(t)')
+      plt.grid(True)
+
+
+  # Save Message & Modulated Signal
+  plt.savefig(f'static/results/BASK_msg_mod.png',bbox_inches='tight')
+
+  # Plotting the carrier signal
+  plt.figure()
+  plt.subplot(5, 1, 3)
+  plt.plot(t, c)
+  plt.title('carrier signal')
+  plt.xlabel('t')
+  plt.ylabel('c(t)')
+  plt.grid(True)
+  plt.savefig(f'static/results/BASK_carrier.png',bbox_inches='tight') # Save
+  plt.figure()
+
+
+  # plt.show()
+
+
 
     modulated_wave = m1*Ac*np.cos(2*np.pi*fc*x) + m2*Ac*np.sin(2*np.pi*fc*x)
     
@@ -179,6 +262,31 @@ def Amplitutde_Modulation(am_type):
             AM_QAM(x,inputs) 
     return render_template('AM_graphs.html',am_type=am_type,title=title[am_type])
 
+@app.route('/DM',methods=['GET'])
+def DM_page():
+    # return render_template('Digital_Modulation.html')
+    return redirect(url_for('DigitalModulation'))
+
+
+@app.route('/DM/<dmtype>', methods=['GET','POST'])
+def DigitalModulation(dmtype):
+    print("dmtype == ", dmtype)
+    if (request.method=='POST'):
+      Tb=int (request.form['Tb'])
+      fc=int (request.form['fc'])
+      binaryInput = str(request.form['inputBinarySeq'])
+
+      # Change string to array
+      inputBinarySeq = np.array(list(binaryInput), dtype=int)
+
+      print("Tb=", Tb)
+      print("fc=", fc)
+      print("inputBinarySeq=", inputBinarySeq)
+
+      if dmtype.upper() == 'BASK':
+          BASK(Tb,fc,inputBinarySeq)
+
+    return render_template('Digital_Modulation.html',dmtype=dmtype.upper())
 
 if __name__ == "__main__":
     app.run(debug=True)
