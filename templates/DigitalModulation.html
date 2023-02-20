@@ -47,9 +47,17 @@
           <label for="freqc">Carrier Frequency (Fc)</label>
           <input type="number" id="freqc" name="fc" class="input-bar" placeholder="eg: 10" required>
       </div>
+
+      {% if dmtype == 'BFSK' %}
+        <div class="input-wrapper">
+          <label for="freqc">Carrier Frequency 2 (Fc2)</label>
+          <input type="number" id="freqc" name="fc2" class="input-bar" placeholder="eg: 10" required>
+        </div>
+      {% endif %}
+
       <div class="input-wrapper">
-          <label for="freqm">Bit Duration (Tb)</label>
-          <input type="number" id="freqm" name="Tb" placeholder="eg: 1" required>
+        <label for="freqm">Bit Duration (Tb)</label>
+        <input type="text" id="freqm" name="Tb" placeholder="eg: 1" required>
       </div>
       <div class="input-wrapper">
           <label for="am">Input Binary Sequence</label>
@@ -67,9 +75,29 @@
 </div>
 
 <div class="plot-wrapper">  
+  {% if dmtype == 'BASK' %}
   <img src='/static/results/BASK_msg.png' class="graph-plot"/>
   <img src='/static/results/BASK_carrier.png' class="graph-plot"/>
   <img src='/static/results/BASK_msg_mod.png' class="graph-plot"/>
+  {% endif %}
+
+  {% if dmtype == 'BFSK' %}
+  <img src='/static/results/BFSK_msg.png' class="graph-plot"/>
+  <img src='/static/results/BFSK_mod.png' class="graph-plot"/>
+  {% endif %}
+
+  {% if dmtype == 'BPSK' %}
+  <img src='/static/results/BPSK_msg.png' class="graph-plot"/>
+  <img src='/static/results/BPSK_mod.png' class="graph-plot"/>
+  {% endif %}
+
+  {% if dmtype == 'QPSK' %}
+  <img src='/static/results/QPSK_msg.png' class="graph-plot"/>
+  <img src='/static/results/QPSK_carrier1.png' class="graph-plot"/>
+  <img src='/static/results/QPSK_carrier2.png' class="graph-plot"/>
+  <img src='/static/results/QPSK_mod.png' class="graph-plot"/>
+  {% endif %}
+  
 </div>
 </body>
 </html>
