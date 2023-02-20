@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Network Algorithm simulator</title>
+  <link rel="stylesheet" href="/static/base.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    .inputs{
+      display: flex;
+      gap: 1rem;
+      margin: 1rem auto;
+      max-width: 100%;
+      width: 100vw;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+    }
+    .container-full{
+      padding: 1rem;
+    }
+    nav{
+    background: green;
+    color: white;
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    position: relative;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    padding: 1.25rem 1rem;
+    }
+    .buttons{
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <h1 class="heading">{{title}}</h1>
+    <button class="back-button">
+      <a href="/AM">
+        <i class="fa-solid fa-arrow-left"></i>
+      </a>
+    </button>
+  </nav>
+<div class="container-full">
+  <form action="/FM/{{index}}" method="POST">
+    <div class="inputs">
+      <div class="input-wrapper">
+          <label for="signal_type" class="form-label">Message_type</label>
+          <select name="message_signal" class="input-bar">
+            <option value="sin">Sin</option>
+            <option value="cos" selected>Cos</option>
+          </select>
+      </div>  
+      <div class="input-wrapper">
+          <label for="freqc">Carrier frequency</label>
+          <input required type="number" id="freqc" name="fc" class="input-bar" placeholder="frequencyc value..">
+      </div>
+      <div class="input-wrapper">
+        <label for="freqm">
+              Message Frequency         
+          </label>
+          <input required type="number" id="freqm" name="fm" placeholder="frequencym value..">
+      </div>
+      <div class="input-wrapper">
+          <label for="am">Message Amplitutde</label>
+          <input required type="number" id="am" name="Am" placeholder="Am value..">
+      </div>
+      <div class="input-wrapper">
+        <label for="K">K</label>
+        <input required type="number" id="K" name="K" placeholder="Am value..">
+    </div>
+      <div class="input-wrapper">
+          <label for="am">Carrier Amplitude</label>
+          <input required type="number" id="am" name="Ac" placeholder="Ac value..">
+      </div>
+    </div>
+    <div class="buttons">
+      <button type="submit">Get Graph</button>
+      <button type="submit">Download</button>
+    </div>
+  </form>
+</div>
+<div class="plot-wrapper">  
+  <img src='/static/results/FM_modulated1.png' class="graph-plot"/>
+  <img src='/static/results/FM_message.png' class="graph-plot"/>
+  <img src='/static/results/FM_carrier.png' class="graph-plot"/>
+</div>
+</body>
+</html>

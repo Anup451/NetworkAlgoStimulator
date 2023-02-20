@@ -3,6 +3,7 @@ import pandas as pd
 import sys
 import matplotlib
 matplotlib.use('WebAgg')
+import math
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
@@ -88,7 +89,6 @@ def AM_double_sideband_modulation(x,inputs):
 
 
 
-
 def AM_ssb_modulation(x,inputs):
     [Am,Ac,fm,fc,message_signal] = inputs
     if message_signal=="sin":
@@ -134,6 +134,70 @@ def AM_QAM(x,inputs):
 #         y = (Am*np.cos(2*np.pi*fm*x))*(Ac*cos(2*np.pi*fc*x))
 #         y1 = (Am*np.cos(2*np.pi*fm*x1))#message signal
 #     y2 = (Am*np.cos(2*np.pi*fc*x1))#carrier signal
+
+
+def FM_MAIN(x,x1,inputs):
+    [Am,Ac,fm,fc,message_signal,K] = inputs
+    if(message_signal=="sin"):
+            y= Ac*np.cos(2*np.pi*fc*x+(K*Am/fm)*np.sin(2*np.pi*fm*x))
+            y1 = Am*np.sin(2*np.pi*fm*x1)#message signal
+    else:
+            y= Ac*np.cos(2*np.pi*fc*x+(K*Am/fm)*np.sin(2*np.pi*fm*x))
+            y1 = Am*np.cos(2*np.pi*fm*x1)
+    y2 = Ac*np.cos(2*np.pi*fc*x1)#carrier signal need to change into scatterplot
+        
+    plot_graph(x = x, y = y, title = "Modulated wave", name="FM_modulated1.png")
+    plot_graph(x = x1, y = y1, title = "Message Signal", name="FM_message.png")
+    plot_graph(x = x1, y = y2, title = "Carrier Signal", name="FM_carrier.png")
+    
+    
+def PHASE_MAIN(x,x1,inputs):
+    [Am,Ac,fm,fc,message_signal,K] = inputs
+    if(message_signal=="sin"):
+            y= Ac*np.cos(2*np.pi*fc*x+(K*Am)*np.cos(2*np.pi*fm*x))
+            y1 = Am*np.sin(2*np.pi*fm*x1)#message signal
+    else:
+            y= Ac*np.cos(2*np.pi*fc*x+(K*Am)*np.cos(2*np.pi*fm*x))
+            y1 = Am*np.cos(2*np.pi*fm*x1)       
+    
+    y2 = Ac*np.cos(2*np.pi*fc*x1)#carrier signal need to change into scatterplot
+        
+    plot_graph(x = x, y = y, title = "Modulated wave", name="FM_modulated1.png")
+    plot_graph(x = x1, y = y1, title = "Message Signal", name="FM_message.png")
+    plot_graph(x = x1, y = y2, title = "Carrier Signal", name="FM_carrier.png")    
+    
+
+
+
+@app.route('/FM/<index>',methods=['GET','POST'])
+def FM(index):
+    index = int(index)
+    title={1:"Frequency modulation",2:"Phase modulation"}
+    if request.method == 'POST':
+        fm=int (request.form['fm'])
+        fc=int (request.form['fc'])
+        Am=int (request.form['Am'])
+        Ac=int (request.form['Ac'])
+        message_signal = str(request.form['message_signal'])
+        K = int(request.form['K'])
+        inputs = [Am,Ac,fm,fc,message_signal,K]
+        x = np.linspace(-200,200,10000) #domain for the modulated_wave
+        x1 = np.linspace(-200,200,20000) #domain for the carrier and message signal
+        s = [1 for i in x]
+        s1 = [1 for i in x1]
+        if(index==1):
+            FM_MAIN(x,x1,inputs)
+            
+        elif(index==2):
+            PHASE_MAIN(x,x1,inputs)   
+            
+        # elif(index==3):
+        #     PULSE_MAIN(x,x1,inputs) 
+    return render_template('fm_graphs.html',title=title[index],index=index)
+
+
+
+
 
 
 # BASK - Binary Amplitude Shift Key
@@ -248,6 +312,7 @@ def Amplitutde_Modulation(am_type):
         inputs = [Am,Ac,fm,fc,message_signal]
         x = np.linspace(-200,200,10000) #domain for the modulated_wave
 
+
         if am_type == "MAIN":
             AM_main_graph(x, inputs)
         elif am_type == "SSB":
@@ -261,6 +326,9 @@ def Amplitutde_Modulation(am_type):
             inputs.append(message_signal_2)
             AM_QAM(x,inputs) 
     return render_template('AM_graphs.html',am_type=am_type,title=title[am_type])
+
+
+
 
 @app.route('/DM',methods=['GET'])
 def DM_page():
