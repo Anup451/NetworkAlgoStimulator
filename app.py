@@ -207,7 +207,20 @@ def BASK(Tb, fc, inputBinarySeq):
   # plt.show()
 
 
+def AM_QAM(x,inputs):
+    [Am,Ac,fm,fc,message_signal,message_signal_2] = inputs
+    c1 = Ac*np.cos(2*np.pi*fc*x)
+    c2 = Ac*np.sin(2*np.pi*fc*x)
 
+    if message_signal=="sin":
+        m1 = Am*np.sin(2*np.pi*fm*x)
+    else:
+        m1 = Am*np.cos(2*np.pi*fm*x)
+
+    if message_signal_2 == "sin":
+        m2 = Am*np.sin(2*np.pi*fm*x)
+    else:
+        m2 = Am*np.cos(2*np.pi*fm*x)
     modulated_wave = m1*Ac*np.cos(2*np.pi*fc*x) + m2*Ac*np.sin(2*np.pi*fc*x)
     
     plot_graph(x = x, y = modulated_wave,color='r', title = "Modulated wave 1", name="AM_modulated1.png")
