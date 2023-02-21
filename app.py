@@ -1,3 +1,4 @@
+from dotenv import load_dotenv
 from flask import Flask,render_template,request,redirect,url_for
 import pandas as pd
 import sys
@@ -11,10 +12,12 @@ from digital_modulation import *
 from util import *
 matplotlib.use('WebAgg')
 
+load_dotenv()
+
 app=Flask(__name__,static_url_path='/static')
 
 if __name__ == "__main__":
-    port=int(os.envron.get("PORT",5000))
+    port=int(os.getenv("PORT"))
     app.run(debug=True,port=port)
 
 
