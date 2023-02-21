@@ -14,7 +14,8 @@ matplotlib.use('WebAgg')
 app=Flask(__name__,static_url_path='/static')
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port=int(os.envron.get("PORT",5000))
+    app.run(debug=True,port=port)
 
 
 def FM_MAIN(x,inputs):
