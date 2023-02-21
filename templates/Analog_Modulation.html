@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analog modulation</title>
     <link rel="stylesheet" href="/static/AM.css">
+    <link rel="stylesheet" href="/static/base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="/static/js/scritpt.js" defer></script>
 </head>
 <body>
@@ -13,8 +15,13 @@
     <div class="wraper">
         <div class="nav">
             <h1>Analog modulation</h1>
+            <button class="back-button">
+                <a href="/">
+                  <i class="fa-solid fa-home"></i>
+                </a>
+              </button>  
         </div>
-        <div class="selection-section">
+        <!-- <div class="selection-section">
             <ul class="nav-list-horizontal">
                 <li class="nav-item" id="amplitude">
                     Ampliutde modulation
@@ -23,7 +30,7 @@
                     Frequency Modulation
                 </li>
             </ul>
-        </div>
+        </div> -->
         <div class="container">
             <div class="content" id="Amplitude-modulation-section">
                 <a class="card-link" href="/AM/MAIN" id="AM_main" >
@@ -83,7 +90,32 @@
 
                         </p>
                     </div>
-                </a>                 
+                </a>      
+                <a class="card-link" href="/FM/1">
+                    <div class="box card" id="box-2">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Amfm3-en-de.gif" alt="">
+                        <h2 class="card-heading">
+                            Frequency Modulation
+                        </h2>
+                        <p>
+                            Frequency modulation signal spectra show sidebands for sinewave modulation. 
+                            In this experiment we take a look how they change with the modulating signal amplitude.
+                        </p>
+                    </div>    
+                </a>
+                <a class="card-link" href="/FM/2">
+                    <div class="box card" id="box-2">
+                        <img src="https://pages.vassar.edu/magnes/files/2012/04/phase4.gif" alt="">
+                        <h2 class="card-heading">
+                            Phase Modulation
+                        </h2>
+                        <p>
+                            Phase modulation (PM) is a modulation pattern for conditioning communication signals for transmission. 
+                            It encodes a message signal as variations in the instantaneous phase of a carrier wave.
+                        </p>
+                    </div>    
+                </a>
+                           
                 <!--<a class="card-link" href="">
                     <div class="box card" id="box-3">
                         <img src="https://www.etti.unibw.de/labalive/experiment/fmtransmitterrecordaudiodemo/teaser/mod-18.gif" alt="">
