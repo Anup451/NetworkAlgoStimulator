@@ -96,6 +96,10 @@ def Amplitutde_Modulation(am_type):
 
 @app.route('/FM/<index>',methods=['GET','POST'])
 def FM(index):
+    results = os.listdir('./static/results')
+    for images in results:
+        if images.endswith(".png"):
+            os.remove(os.path.join('./static/results', images))
     index = int(index)
     title={1:"Frequency modulation",2:"Phase modulation"}
     if request.method == 'POST':
