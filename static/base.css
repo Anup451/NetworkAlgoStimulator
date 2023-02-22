@@ -32,8 +32,9 @@ label{
 
 .back-button{
     background-color: rgba(255, 255, 255, 0.504);
+    border: 2px solid black;
     position: absolute;
-    top: 25px;
+    top: 27.5px;
     right: 5vw;
 }
 input,select{
@@ -72,3 +73,39 @@ button:hover{
 .graph-plot.max:hover{
     cursor: zoom-out;
 }
+.inputs{
+    display: flex;
+    gap: 1rem;
+    margin: 1rem auto;
+    align-items: center;
+    max-width: 100%;
+    width: 100vw;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+  .input-wrapper.wrap{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
+  .wrap select{
+    width: 100px;
+  }
+  .container-full{
+    padding: 1rem;
+  }
+  nav{
+  background: green;
+  color: white;
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 4px );
+  -webkit-backdrop-filter: blur( 4px );
+  position: relative;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  padding: 1.25rem 1rem;
+  }
+  .buttons{
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+  }

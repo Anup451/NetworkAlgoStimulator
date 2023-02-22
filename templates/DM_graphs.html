@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Network Algorithm simulator</title>
+  <link rel="stylesheet" href="/static/base.css">
+  <link rel="stylesheet" href="/static/AM.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    .inputs{
+      display: flex;
+      gap: .5rem;
+      margin: 1rem auto;
+      max-width: 100%;
+      width: 100vw;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+    
+    }
+    .buttons{
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+  </style>
+
+  <script type = "text/JavaScript">
+     function AutoRefresh( t ) {
+        setTimeout("location.reload(true);", 5);
+     }
+</script>
+</head>
+<body>
+  <nav>
+    <h1 class="heading">{{title}}</h1>
+    <div class="buttons-nav">
+      <button class="back-button" style="right: calc(5vw + 45px);">
+        <a href="/DM">
+          <i class="fa-solid fa-arrow-left"></i>
+        </a>
+      </button>
+      <button class="back-button">
+        <a href="/">
+          <i class="fa-solid fa-home"></i>
+        </a>
+      </button>  
+    </div>
+  </nav>
+<div class="container-full">
+
+  <form action="/DM/{{dmtype}}" method="POST">
+    <div class="inputs"> 
+
+      <div class="input-wrapper">
+          <label for="freqc">Carrier Frequency (Fc)</label>
+          <input type="number" id="freqc" name="fc" class="input-bar" placeholder="eg: 10" required>
+      </div>
+
+      {% if dmtype == 'BFSK' %}
+        <div class="input-wrapper">
+          <label for="freqc">Carrier Frequency 2 (Fc2)</label>
+          <input type="number" id="freqc" name="fc2" class="input-bar" placeholder="eg: 10" required>
+        </div>
+      {% endif %}
+
+      <div class="input-wrapper">
+        <label for="freqm">Bit Duration (Tb)</label>
+        <input type="text" id="freqm" name="Tb" placeholder="eg: 1" required>
+      </div>
+      <div class="input-wrapper">
+          <label for="am">Input Binary Sequence</label>
+          <input type="text" id="am" name="inputBinarySeq" placeholder="eg: 10010101" required>
+      </div>
+
+      <br>
+    </div>
+
+    <div class="buttons">
+      <button type="submit">Show Results</button>
+    </div>
+  </form>
+
+</div>
+
+<div class="plot-wrapper">  
+  {% if dmtype == 'BASK' %}
+  <img src='/static/results/BASK_msg.png' class="graph-plot"/>
+  <img src='/static/results/BASK_carrier.png' class="graph-plot"/>
+  <img src='/static/results/BASK_msg_mod.png' class="graph-plot"/>
+  {% endif %}
+
+  {% if dmtype == 'BFSK' %}
+  <img src='/static/results/BFSK_msg.png' class="graph-plot"/>
+  <img src='/static/results/BFSK_mod.png' class="graph-plot"/>
+  {% endif %}
+
+  {% if dmtype == 'BPSK' %}
+  <img src='/static/results/BPSK_msg.png' class="graph-plot"/>
+  <img src='/static/results/BPSK_mod.png' class="graph-plot"/>
+  {% endif %}
+
+  {% if dmtype == 'QPSK' %}
+  <img src='/static/results/QPSK_msg.png' class="graph-plot"/>
+  <img src='/static/results/QPSK_carrier1.png' class="graph-plot"/>
+  <img src='/static/results/QPSK_carrier2.png' class="graph-plot"/>
+  <img src='/static/results/QPSK_mod.png' class="graph-plot"/>
+  {% endif %}
+  
+</div>
+</body>
+</html>
