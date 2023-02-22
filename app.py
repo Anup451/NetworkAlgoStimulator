@@ -1,5 +1,6 @@
 from dotenv import load_dotenv
 from flask import Flask,render_template,request,redirect,url_for
+from gevent.pywsgi import WSGIServer
 import pandas as pd
 import sys
 import matplotlib
@@ -15,10 +16,6 @@ matplotlib.use('WebAgg')
 load_dotenv()
 
 app=Flask(__name__,static_url_path='/static')
-
-if __name__ == "__main__":
-    port=int(os.getenv("PORT"))
-    app.run(debug=True,port=port)
 
 
 def FM_MAIN(x,inputs):
@@ -163,7 +160,10 @@ def DigitalModulation(dmtype):
 
 # ------------ End of Digital Modulation -------------
 
+def create_app():
+    from waitress import serve
+    PORT = os.getenv("PORT")
+    serve(app, host="0.0.0.0", port=PORT)
 
 if __name__ == "__main__":
-    app.run(debug=True)
-    
+    create_app()
