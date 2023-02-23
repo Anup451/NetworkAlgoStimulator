@@ -97,7 +97,7 @@ def FM(index):
 
 @app.route('/DM',methods=['GET'])
 def DM_page():
-    return render_template('Digital_modulation.html')
+    return render_template('Digital_Modulation.html')
 
 
 @app.route('/DM/<dmtype>', methods=['GET','POST'])
