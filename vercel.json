@@ -6,9 +6,10 @@
         "use": "@vercel/python",
         "config": {
         "includeFiles": [
-          "templates/**"
+          "templates/**",
+          "modulation/**"
         ]
-    }
+        }
     },
     {
       "src": "/static/**",

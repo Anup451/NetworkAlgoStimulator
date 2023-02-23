@@ -4,9 +4,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 import os
-from amplitutde_modulation import *
-from digital_modulation import *
-from util import *
+from modulation import *
 import logging
 
 logger = logging.getLogger('waitress')
