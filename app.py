@@ -4,7 +4,9 @@ import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 import os
+import base64
 from modulation import *
+from binascii import unhexlify
 import logging
 
 logger = logging.getLogger('waitress')
@@ -16,6 +18,14 @@ load_dotenv()
 
 app=Flask(__name__,static_url_path='/static')
 
+@app.template_filter('decode_hex')
+def decode_hex(s):
+    return unhexlify(s)
+
+
+@app.template_filter('b64encode')
+def b64encode(s):
+    return base64.b64encode(s).decode('utf-8')
 
 @app.route('/',methods=['GET'])
 def home():
@@ -37,6 +47,7 @@ def Amplitutde_Modulation(am_type):
     
     title = {"MAIN":"Amplitutde Modulation","SSB":"SSB Modulation","DSBSC":"DSB Modulation","QAM":"QAM Modulation"}
     print(am_type)
+    images = []
     if (request.method=='POST'):
         fm=int (request.form['fm'])
         fc=int (request.form['fc'])
@@ -48,18 +59,18 @@ def Amplitutde_Modulation(am_type):
 
 
         if am_type == "MAIN":
-            AM_main_graph(x, inputs)
+            images = AM_main_graph(x, inputs)
         elif am_type == "SSB":
-            AM_ssb_modulation(x, inputs)
+            images = AM_ssb_modulation(x, inputs)
         elif am_type == "DSBSC":
             phi  = float(request.form['phi'])
             inputs.append(phi)
-            AM_double_sideband_modulation(x, inputs)
+            images = AM_double_sideband_modulation(x, inputs)
         elif am_type == "QAM":
             message_signal_2 = request.form['message_signal_2']
             inputs.append(message_signal_2)
-            AM_QAM(x,inputs) 
-    return render_template('AM_graphs.html',am_type=am_type.upper(),title=title[am_type])
+            images = AM_QAM(x,inputs) 
+    return render_template('AM_graphs.html',am_type=am_type.upper(),title=title[am_type],images = images)
 
 @app.route('/FM/<index>',methods=['GET','POST'])
 def FM(index):
