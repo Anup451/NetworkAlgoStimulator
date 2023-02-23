@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+  <script src="/static/js/scritpt.js" defer></script>
   <style>
     .inputs{
       display: flex;
@@ -120,14 +120,14 @@
       </div>
     </div>
     <div class="buttons">
-      <button type="submit">Get Graph</button>
-      <button type="submit">Download</button>
+      <button type="submit" id="submit-button">Show Resutls</button>
+      <!-- <button type="submit" id="Download-button">Download</button> -->
     </div>
   </form>
 </div>
 <div class="plot-wrapper">  
   {% for image in images %}
-  <img src="data:image/png;base64,{{ image|decode_hex|b64encode }}" class="graph-plot" />
+  <img src="data:image/png;base64,{{ image|decode_hex|b64encode }}" onclick="zoomin()" class="graph-plot" />
   {% endfor %}
 </div>
 </body>
