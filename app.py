@@ -1,54 +1,22 @@
 from dotenv import load_dotenv
 from flask import Flask,render_template,request,redirect,url_for
-from gevent.pywsgi import WSGIServer
-import pandas as pd
-import sys
 import matplotlib
-import math
 import matplotlib.pyplot as plt
 import numpy as np
 import os
 from amplitutde_modulation import *
 from digital_modulation import *
 from util import *
+import logging
+
+logger = logging.getLogger('waitress')
+logger.setLevel(logging.INFO)
+
 matplotlib.use('WebAgg')
 
 load_dotenv()
 
 app=Flask(__name__,static_url_path='/static')
-
-
-def FM_MAIN(x,inputs):
-    [Am,Ac,fm,fc,message_signal,K] = inputs
-    if(message_signal=="sin"):
-        y= Ac*np.cos(2*np.pi*fc*x+(K*Am/fm)*np.sin(2*np.pi*fm*x))
-        y1 = Am*np.sin(2*np.pi*fm*x)#message signal
-    else:
-      y= Ac*np.cos(2*np.pi*fc*x+(K*Am/fm)*np.sin(2*np.pi*fm*x))
-      y1 = Am*np.cos(2*np.pi*fm*x)
-    y2 = Ac*np.cos(2*np.pi*fc*x)#carrier signal need to change into scatterplot
-        
-    plot_graph(x = x, y = y, title = "Modulated wave", name="FM_modulated1.png")
-    plot_graph(x = x, y = y1, title = "Message Signal", name="FM_message.png")
-    plot_graph(x = x, y = y2, title = "Carrier Signal", name="FM_carrier.png")
-    
-    
-def PHASE_MAIN(x,inputs):
-    [Am,Ac,fm,fc,message_signal,K] = inputs
-    if(message_signal=="sin"):
-        y= Ac*np.cos(2*np.pi*fc*x+(K*Am)*np.cos(2*np.pi*fm*x))
-        y1 = Am*np.sin(2*np.pi*fm*x)#message signal
-    else:
-        y= Ac*np.cos(2*np.pi*fc*x+(K*Am)*np.cos(2*np.pi*fm*x))
-        y1 = Am*np.cos(2*np.pi*fm*x)       
-    
-    y2 = Ac*np.cos(2*np.pi*fc*x)#carrier signal need to change into scatterplot
-        
-    plot_graph(x = x, y = y, title = "Modulated wave", name="FM_modulated1.png")
-    plot_graph(x = x, y = y1, title = "Message Signal", name="FM_message.png")
-    plot_graph(x = x, y = y2, title = "Carrier Signal", name="FM_carrier.png")    
-    
-
 
 
 @app.route('/',methods=['GET'])
@@ -162,7 +130,7 @@ def DigitalModulation(dmtype):
 
 def create_app():
     from waitress import serve
-    PORT = os.getenv("PORT")
+    PORT = int(os.environ.get("PORT",8000))
     serve(app, host="0.0.0.0", port=PORT)
 
 if __name__ == "__main__":
