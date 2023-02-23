@@ -13,7 +13,7 @@ def plot_graph(x,y,title,name,xlabel="Volts",ylabel="Frequncy",color="b",conditi
     plt.title(title)
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
-    plt.plot(x,y)
+    plt.plot(x,y,c=color)
     fig.tight_layout()
     data = BytesIO()
     fig.savefig(data,format="png")

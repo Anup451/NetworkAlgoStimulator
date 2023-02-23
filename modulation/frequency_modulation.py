@@ -12,9 +12,10 @@ def FM_MAIN(x,inputs):
       y1 = Am*np.cos(2*np.pi*fm*x)
     y2 = Ac*np.cos(2*np.pi*fc*x)#carrier signal need to change into scatterplot
         
-    plot_graph(x = x, y = y, title = "Modulated wave", name="FM_modulated1.png")
-    plot_graph(x = x, y = y1, title = "Message Signal", name="FM_message.png")
-    plot_graph(x = x, y = y2, title = "Carrier Signal", name="FM_carrier.png")
+    a = plot_graph(x = x, y = y1, title = "Message Signal", name="FM_message.png")
+    b = plot_graph(x = x, y = y2, title = "Carrier Signal", name="FM_carrier.png")
+    c = plot_graph(x = x, y = y, title = "Modulated wave", name="FM_modulated1.png")
+    return [a,b,c]
     
     
 def PHASE_MAIN(x,inputs):
@@ -28,7 +29,7 @@ def PHASE_MAIN(x,inputs):
     
     y2 = Ac*np.cos(2*np.pi*fc*x)#carrier signal need to change into scatterplot
         
-    plot_graph(x = x, y = y, title = "Modulated wave", name="FM_modulated1.png")
-    plot_graph(x = x, y = y1, title = "Message Signal", name="FM_message.png")
-    plot_graph(x = x, y = y2, title = "Carrier Signal", name="FM_carrier.png")    
-    
+    a = plot_graph(x = x, y = y1, title = "Message Signal", name="FM_message.png")
+    b = plot_graph(x = x, y = y, title = "Modulated wave", name="FM_modulated1.png")
+    c = plot_graph(x = x, y = y2, title = "Carrier Signal", name="FM_carrier.png")    
+    return [a,b,c]

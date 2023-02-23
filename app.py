@@ -38,13 +38,6 @@ def AM_page():
 
 @app.route('/AM/<am_type>',methods=['GET','POST'])
 def Amplitutde_Modulation(am_type):  
-    root_dir = os.path.dirname(os.getcwd()) 
-    res_dir = os.path.join(root_dir,"static","results")
-    results = os.listdir('./static/results')
-    for images in results:
-        if images.endswith(".png"):
-            os.remove(os.path.join('./static/results', images))
-    
     title = {"MAIN":"Amplitutde Modulation","SSB":"SSB Modulation","DSBSC":"DSB Modulation","QAM":"QAM Modulation"}
     print(am_type)
     images = []
@@ -74,10 +67,7 @@ def Amplitutde_Modulation(am_type):
 
 @app.route('/FM/<index>',methods=['GET','POST'])
 def FM(index):
-    results = os.listdir('./static/results')
-    for images in results:
-        if images.endswith(".png"):
-            os.remove(os.path.join('./static/results', images))
+    images = []
     index = int(index)
     title={1:"Frequency modulation",2:"Phase modulation"}
     if request.method == 'POST':
@@ -91,14 +81,14 @@ def FM(index):
         x = np.linspace(-200,200,10000) #domain for the modulated_wave
         s = [1 for i in x]
         if(index==1):
-            FM_MAIN(x,inputs)
+            images = FM_MAIN(x,inputs)
             
         elif(index==2):
-            PHASE_MAIN(x,inputs)   
+            images = PHASE_MAIN(x,inputs)   
             
         # elif(index==3):
         #     PULSE_MAIN(x,inputs) 
-    return render_template('fm_graphs.html',title=title[index],index=index)
+    return render_template('fm_graphs.html',title=title[index],index=index,images=images)
 
 # ---------- End of Analog Modulation ------------
 
