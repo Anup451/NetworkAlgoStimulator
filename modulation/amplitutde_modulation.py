@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from util import *
+from .util import *
 
 def AM_main_graph(x,inputs):
     [Am,Ac,fm,fc,message_signal] = inputs

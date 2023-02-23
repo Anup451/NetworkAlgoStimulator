@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from util import *
+from .util import *
 
 def FM_MAIN(x,inputs):
     [Am,Ac,fm,fc,message_signal,K] = inputs
