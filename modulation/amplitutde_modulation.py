@@ -46,6 +46,8 @@ def AM_double_sideband_modulation(x,inputs):
     c = plot_graph(x = x, y = modulated_wave, title = "Modulated wave", color ='r', name = "AM_modulated1.png")
     d = plot_graph(x = x, y = demodulated_wave, title="demodulated wave", color = 'm', name = "AM_demodulated.png")
 
+    return [a,b,c,d]
+
 
 
 def AM_ssb_modulation(x,inputs):
