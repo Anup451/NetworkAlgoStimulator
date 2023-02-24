@@ -96,7 +96,9 @@
         <select name="message_signal" class="input-bar">
           <option value="sin">Sin</option>
           <option value="cos" selected>Cos</option>
-          <option value="tri">Triangle</option>
+          {% if am_type != "SSB" %}
+            <option value="tri">Triangle</option>
+            {% endif %}
           <option value="ramp">Ramp</option>
         </select>
       </div>  
