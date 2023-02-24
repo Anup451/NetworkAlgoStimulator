@@ -1,4 +1,8 @@
 # ------- BASK - Binary Amplitude Shift Keying ---------
+import matplotlib.pyplot as plt
+import numpy as np
+from io import BytesIO
+
 def BASK(Tb, fc, inputBinarySeq):
 
   t = np.arange(0, 1+Tb/100, Tb/100)
@@ -53,7 +57,12 @@ def BASK(Tb, fc, inputBinarySeq):
 
 
   # Save Message & Modulated Signal
-  plt.savefig(f'static/results/BASK_msg_mod.png',bbox_inches='tight')
+  # plt.savefig(f'static/results/BASK_msg_mod.png',bbox_inches='tight')
+
+  data = BytesIO()
+  plt.savefig(data,format="png", bbox_inches='tight')
+  data.seek(0)
+  msg_mod = data.getvalue().hex()
   plt.figure()
 
   # Plotting the carrier signal
@@ -64,9 +73,15 @@ def BASK(Tb, fc, inputBinarySeq):
   plt.xlabel('t')
   plt.ylabel('c(t)')
   plt.grid(True)
-  plt.savefig(f'static/results/BASK_carrier.png',bbox_inches='tight') # Save
+  # plt.savefig(f'static/results/BASK_carrier.png',bbox_inches='tight') # Save
+
+  data = BytesIO()
+  plt.savefig(data,format="png",bbox_inches='tight' )
+  data.seek(0)
+  carrier = data.getvalue().hex()
   plt.figure()
-  # plt.show()
+
+  return [msg_mod, carrier]
 
 # ------- BFSK - Binary Frequency Shift Keying ----------
 def BFSK(Tb, fc1, fc2 ,inputBinarySeq):

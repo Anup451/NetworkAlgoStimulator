@@ -89,28 +89,10 @@
 </div>
 
 <div class="plot-wrapper">  
-  {% if dmtype == 'BASK' %}
-  <img src='/static/results/BASK_msg.png' class="graph-plot"/>
-  <img src='/static/results/BASK_carrier.png' class="graph-plot"/>
-  <img src='/static/results/BASK_msg_mod.png' class="graph-plot"/>
-  {% endif %}
-
-  {% if dmtype == 'BFSK' %}
-  <img src='/static/results/BFSK_msg.png' class="graph-plot"/>
-  <img src='/static/results/BFSK_mod.png' class="graph-plot"/>
-  {% endif %}
-
-  {% if dmtype == 'BPSK' %}
-  <img src='/static/results/BPSK_msg.png' class="graph-plot"/>
-  <img src='/static/results/BPSK_mod.png' class="graph-plot"/>
-  {% endif %}
-
-  {% if dmtype == 'QPSK' %}
-  <img src='/static/results/QPSK_msg.png' class="graph-plot"/>
-  <img src='/static/results/QPSK_carrier1.png' class="graph-plot"/>
-  <img src='/static/results/QPSK_carrier2.png' class="graph-plot"/>
-  <img src='/static/results/QPSK_mod.png' class="graph-plot"/>
-  {% endif %}
+  
+  {% for plot in plots %}
+    <img src="data:image/png;base64,{{ plot|decode_hex|b64encode }}" class="graph-plot" />
+  {% endfor %}
   
 </div>
 </body>
