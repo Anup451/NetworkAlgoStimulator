@@ -104,7 +104,7 @@ def DM_page():
 def DigitalModulation(dmtype):
     title = {"BPSK":"BPSK Modulation","BFSK":"BFSK Modulation","BASK":"BASK Modulation","QPSK":"QPSK Modulation"}
     plots = []
-    
+
     if (request.method=='POST'):
       Tb=float (request.form['Tb'])
       fc=int (request.form['fc'])
@@ -119,11 +119,11 @@ def DigitalModulation(dmtype):
       if dmtype.upper() == 'BASK':
           plots = BASK(Tb, fc, inputBinarySeq)
       elif dmtype.upper() == 'BFSK':
-          BFSK(Tb, fc, fc2, inputBinarySeq)
+          plots = BFSK(Tb, fc, fc2, inputBinarySeq)
       elif dmtype.upper() == 'BPSK':
-          BPSK(Tb, fc, inputBinarySeq)
+          plots = BPSK(Tb, fc, inputBinarySeq)
       elif dmtype.upper() == 'QPSK':
-          QPSK(Tb, fc, inputBinarySeq)
+          plots = QPSK(Tb, fc, inputBinarySeq)
 
     return render_template('DM_graphs.html',dmtype=dmtype.upper(),title=title[dmtype], plots=plots)
 
