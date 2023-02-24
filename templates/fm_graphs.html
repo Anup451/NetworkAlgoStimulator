@@ -40,6 +40,7 @@
       gap: 1.5rem;
     }
   </style>
+
 </head>
 <body>
   <nav>
@@ -65,9 +66,7 @@
           <input required type="number" id="freqc" name="fc" class="input-bar" placeholder="frequencyc value..">
       </div>
       <div class="input-wrapper">
-        <label for="freqm">
-              Message Frequency         
-          </label>
+        <label for="freqm">Message Frequency</label>
           <input required type="number" id="freqm" name="fm" placeholder="frequencym value..">
       </div>
       <div class="input-wrapper">
@@ -90,9 +89,9 @@
   </form>
 </div>
 <div class="plot-wrapper">  
-  <img src='/static/results/FM_modulated1.png' class="graph-plot"/>
-  <img src='/static/results/FM_message.png' class="graph-plot"/>
-  <img src='/static/results/FM_carrier.png' class="graph-plot"/>
+  {% for image in images %}
+  <img src="data:image/png;base64,{{ image|decode_hex|b64encode }}" class="graph-plot" />
+  {% endfor %}
 </div>
 </body>
 </html>

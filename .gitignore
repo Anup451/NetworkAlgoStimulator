@@ -2,3 +2,5 @@
 /__pycache__/*
 cython_debug/
 __pycache__/
+.env
+env

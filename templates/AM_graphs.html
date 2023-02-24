@@ -126,23 +126,9 @@
   </form>
 </div>
 <div class="plot-wrapper">  
-  <img src='/static/results/AM_message.png' class="graph-plot"/>
-  {%if am_type == "QAM"%}
-  <img src='/static/results/AM_message_1.png' class="graph-plot"/>  
-  {%endif%}
-  <img src='/static/results/AM_carrier.png' class="graph-plot"/>
-  {%if am_type == "QAM"%}
-  <img src="/static/results/AM_carrier_1.png" class="graph-plot">
-  {%endif%}
-  <img src='/static/results/AM_modulated1.png' class="graph-plot"/>
-  {% if am_type == "SSB" %}
-  <img src="/static/results/AM_modulated2.png" class="graph-plot">
-  {% endif %}
-  {%if am_type == "QAM"%}
-  <img src='/static/results/AM_demodulated_1.png' class="graph-plot"/>
-  {%endif%}
-  <img src='/static/results/AM_demodulated.png' class="graph-plot"/>
-
+  {% for image in images %}
+  <img src="data:image/png;base64,{{ image|decode_hex|b64encode }}" class="graph-plot" />
+  {% endfor %}
 </div>
 </body>
 </html>
