@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 from io import BytesIO
+import numpy as np
 
 def triangular(x,A):
     return np.absolute(np.fmod(np.absolute(x),2*A)-A)

@@ -1,14 +1,14 @@
 # ------- BASK - Binary Amplitude Shift Keying ---------
+import matplotlib.pyplot as plt
+import numpy as np
+from io import BytesIO
+
 def BASK(Tb, fc, inputBinarySeq):
 
   t = np.arange(0, 1+Tb/100, Tb/100)
   c = np.sqrt(2/Tb)*np.sin(2*np.pi*fc*t)  # Equation for the carrier signal as a function of time
 
   # Generate the message signal
-  # N = 8  # Set the number of data elements N
-  # m = np.random.rand(N)
-  # m = np.array([1,0,1,0,0,1,0])
-
   m = inputBinarySeq
   N = len(m)
 
@@ -53,20 +53,27 @@ def BASK(Tb, fc, inputBinarySeq):
 
 
   # Save Message & Modulated Signal
-  plt.savefig(f'static/results/BASK_msg_mod.png',bbox_inches='tight')
+  data = BytesIO()
+  plt.savefig(data,format="png", bbox_inches='tight')
+  data.seek(0)
+  msg_mod = data.getvalue().hex()
   plt.figure()
 
   # Plotting the carrier signal
-  plt.figure()
   plt.subplot(5, 1, 3)
   plt.plot(t, c)
   plt.title('carrier signal')
   plt.xlabel('t')
   plt.ylabel('c(t)')
   plt.grid(True)
-  plt.savefig(f'static/results/BASK_carrier.png',bbox_inches='tight') # Save
+  # Save
+  data = BytesIO()
+  plt.savefig(data,format="png",bbox_inches='tight' )
+  data.seek(0)
+  carrier = data.getvalue().hex()
   plt.figure()
-  # plt.show()
+
+  return [msg_mod, carrier]
 
 # ------- BFSK - Binary Frequency Shift Keying ----------
 def BFSK(Tb, fc1, fc2 ,inputBinarySeq):
@@ -97,7 +104,11 @@ def BFSK(Tb, fc1, fc2 ,inputBinarySeq):
   plt.xlabel('Time (s)')
   plt.title('Message signal')
   plt.grid(True)
-  plt.savefig(f'static/results/BFSK_msg.png',bbox_inches='tight') # Save
+  # Save
+  data = BytesIO()
+  plt.savefig(data,format="png",bbox_inches='tight' )
+  data.seek(0)
+  msg = data.getvalue().hex()
   plt.figure()
 
   # Binary-FSK modulation
@@ -116,6 +127,21 @@ def BFSK(Tb, fc1, fc2 ,inputBinarySeq):
           y = A*np.cos(2*np.pi*f2*t2)
       m = np.concatenate((m, y))
 
+  # Plotting the carrier signal
+  plt.subplot(5, 1, 3)
+  plt.plot(t2, y)
+  plt.title('carrier signal')
+  plt.xlabel('t')
+  plt.ylabel('c(t)')
+  plt.grid(True)
+  # Save
+  data = BytesIO()
+  plt.savefig(data,format="png",bbox_inches='tight' )
+  data.seek(0)
+  carrier = data.getvalue().hex()
+  plt.figure()
+
+  # Modulated Signal
   t3 = np.arange(bp/99, bp*len(x)+bp/99, bp/99)
   plt.subplot(3, 1, 2)
   plt.axis([0, bp*len(x), -A-5, A+5])
@@ -125,8 +151,14 @@ def BFSK(Tb, fc1, fc2 ,inputBinarySeq):
   plt.ylabel('Amplitude (V)')
   plt.title('Modulated Wave')
   plt.grid(True)
-  plt.savefig(f'static/results/BFSK_mod.png',bbox_inches='tight') # Save
+  # Save
+  data = BytesIO()
+  plt.savefig(data,format="png",bbox_inches='tight' )
+  data.seek(0)
+  mod = data.getvalue().hex()
   plt.figure()
+
+  return [msg,carrier, mod]
 
 # ------------- BPSK - Binary Phase Shift Keying ---------
 def BPSK(Tb, fc ,inputBinarySeq):
@@ -157,7 +189,11 @@ def BPSK(Tb, fc ,inputBinarySeq):
   plt.xlabel('Time(sec)')
   plt.title('Message Signal')
   plt.grid(True)
-  plt.savefig(f'static/results/BPSK_msg.png',bbox_inches='tight') # Save
+   # Save
+  data = BytesIO()
+  plt.savefig(data,format="png",bbox_inches='tight' )
+  data.seek(0)
+  msgSignal = data.getvalue().hex()
   plt.figure()
 
   # Binary-PSK modulation
@@ -174,6 +210,21 @@ def BPSK(Tb, fc ,inputBinarySeq):
           y = A*np.cos(2*np.pi*f*t2+np.pi)
       m = np.concatenate([m, y])
 
+  # Plotting the carrier signal
+  plt.subplot(5, 1, 3)
+  plt.plot(t2, y)
+  plt.title('carrier signal')
+  plt.xlabel('t')
+  plt.ylabel('c(t)')
+  plt.grid(True)
+  # Save
+  data = BytesIO()
+  plt.savefig(data,format="png",bbox_inches='tight' )
+  data.seek(0)
+  carrier = data.getvalue().hex()
+  plt.figure()
+
+  # Modulated
   t3 = np.arange(bp/99, bp*len(x)+bp/99, bp/99)
   plt.subplot(3, 1, 2)
   plt.plot(t3, m,'r')
@@ -182,8 +233,14 @@ def BPSK(Tb, fc ,inputBinarySeq):
   plt.ylabel('Amplitude(Volt)')
   plt.title('Modulated Wave')
   plt.grid(True)
-  plt.savefig(f'static/results/BPSK_mod.png',bbox_inches='tight') # Save
+  # Save
+  data = BytesIO()
+  plt.savefig(data,format="png",bbox_inches='tight' )
+  data.seek(0)
+  modulatedSignal = data.getvalue().hex()
   plt.figure()
+
+  return [msgSignal,carrier, modulatedSignal]
 
 
 # ------- QPSK ---------------
@@ -199,7 +256,11 @@ def QPSK(Tb, fc, inputBinarySeq):
   plt.ylabel('Cos Wave')
   plt.title('Carrier Wave 1 (Cosine)')
   plt.grid(True)
-  plt.savefig(f'static/results/QPSK_carrier1.png',bbox_inches='tight') # Save
+  # Save
+  data = BytesIO()
+  plt.savefig(data,format="png",bbox_inches='tight' )
+  data.seek(0)
+  carrier1 = data.getvalue().hex()
   plt.figure()
 
   plt.subplot(3,1,2)
@@ -208,7 +269,11 @@ def QPSK(Tb, fc, inputBinarySeq):
   plt.ylabel('Sine Wave')
   plt.title('Carrier Wave 2 (Sine)')
   plt.grid(True)
-  plt.savefig(f'static/results/QPSK_carrier2.png',bbox_inches='tight') # Save
+  # Save
+  data = BytesIO()
+  plt.savefig(data,format="png",bbox_inches='tight' )
+  data.seek(0)
+  carrier2 = data.getvalue().hex()
   plt.figure()
 
 
@@ -221,7 +286,7 @@ def QPSK(Tb, fc, inputBinarySeq):
   even_sig = np.zeros((len(m),100))
 
   plt.subplot(3,1,2)
-  for i in range(0,len(m),2):
+  for i in range(0,len(m)-1,2):
       t = np.linspace(t1,t2,100)
       if (m[i]>0.5):
           m[i] = 1
@@ -250,7 +315,12 @@ def QPSK(Tb, fc, inputBinarySeq):
 
   plt.title('Modulated Wave')
   plt.grid(True)
-  plt.savefig(f'static/results/QPSK_mod.png',bbox_inches='tight') # Save
+  # Save
+  data = BytesIO()
+  plt.savefig(data,format="png",bbox_inches='tight' )
+  data.seek(0)
+  modSignal = data.getvalue().hex()
+  plt.figure()
   
   # Message Signal
   plt.figure()
@@ -259,5 +329,11 @@ def QPSK(Tb, fc, inputBinarySeq):
   plt.ylabel('16 bits data')
   plt.title('Message signal (Binary)')
   plt.grid(True)
-  plt.savefig(f'static/results/QPSK_msg.png',bbox_inches='tight') # Save
+  # Save
+  data = BytesIO()
+  plt.savefig(data,format="png",bbox_inches='tight' )
+  data.seek(0)
+  msgSignal = data.getvalue().hex()
   plt.figure()
+
+  return [msgSignal, carrier1, carrier2, modSignal]
