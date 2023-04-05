@@ -125,10 +125,14 @@
     </div>
   </form>
 </div>
-<div class="plot-wrapper">  
+<div class="plot-wrapper"> 
+  {% if images | length == 0%}
+  <p class="info">Please select the values to generate the graph</p>
+  {% else %} 
   {% for image in images %}
   <img src="data:image/png;base64,{{ image|decode_hex|b64encode }}" onclick="zoomin()" class="graph-plot" />
   {% endfor %}
+  {% endif %}
 </div>
 </body>
 </html>

@@ -4,7 +4,7 @@ from io import BytesIO
 def triangular(x,A):
     return np.absolute(np.fmod(np.absolute(x),2*A)-A)
 
-def plot_graph(x,y,title,name,xlabel="Volts",ylabel="Frequncy",color="b",condition="scatter"):
+def plot_graph(x,y,title,xlabel="Volts",ylabel="Frequncy",color="b",condition="scatter"):
     plt.style.use('seaborn')
     fig, ax = plt.subplots()
     fig = plt.figure(figsize=(20,3))
@@ -13,7 +13,12 @@ def plot_graph(x,y,title,name,xlabel="Volts",ylabel="Frequncy",color="b",conditi
     plt.title(title)
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
-    plt.plot(x,y,c=color)
+
+    if(condition=="scatter"):
+        plt.scatter(x,y,c=color,s=s)        
+    else: 
+        plt.plot(x,y,c=color)
+
     fig.tight_layout()
     data = BytesIO()
     fig.savefig(data,format="png")

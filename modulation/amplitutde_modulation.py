@@ -15,12 +15,13 @@ def AM_main_graph(x,inputs):
     elif message_signal=='tri':
         message = triangular(x, Am)
         demodulated_wave = triangular(x, 0.01*Am*Ac)
+    
     modulated_wave = carrier+message*np.cos(2*np.pi*fc*x)
         
-    a = plot_graph(x = x, y = message, title = "Message Signal",color='y', name="AM_message.png")
-    b = plot_graph(x = x, y = carrier, title = "Carrier Signal",color='g', name="AM_carrier.png")
-    c = plot_graph(x = x, y = modulated_wave, title = "Modulated wave",color='r', name="AM_modulated1.png")
-    d = plot_graph(x = x, y = demodulated_wave, title="demodulated wave", name="AM_demodulated.png")
+    a = plot_graph(x = x, y = message, title = "Message Signal",color='y', condition="scatter")
+    b = plot_graph(x = x, y = carrier, title = "Carrier Signal",color='g', condition="scatter")
+    c = plot_graph(x = x, y = modulated_wave, title = "Modulated wave",color='r', condition="scatter")
+    d = plot_graph(x = x, y = demodulated_wave, title="demodulated wave", condition="scatter")
 
     return [a,b,c,d]
 
