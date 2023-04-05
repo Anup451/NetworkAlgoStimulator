@@ -53,11 +53,18 @@
 <body>
   <nav>
     <h1 class="heading">{{title}}</h1>
-    <button class="back-button">
-      <a href="/AM">
-        <i class="fa-solid fa-arrow-left"></i>
-      </a>
-    </button>
+    <div class="buttons-nav">
+      <button class="back-button" style="right: calc(5vw + 45px);">
+        <a href="/DM">
+          <i class="fa-solid fa-arrow-left"></i>
+        </a>
+      </button>
+      <button class="back-button">
+        <a href="/">
+          <i class="fa-solid fa-home"></i>
+        </a>
+      </button>  
+    </div>
   </nav>
 <div class="container-full">
   <form action="/AM/{{am_type}}" method="POST">
@@ -89,7 +96,9 @@
         <select name="message_signal" class="input-bar">
           <option value="sin">Sin</option>
           <option value="cos" selected>Cos</option>
-          <option value="tri">Triangle</option>
+          {% if am_type != "SSB" %}
+            <option value="tri">Triangle</option>
+            {% endif %}
           <option value="ramp">Ramp</option>
         </select>
       </div>  
