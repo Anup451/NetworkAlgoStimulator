@@ -1,5 +1,6 @@
 from dotenv import load_dotenv
 from flask import Flask,render_template,request,redirect,url_for
+from flask_cors import CORS
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
@@ -17,6 +18,7 @@ matplotlib.use('WebAgg')
 load_dotenv()
 
 app=Flask(__name__,static_url_path='/static')
+CORS(app)
 
 @app.template_filter('decode_hex')
 def decode_hex(s):
@@ -38,18 +40,27 @@ def AM_page():
 
 @app.route('/AM/<am_type>',methods=['GET','POST'])
 def Amplitutde_Modulation(am_type):  
+    
     title = {"MAIN":"Amplitutde Modulation","SSB":"SSB Modulation","DSBSC":"DSB Modulation","QAM":"QAM Modulation"}
     print(am_type)
     images = []
+    content_type = request.headers.get('Content-Type')    
     if (request.method=='POST'):
-        fm=int (request.form['fm'])
-        fc=int (request.form['fc'])
-        Am=int (request.form['Am'])
-        Ac=int (request.form['Ac'])
-        message_signal = str(request.form['message_signal'])
+        if (content_type == 'application/json'):
+            content = request.json
+        else:
+            content = request.form
+        print(content)
+        fm=int (content['fm'])
+        fc=int (content['fc'])
+        Am=int (content['Am'])
+        Ac=int (content['Ac'])
+        message_signal = str(content['message_signal'])
         inputs = [Am,Ac,fm,fc,message_signal]
-        x = np.linspace(-200,200,10000) #domain for the modulated_wave
-
+        if(content_type == 'application/json' and content['task']=="zoomin" and not content['max-zoomin']):
+            x = np.linspace(-100,100,10000) #domain for the modulated_wave
+        else:
+            x = np.linspace(-200,200,10000)
 
         if am_type == "MAIN":
             images = AM_main_graph(x, inputs)
