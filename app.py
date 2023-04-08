@@ -44,6 +44,8 @@ def Amplitutde_Modulation(am_type):
     title = {"MAIN":"Amplitutde Modulation","SSB":"SSB Modulation","DSBSC":"DSB Modulation","QAM":"QAM Modulation"}
     print(am_type)
     images = []
+    x_message = []
+    x_carrier = []
     content_type = request.headers.get('Content-Type')    
     if (request.method=='POST'):
         if (content_type == 'application/json'):
@@ -56,24 +58,20 @@ def Amplitutde_Modulation(am_type):
         Am=int (content['Am'])
         Ac=int (content['Ac'])
         message_signal = str(content['message_signal'])
-        inputs = [Am,Ac,fm,fc,message_signal]
-        if(content_type == 'application/json' and content['task']=="zoomin" and not content['max-zoomin']):
-            x = np.linspace(-100,100,10000) #domain for the modulated_wave
-        else:
-            x = np.linspace(-200,200,10000)
+        inputs = [Am,Ac,fm,fc,message_signal]            
 
         if am_type == "MAIN":
-            images = AM_main_graph(x, inputs)
+            images = AM_main_graph(inputs)
         elif am_type == "SSB":
-            images = AM_ssb_modulation(x, inputs)
+            images = AM_ssb_modulation(inputs)
         elif am_type == "DSBSC":
             phi  = float(request.form['phi'])
             inputs.append(phi)
-            images = AM_double_sideband_modulation(x, inputs)
+            images = AM_double_sideband_modulation(inputs)
         elif am_type == "QAM":
             message_signal_2 = request.form['message_signal_2']
             inputs.append(message_signal_2)
-            images = AM_QAM(x,inputs) 
+            images = AM_QAM(inputs) 
     return render_template('AM_graphs.html',am_type=am_type.upper(),title=title[am_type],images = images)
 
 @app.route('/FM/<index>',methods=['GET','POST'])

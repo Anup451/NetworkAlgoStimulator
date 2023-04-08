@@ -37,5 +37,13 @@ def plot_axis(fig,ax):
     ax.xaxis.set_ticks_position('bottom')
     ax.yaxis.set_ticks_position('left')
 
-
+def create_domain(frequency):
+    x= np.linspace(-200,200,10000)
+    if frequency>=50 and frequency<=2000:
+        x = np.linspace(-200,200,10000)
+    elif frequency<50:
+        x = np.linspace(-200,200,500) 
+    elif frequency>2000:
+        x = np.linspace(-200,200,20000)
+    return x
 
