@@ -1,9 +1,10 @@
-tornado==6.2
-matplotlib==3.6.3
-matplotlib-inline==0.1.6
-Jinja2==3.1.2
-Flask==2.2.2
-python-dotenv==0.21.1
-numpy==1.24.2
-waitress==2.1.2
-
+Flask             2.2.2
+Flask-Cors        3.0.10
+Jinja2            3.1.2
+matplotlib        3.6.3
+matplotlib-inline 0.1.6
+numpy             1.24.2
+pip               23.0.1
+python-dotenv     0.21.1
+tornado           6.2
+waitress          2.1.2
