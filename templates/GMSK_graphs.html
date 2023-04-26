@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Network Algorithm simulator</title>
+  <link rel="stylesheet" href="/static/base.css">
+  <link rel="stylesheet" href="/static/AM.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    .inputs{
+      display: flex;
+      gap: .5rem;
+      margin: 1rem auto;
+      max-width: 100%;
+      width: 100vw;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+    
+    }
+    .buttons{
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+  </style>
+
+  <script type = "text/JavaScript">
+     function AutoRefresh( t ) {
+        setTimeout("location.reload(true);", 5);
+     }
+</script>
+</head>
+<body>
+  <nav>
+    <h1 class="heading">{{title}}</h1>
+    <div class="buttons-nav">
+      <button class="back-button" style="right: calc(5vw + 45px);">
+        <a href="/DM">
+          <i class="fa-solid fa-arrow-left"></i>
+        </a>
+      </button>
+      <button class="back-button">
+        <a href="/">
+          <i class="fa-solid fa-home"></i>
+        </a>
+      </button>  
+    </div>
+  </nav>
+<div class="container-full">
+
+  <form action="/DM2/{{dmtype}}" method="POST">
+    <div class="inputs"> 
+
+      <div class="input-wrapper">
+          <label for="freqc">Message Frequency</label>
+          <input type="number" id="freqc" name="fm" class="input-bar" required>
+      </div>
+      <div class="input-wrapper">
+          <label for="freqc">Message Amplitude</label>
+          <input type="number" id="freqc" name="am" class="input-bar" required>
+      </div>
+      <div class="input-wrapper">
+          <label for="freqc">Message Phase</label>
+          <input type="number" id="freqc" name="pm" class="input-bar"  required>
+      </div>
+
+      <div class="input-wrapper">
+          <label for="freqc">Carrier Frequency</label>
+          <input type="number" id="freqc" name="fc" class="input-bar"  required>
+      </div>
+      <div class="input-wrapper">
+          <label for="freqc">Carrier Amplitude</label>
+          <input type="number" id="freqc" name="ac" class="input-bar" required>
+      </div>
+      <div class="input-wrapper">
+          <label for="freqc">Carrier Phase</label>
+          <input type="number" id="freqc" name="pc" class="input-bar" required>
+      </div>
+
+      <br>
+    </div>
+
+    <div class="buttons">
+      <button type="submit" id="submit-button">Show Resutls</button>
+      <!-- <button type="submit" id="Download-button">Download</button> -->
+    </div>
+  </form>
+
+</div>
+
+<div class="plot-wrapper">  
+  
+  {% for plot in plots %}
+    <img src="data:image/png;base64,{{ plot|decode_hex|b64encode }}" class="graph-plot" />
+  {% endfor %}
+  
+</div>
+</body>
+</html>

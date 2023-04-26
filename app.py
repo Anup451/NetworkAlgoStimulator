@@ -136,6 +136,27 @@ def DigitalModulation(dmtype):
 
     return render_template('DM_graphs.html',dmtype=dmtype.upper(),title=title[dmtype], plots=plots)
 
+@app.route('/DM2/<dmtype>', methods=['GET','POST'])
+def GMSK_Modulation(dmtype):
+    title = {"GMSK":"GMSK Modulation"}
+    plots = []
+
+    if (request.method=='POST'):
+        fm=int (request.form['fm'])
+        am=int (request.form['am'])
+        pm=int (request.form['pm'])
+
+        fc=int (request.form['fc'])
+        ac=int (request.form['ac'])
+        pc=int (request.form['pc'])
+
+        # --
+        if dmtype.upper() == 'GMSK':
+            plots = GMSK(fm, am, pm, fc, ac, pc)
+    
+    return render_template('GMSK_graphs.html',dmtype=dmtype.upper(),title=title[dmtype], plots=plots)
+
+
 # ------------ End of Digital Modulation -------------
 
 def create_app():
