@@ -3,12 +3,12 @@ import numpy as np
 from .util import *
 
 def AM_main_graph(inputs):
-
     graphs = []
+
     [Am,Ac,fm,fc,message_signal] = inputs
     condition = "scatter"
-    x_carrier = create_domain(fc)
-    x_message = create_domain(fm)
+    x_carrier = create_domain_AM(fc)
+    x_message = create_domain_AM(fm)
     x_modulated = x_carrier if(len(x_carrier)<len(x_message)) else x_message
 
     carrier = Ac*np.cos(2*np.pi*fc*x_carrier)
@@ -35,12 +35,12 @@ def AM_main_graph(inputs):
     return [a,b,c,d]
 
 
-def AM_double_sideband_modulation(x,inputs,condition):
+def AM_double_sideband_modulation(inputs):
     [Am,Ac,fm,fc,message_signal,phi] = inputs
     condition = "scatter"
 
-    x_carrier = create_domain(fc)
-    x_message = create_domain(fm)
+    x_carrier = create_domain_AM(fc)
+    x_message = create_domain_AM(fm)
     x_modulated = x_carrier if(len(x_carrier)<len(x_message)) else x_message
 
 
@@ -67,12 +67,12 @@ def AM_double_sideband_modulation(x,inputs,condition):
 
 
 
-def AM_ssb_modulation(x,inputs,condition):
+def AM_ssb_modulation(x,inputs):
     [Am,Ac,fm,fc,message_signal] = inputs
     condition = "scatter"
     
-    x_carrier = create_domain(fc)
-    x_message = create_domain(fc)
+    x_carrier = create_domain_AM(fc)
+    x_message = create_domain_AM(fc)
     x_modulated = x_carrier if(len(x_carrier)<len(x_message)) else x_message    
     
     carrier = Ac*np.cos(2*np.pi*fc*x_carrier)
@@ -103,11 +103,11 @@ def AM_ssb_modulation(x,inputs,condition):
     
     return [a,b,c,d,e]
 
-def AM_QAM(x,inputs,condition):
+def AM_QAM(inputs):
     [Am,Ac,fm,fc,message_signal,message_signal_2] = inputs
-
-    x_carrier = create_domain(fc)
-    x_message = create_domain(fc)
+    condition="scatter"
+    x_carrier = create_domain_AM(fc)
+    x_message = create_domain_AM(fc)
     x_modulated = x_carrier if(len(x_carrier)<len(x_message)) else x_message
 
 
@@ -128,14 +128,14 @@ def AM_QAM(x,inputs,condition):
     elif message_signal_2 == "tri":
         m1 = triangular(x, Am)
     
-    modulated_wave = m1*Ac*np.cos(2*np.pi*fc*x) + m2*Ac*np.sin(2*np.pi*fc*x)
+    modulated_wave = m1*Ac*np.cos(2*np.pi*fc*x_modulated) + m2*Ac*np.sin(2*np.pi*fc*x_modulated)
 
-    a = plot_graph(condition = conditon,x = x_message, y = m1,color='b', title = "Message Signal-1")
-    b = plot_graph(condition = conditon,x = x_message, y = m2,color='g', title = "Message Signal-2")
-    c = plot_graph(condition = conditon,x = x_carrier, y = c1,color='m', title = "Carrier Signal-1")
-    d = plot_graph(condition = conditon,x = x_carrier, y = c2,color='y', title = "Carrier Signal-2")
-    e = plot_graph(condition = conditon,x = x_modulated, y = modulated_wave,color='r', title = "Modulated wave -1")
-    f = plot_graph(condition = conditon,x = x_message, y=m1,color='r', title="demodulated wave - 1")
-    g = plot_graph(condition = conditon,x = x_message, y=m2,color='c', title="demodulated wave - 2")
+    a = plot_graph(condition = condition,x = x_message, y = m1,color='b', title = "Message Signal-1")
+    b = plot_graph(condition = condition,x = x_message, y = m2,color='g', title = "Message Signal-2")
+    c = plot_graph(condition = condition,x = x_carrier, y = c1,color='m', title = "Carrier Signal-1")
+    d = plot_graph(condition = condition,x = x_carrier, y = c2,color='y', title = "Carrier Signal-2")
+    e = plot_graph(condition = condition,x = x_modulated, y = modulated_wave,color='r', title = "Modulated wave -1")
+    f = plot_graph(condition = condition,x = x_message, y=m1,color='r', title="demodulated wave - 1")
+    g = plot_graph(condition = condition,x = x_message, y=m2,color='c', title="demodulated wave - 2")
     
     return [a,b,c,d,e,f,g]
