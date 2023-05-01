@@ -58,6 +58,7 @@ def Amplitutde_Modulation(am_type):
         Am=int (content['Am'])
         Ac=int (content['Ac'])
         message_signal = str(content['message_signal'])
+        
         inputs = [Am,Ac,fm,fc,message_signal]            
 
         if am_type == "MAIN":
@@ -72,6 +73,7 @@ def Amplitutde_Modulation(am_type):
             message_signal_2 = request.form['message_signal_2']
             inputs.append(message_signal_2)
             plots = AM_QAM(inputs) 
+        return render_template('AM_graphs.html',am_type=am_type.upper(),title=title[am_type],plots = plots,inputs=inputs)
     return render_template('AM_graphs.html',am_type=am_type.upper(),title=title[am_type],plots = plots)
 
 @app.route('/FM/<index>',methods=['GET','POST'])

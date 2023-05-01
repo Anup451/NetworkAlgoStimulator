@@ -45,6 +45,6 @@ def create_domain_AM(frequency):
     elif frequency<50:
         x = np.linspace(-200,200,500) 
     elif frequency>2000:
-        x = np.linspace(-200,200,20000)
+        x = np.linspace(-200,200,12000)
     return x
 
