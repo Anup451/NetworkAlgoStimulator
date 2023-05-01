@@ -9,6 +9,8 @@ import base64
 from modulation import *
 from binascii import unhexlify
 import logging
+import json
+
 
 logger = logging.getLogger('waitress')
 logger.setLevel(logging.INFO)
@@ -19,6 +21,7 @@ load_dotenv()
 
 app=Flask(__name__,static_url_path='/static')
 CORS(app)
+
 
 @app.template_filter('decode_hex')
 def decode_hex(s):
@@ -31,12 +34,24 @@ def b64encode(s):
 
 @app.route('/',methods=['GET'])
 def home():
-    return render_template('home.html')
+    f = open('./data.json')
+    data = json.load(f)["Home"]
+    return render_template('home.html',data=data)
+
+@app.route('/references',methods=['GET'])
+def references():
+    return render_template('references.html')
+
+@app.route('/theory/<modulation_type>',methods=["GET"])
+def theory(modulation_type):
+    return render_template(f'theory/{modulation_type}.html')
 
 # ---------- Analog Modulation -------------------
 @app.route('/AM',methods=['GET'])
 def AM_page():
-    return render_template('Analog_Modulation.html')
+    f = open('./data.json')
+    data = json.load(f)["AM"]
+    return render_template('Analog_Modulation.html',data=data)
 
 @app.route('/AM/<am_type>',methods=['GET','POST'])
 def Amplitutde_Modulation(am_type):  
@@ -108,7 +123,9 @@ def FM(index):
 
 @app.route('/DM',methods=['GET'])
 def DM_page():
-    return render_template('Digital_Modulation.html')
+    f = open('./data.json')
+    data = json.load(f)["DM"]
+    return render_template('Digital_Modulation.html',data=data)
 
 
 @app.route('/DM/<dmtype>', methods=['GET','POST'])
@@ -165,7 +182,9 @@ def GMSK_Modulation(dmtype):
 
 @app.route('/PM',methods=['GET'])
 def PM_page():
-    return render_template('Pulse_Modulation.html')
+    f = open('./data.json')
+    data = json.load(f)["PM"]
+    return render_template('Pulse_Modulation.html',data=data)
 
 
 @app.route('/PM/<pmtype>', methods=['GET','POST'])

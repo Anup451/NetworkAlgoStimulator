@@ -1,100 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital modulation</title>
-    <link rel="stylesheet" href="/static/AM.css">
-    <link rel="stylesheet" href="/static/base.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="/static/js/scritpt.js" defer></script>
-</head>
+{% include "head.html" %}
 <body>
-    
+    {% import "macros.html" as macros %}
     <div class="wraper">
-        <div class="nav">
-            <h1>Digital Modulation</h1>
-            <button class="back-button">
-                <a href="/">
-                  <i class="fa-solid fa-home"></i>
-                </a>
-              </button>  
-        </div>
+        {% with title="Digital Modulation" %}
+            {% include "nav.html" %}
+        {% endwith %}
         <div class="container">
             <div class="content" id="Amplitude-modulation-section">
-                <a class="card-link" href="/DM/BASK" id="DM_BASK">
-                    <div class="box card" id="box-7">
-                        <img src="https://schaumont.dyn.wpi.edu/ece4703b21/_images/bpskinterpolate.png" alt="">
-                        <h2 class="card-heading">
-                            BASK modulation
-                        </h2>
-                        <p>
-                            BASK Modulator BASK (Binary Amplitude shift keying) is a Modulation that 
-                            mirrors the digital data as variations in the amplitude of a carrier wave.
-                            As per the modulating signal the amplitude of an analog carrier changes
-                        </p>
-    
-                    </div>
-                </a>
-                <a class="card-link" href="/DM/BFSK" id="DM_BFSK">
-                    <div class="box card" id="box-7">
-                        <img src="https://eus-www.sway-cdn.com/s/kcfJQ8HIpjTFBth1/images/6TXGLmHe-v25mQ?quality=1280&allowAnimation=true&embeddedHost=true" alt="">
-                        <h2 class="card-heading">
-                            BFSK modulation
-                        </h2>
-                        <p>
-                            Binary FSK is a constant-envelope form of angle
-                             modulation similar to conventional frequency 
-                             modulation except that the modulating signal 
-                             varies between two discrete voltage levels 
-                             (i.e., 1's and 0's) rather than with 
-                            a continuously changing value, such as a sine wave.
-                        </p>
-    
-                    </div>
-                </a>
-                <a class="card-link" href="/DM/BPSK" id="DM_BPSK">
-                    <div class="box card" id="box-7">
-                        <img src="https://www.researchgate.net/publication/323559089/figure/fig2/AS:779407505518618@1562836638494/The-PDF-of-received-symbols-with-BPSK-modulation-and-AWGN-channel-the-red-region.gif" alt="">
-                        <h2 class="card-heading">
-                           BPSK modulation
-                        </h2>
-                        <p>
-                            Binary Phase-shift keying (BPSK) is a digital modulation scheme that conveys data by changing, 
-                            or modulating, two different phases of a reference signal (the carrier wave). 
-                            The constellation points chosen are usually positioned with uniform angular spacing 
-                            around a circle.
-
-                        </p>
-                    </div>
-                </a>      
-                <a class="card-link" href="/DM/QPSK" id="DM_QPSK">
-                    <div class="box card" id="box-2">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSLhNGbU1NvxhkpLqEpJGavlD4BOPB9W3YAA&usqp=CAU" alt="">
-                        <h2 class="card-heading">
-                            QPSK Modulation
-                        </h2>
-                        <p>
-                            Quadrature Phase Shift Keying (QPSK) is a form of Phase Shift Keying in which two bits are modulated at once,
-                            selecting one of four possible carrier phase shifts (0, 90, 180, or 270 degrees). 
-                            QPSK allows the signal to carry twice as much information as ordinary PSK using the same bandwidth.
-                        </p>
-                    </div>    
-                </a>
-                <a class="card-link" href="/DM2/GMSK" id="DM2_GMSK">
-                    <div class="box card" id="box-2">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSLhNGbU1NvxhkpLqEpJGavlD4BOPB9W3YAA&usqp=CAU" alt="">
-                        <h2 class="card-heading">
-                            GMSK Modulation
-                        </h2>
-                        <p>
-                          Gaussian Minimum Shift Keying, GMSK is a form of modulation based on frequency shift keying 
-                          that has no phase discontinuities and provides efficient use of spectrum as well as enabling 
-                          high efficiency radio power amplifiers.
-                        </p>
-                    </div>    
-                </a>
+                {% for i in data %}
+                    {{macros.card(i.title,i.descritption,i.image_link,i.color,i.hasTheory,i.demoLink,i.theoryLink,i.pageLink)}}
+                {%endfor%} 
             </div>
         </div>
     </div>
