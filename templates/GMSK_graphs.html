@@ -96,9 +96,13 @@
 
 <div class="plot-wrapper">  
   
+  {% if plots | length == 0%}
+  <p class="info">Please select the values to generate the graph</p>
+  {% else %} 
   {% for plot in plots %}
-    <img src="data:image/png;base64,{{ plot|decode_hex|b64encode }}" class="graph-plot" />
+  <img src="data:image/png;base64,{{ plot|decode_hex|b64encode }}" onclick="zoomin()" class="graph-plot" />
   {% endfor %}
+  {% endif %}
   
 </div>
 </body>
