@@ -43,7 +43,7 @@ def Amplitutde_Modulation(am_type):
     
     title = {"MAIN":"Amplitutde Modulation","SSB":"SSB Modulation","DSBSC":"DSB Modulation","QAM":"QAM Modulation"}
     print(am_type)
-    images = []
+    plots = []
     x_message = []
     x_carrier = []
     content_type = request.headers.get('Content-Type')    
@@ -58,21 +58,23 @@ def Amplitutde_Modulation(am_type):
         Am=int (content['Am'])
         Ac=int (content['Ac'])
         message_signal = str(content['message_signal'])
+        
         inputs = [Am,Ac,fm,fc,message_signal]            
 
         if am_type == "MAIN":
-            images = AM_main_graph(inputs)
+            plots = AM_main_graph(inputs)
         elif am_type == "SSB":
-            images = AM_ssb_modulation(inputs)
+            plots = AM_ssb_modulation(inputs)
         elif am_type == "DSBSC":
             phi  = float(request.form['phi'])
             inputs.append(phi)
-            images = AM_double_sideband_modulation(inputs)
+            plots = AM_double_sideband_modulation(inputs)
         elif am_type == "QAM":
             message_signal_2 = request.form['message_signal_2']
             inputs.append(message_signal_2)
-            images = AM_QAM(inputs) 
-    return render_template('AM_graphs.html',am_type=am_type.upper(),title=title[am_type],images = images)
+            plots = AM_QAM(inputs) 
+        return render_template('AM_graphs.html',am_type=am_type.upper(),title=title[am_type],plots = plots,inputs=inputs)
+    return render_template('AM_graphs.html',am_type=am_type.upper(),title=title[am_type],plots = plots)
 
 @app.route('/FM/<index>',methods=['GET','POST'])
 def FM(index):
@@ -97,7 +99,7 @@ def FM(index):
             
         # elif(index==3):
         #     PULSE_MAIN(x,inputs) 
-    return render_template('fm_graphs.html',title=title[index],index=index,images=images)
+    return render_template('fm_graphs.html',title=title[index],index=index,plots=images)
 
 # ---------- End of Analog Modulation ------------
 
@@ -158,6 +160,52 @@ def GMSK_Modulation(dmtype):
 
 
 # ------------ End of Digital Modulation -------------
+
+# ---------- Pulse Modulation ---------------------
+
+@app.route('/PM',methods=['GET'])
+def PM_page():
+    return render_template('Pulse_Modulation.html')
+
+
+@app.route('/PM/<pmtype>', methods=['GET','POST'])
+def PulseModulation(pmtype):
+    title = {"Sampling":"Sampling",
+             "Quantization":"Quantization",
+             "PAM":"Pulse Amplitude Modulation",
+             "PPM":"Pulse Phase Modulation",
+             "PCM":"Pulse Position Modulation",
+             "PWM":"Pulse Width Modulation"
+             }
+    plots = []
+    inputs = []
+    print(request.form)
+    if (request.method=='POST'):
+        fm = int (request.form['fm'])
+        am = int (request.form['am'])
+        fc = int (request.form['fc'])
+        ac = int (request.form['ac'])
+        message_type = str(request.form["message_signal"])
+        inputs = [am,ac,fm,fc,message_type]
+
+      # Change Binary string to array
+        print(pmtype)
+        if pmtype.upper() == 'PPM':
+            ppm_ratio = float(request.form['ppm_ratio'])        
+            inputs.append(ppm_ratio)
+            plots = PPM(inputs)
+        elif pmtype.upper() == 'PAM':
+          inputs.append(int(request.form['fs']))
+          plots = PAM(inputs)
+        elif pmtype.upper() == 'BPSK':
+          plots = BPSK(Tb, fc, inputBinarySeq)
+        elif pmtype.upper() == 'QPSK':
+          plots = QPSK(Tb, fc, inputBinarySeq)
+
+    return render_template('PM_graphs.html',pmtype=pmtype.upper(),title=title[pmtype], plots=plots)
+
+
+
 
 def create_app():
     from waitress import serve
