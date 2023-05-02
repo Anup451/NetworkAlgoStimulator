@@ -1,86 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pulse modulation</title>
-    <link rel="stylesheet" href="/static/AM.css">
-    <link rel="stylesheet" href="/static/base.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="/static/js/scritpt.js" defer></script>
-</head>
+{% include "head.html" %}
+{% import "macros.html" as macros%}
 <body>
-    
+
     <div class="wraper">
-        <div class="nav">
-            <h1>Pulse Modulation</h1>
-            <button class="back-button">
-                <a href="/">
-                  <i class="fa-solid fa-home"></i>
-                </a>
-              </button>  
-        </div>
+        {% with title="Pulse Modulation", bgcolor="#348191" %}
+            {% include "nav.html" %}
+        {% endwith %}
         <div class="container">
             <div class="content" id="Amplitude-modulation-section">
-                <a class="card-link" href="/PM/Sampling" id="PM_Sampling">
-                    <div class="box card" id="box-7">
-                        <img src="https://schaumont.dyn.wpi.edu/ece4703b21/_images/bpskinterpolate.png" alt="">
-                        <h2 class="card-heading">
-                            Sampling
-                        </h2>
-                        <p></p>
-    
-                    </div>
-                </a>
-                <a class="card-link" href="/PM/Quantization" id="PM_Quantization">
-                    <div class="box card" id="box-7">
-                        <img src="https://eus-www.sway-cdn.com/s/kcfJQ8HIpjTFBth1/images/6TXGLmHe-v25mQ?quality=1280&allowAnimation=true&embeddedHost=true" alt="">
-                        <h2 class="card-heading">
-                            Quantization
-                        </h2>
-                        <p></p>
-    
-                    </div>
-                </a>
-                <a class="card-link" href="/PM/PAM" id="PM_PAM">
-                    <div class="box card" id="box-7">
-                        <img src="https://www.researchgate.net/publication/323559089/figure/fig2/AS:779407505518618@1562836638494/The-PDF-of-received-symbols-with-BPSK-modulation-and-AWGN-channel-the-red-region.gif" alt="">
-                        <h2 class="card-heading">
-                           PAM(Pulse Amplitude Modulation)
-                        </h2>
-                        <p></p>
-                    </div>
-                </a>      
-                <a class="card-link" href="/PM/PPM" id="PM_PPM">
-                    <div class="box card" id="box-2">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSLhNGbU1NvxhkpLqEpJGavlD4BOPB9W3YAA&usqp=CAU" alt="">
-                        <h2 class="card-heading">
-                            PPM (Pusle Position Modulation)
-                        </h2>
-                        <p></p>
-                    </div>    
-                </a>
-                <a class="card-link" href="/PM/PWM" id="PM_PWM">
-                    <div class="box card" id="box-2">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSLhNGbU1NvxhkpLqEpJGavlD4BOPB9W3YAA&usqp=CAU" alt="">
-                        <h2 class="card-heading">
-                            PWM (Pusle Width Modulation) 
-                        </h2>
-                        <p></p>
-                    </div>    
-                </a>
-                <a class="card-link" href="/PM/PCM" id="PM_PCM">
-                    <div class="box card" id="box-2">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSLhNGbU1NvxhkpLqEpJGavlD4BOPB9W3YAA&usqp=CAU" alt="">
-                        <h2 class="card-heading">
-                            PCM (Pusle Code Modulation) 
-                        </h2>
-                        <p></p>
-                    </div>    
-                </a>
+                {% for i in data %}
+                    {{macros.card(i.title,i.descritption,i.image_link,i.color,i.hasTheory,i.demoLink,i.theoryLink,i.pageLink)}}
+                {%endfor%}
             </div>
         </div>
     </div>
+
 </body>
 </html>
+
+
+
+

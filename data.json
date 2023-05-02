@@ -144,13 +144,58 @@
             "color":"#e6d850",
             "hasTheory":"true",
             "demoLink":"/DM2/GMSK",
-            "theoryLink":"/theory/GPSK",
+            "theoryLink":"/theory/GMSK",
             "pageLink":""
         }
     ],
     "PM":[
         {
-            "title":"Amplitude Modulation",
+            "title":"Sampling",
+            "descritption":"The early and simple form of modulation for radio communication. Explore AM modulator, demodulator, transmission examples, modulation trapeze ...",
+            "image_link":"https://upload.wikimedia.org/wikipedia/commons/9/97/Amplitudemodulation.gif?20150401022946",
+            "color":"#e6d850",
+            "hasTheory":"true",
+            "demoLink":"-",
+            "theoryLink":"-"
+        },
+        {
+            "title":"Quantization",
+            "descritption":"The early and simple form of modulation for radio communication. Explore AM modulator, demodulator, transmission examples, modulation trapeze ...",
+            "image_link":"https://upload.wikimedia.org/wikipedia/commons/9/97/Amplitudemodulation.gif?20150401022946",
+            "color":"#e6d850",
+            "hasTheory":"true",
+            "demoLink":"-",
+            "theoryLink":"-"
+        },
+        {
+            "title":"PAM(Pulse Amplitude Modulation)",
+            "descritption":"The early and simple form of modulation for radio communication. Explore AM modulator, demodulator, transmission examples, modulation trapeze ...",
+            "image_link":"https://upload.wikimedia.org/wikipedia/commons/9/97/Amplitudemodulation.gif?20150401022946",
+            "color":"#e6d850",
+            "hasTheory":"true",
+            "demoLink":"-",
+            "theoryLink":"-"
+        },
+        {
+            "title":"PPM(Pulse Position Modulation)",
+            "descritption":"The early and simple form of modulation for radio communication. Explore AM modulator, demodulator, transmission examples, modulation trapeze ...",
+            "image_link":"https://upload.wikimedia.org/wikipedia/commons/9/97/Amplitudemodulation.gif?20150401022946",
+            "color":"#e6d850",
+            "hasTheory":"true",
+            "demoLink":"-",
+            "theoryLink":"-"
+        },
+        {
+            "title":"PWM(Pulse Width Modulation)",
+            "descritption":"The early and simple form of modulation for radio communication. Explore AM modulator, demodulator, transmission examples, modulation trapeze ...",
+            "image_link":"https://upload.wikimedia.org/wikipedia/commons/9/97/Amplitudemodulation.gif?20150401022946",
+            "color":"#e6d850",
+            "hasTheory":"true",
+            "demoLink":"-",
+            "theoryLink":"-"
+        },
+        {
+            "title":"PCM(Pulse Code Modulation)",
             "descritption":"The early and simple form of modulation for radio communication. Explore AM modulator, demodulator, transmission examples, modulation trapeze ...",
             "image_link":"https://upload.wikimedia.org/wikipedia/commons/9/97/Amplitudemodulation.gif?20150401022946",
             "color":"#e6d850",
@@ -158,5 +203,6 @@
             "demoLink":"-",
             "theoryLink":"-"
         }
+
     ]
 }

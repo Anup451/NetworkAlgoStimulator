@@ -2,7 +2,9 @@
 <html lang="en">
 {% include 'head.html' %}
 <body>
-{% include 'nav.html' %}
+  {% with title= title %}
+    {% include 'nav.html' %}
+  {%endwith%}
 <div class="container-full">
   <form action="/AM/{{am_type}}" method="POST">
     <div class="inputs">

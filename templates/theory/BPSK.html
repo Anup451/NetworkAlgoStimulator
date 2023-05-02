@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AM theory</title>
+
+
+    <style>
+
+
+        body{
+            font-family: 'Times New Roman', Times, serif;
+            background-color:whitesmoke;
+        }
+        div{
+             
+            padding-left: 15%;
+            padding-right: 15%;
+        }
+
+
+        h1{
+            text-align: center;
+            background-color: rgb(157, 219, 219);
+           
+            padding: 10px;
+            padding-top:20px;
+
+
+
+
+           
+         
+           
+        }
+
+
+         
+
+
+        p{
+            text-align: justify;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: medium;
+           
+        }
+
+
+        .list_1,.list_2{
+            text-align: justify;
+            list-style:none;
+        }
+
+
+
+
+
+
+        .homepage img{
+        height: 40px;
+        width: 40px;
+        border-radius: 10px;
+       
+}
+
+
+.homepage{
+    display: float;
+    float: right;
+
+
+    margin-top: 40px;
+
+
+    margin-right: 10px;
+
+
+
+
+}
+
+
+.side_heading{
+    color: blue;
+   
+
+
+    text-align: center;
+   
+}
+
+
+.am_1,.am_2{
+
+
+    padding: 10px;
+    display: float;
+    float: right;
+}
+
+
+.wave{
+    padding-left: 10px;
+    padding-right: 10px;
+    float:right;
+     
+}
+    </style>
+</head>
+<body>
+
+
+    <div>
+        <a class="homepage" href="demo_am.html"> <img src="home.jpg"> </a>
+        <h1>Binary Phase Shift Keying(BPSK) Modulation
+
+            </h1>
+
+
+   
+    <div class="side_heading"><h3></h3></div>
+
+
+    <img class="am_1" src="am_theory_2.png" alt="" width="270px">
+
+
+   
+    <p> <h4>Defination :</h4> A digital modulation technique that transmits data by varying the phase of the carrier wave in accordance with the digital modulating signal, is called Phase Shift Keying (PSK).<br>
+
+The easiest form of PSK is BPSK i.e., binary phase shift keying. However, PSK can be extended to 4 level and 8 level PSK that totally depends on the need of the system.</p>
+
+
+     
+
+
+
+
+    <p><h3>Principle of BPSK</h3><br>
+BPSK technique is the simplest among all the PSK techniques. In this, each signalling element is represented by a single data bit. Here, the carrier undergoes two phase reversal such as 0° and 180°. In phase shift keying the digital bit sequence is first converted to NRZ bipolar signal which directly modulates the carrier wave.<br>
+
+<h3>Expression for BPSK</h3><br>
+Let us consider the carrier wave is given as<br>
+
+s(t)=Acos(2pif<sub>c</sub>t)
+
+<br>
+The peak of the carrier wave is represented as A when the load resistance is assumed to be 1 ohm as standard, the power dissipated is given as,<br>
+<img class="am_1" src="https://electronicscoach.com/wp-content/uploads/2018/10/eqn.jpg" alt="" width="270px">
+
+A change in phase by 180° is noticed with the corresponding change in the bit sequence.<br>
+
+Assume the carrier for symbol 1 is given as<br>
+
+<img class="am_1" src="https://electronicscoach.com/wp-content/uploads/2018/10/eq2.jpg" alt="" width="270px">
+Similarly, in the case of symbol 0, we have,<br>
+<img class="am_1" src="https://electronicscoach.com/wp-content/uploads/2018/10/eq3.jpg" alt="" width="270px">
+: π represents the phase shift of 180°<br>
+
+As we know cos (ɸ + π) = – cos ɸ<br>
+
+Thus, s2(t) can be written as,<br>
+
+<img class="am_1" src="https://electronicscoach.com/wp-content/uploads/2018/10/eq4.jpg" alt="" width="270px">
+Hence, BPSK signal can be written as,<br><br>
+
+<img class="am_1" src="https://electronicscoach.com/wp-content/uploads/2018/10/eq5.jpg" alt="" width="270px">
+ b(t) will be +1 in case of transmission of binary 1 and<br>
+
+b(t) will be -1 in case of transmission of binary 0.<br>
+
+<h3>BPSK modulation</h3><br>
+The figure below shows the block diagram for the generation of a BPSK signal.
+
+<br>
+<img class="am_1" src="https://electronicscoach.com/wp-content/uploads/2018/10/generation-of-BPSK-signal.jpg" alt="" width="270px">
+<p>
+    As we can see here that the system consists of NRZ encoder along with product modulator and carrier generator.<br>
+
+The binary message signal is fed to the bipolar NRZ level encoder that converts the Binary data input into equivalent bipolar NRZ sequence m(t). This bipolar NRZ signal is fed to the balanced modulator along with the carrier wave.<br>
+
+Thus, the binary signal modulates the carrier wave that generates a phase shifted modulated signal termed as BPSK signal.<br>
+
+Let us have a look at the figure below that shows BPSK generated waveform with the binary bit sequence and carrier wave.<br>
+
+
+    </p>
+    <p>
+        <img class="am_1" src="https://electronicscoach.com/wp-content/uploads/2018/10/BPSK-waveform-111.jpg" alt="" width="270px">
+</p>
+
+
+
+
+   
+    <p>Here, (i) represents the binary bit sequence, the next represents the bipolar NRZ sequence m(t) that is used to modulate the carrier wave represented in (iii). The resultant BPSK signal is then achieved.
+
+Here, as we can see that, the figure shows phase reversal when the bit sequence gets changed either from 1 to 0 or from 0 to 1. When the bit sequence changes from 0 to 1 then we noticed a positive phase change whereas, when the bit sequence changes from 1 to 0 then a negative change of phase is noticed.
+
+    </p>
+    
+
+
+
+    <
+   
+    
+    
+
+
+
+<h3>Advantages of Phase shift keying</h3><br><br>
+-It allows more efficient transmission of radio frequency signal.<br>
+-Better noise immunity is noticed in the case of BPSK technique.<br>
+-Less bandwidth is utilized by the BPSK signal in comparison to BFSK.<br>
+
+<h3>Disadvantages of phase shift keying</h3><br>
+-Detection of a BPSK signal is quite complex.<br>
+-Phase discontinuity sometimes leads to variation in amplitude of the signal.
+
+
+    
+
+     
+   
+
+
+    
+
+
+     
+ 
+</body>
+</html>
+
