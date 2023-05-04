@@ -54,28 +54,33 @@
   </nav>
 <div class="container-full">
 
-  <form action="/DM/{{dmtype}}" method="POST">
+  <form action="/DM2/{{dmtype}}" method="POST">
     <div class="inputs"> 
 
       <div class="input-wrapper">
-          <label for="freqc">Carrier Frequency (Fc)</label>
-          <input type="number" id="freqc" name="fc" class="input-bar" placeholder="eg: 10" required>
-      </div>
-
-      {% if dmtype == 'BFSK' %}
-        <div class="input-wrapper">
-          <label for="freqc">Carrier Frequency 2 (Fc2)</label>
-          <input type="number" id="freqc" name="fc2" class="input-bar" placeholder="eg: 10" required>
-        </div>
-      {% endif %}
-
-      <div class="input-wrapper">
-        <label for="freqm">Bit Duration (Tb)</label>
-        <input type="text" id="freqm" name="Tb" placeholder="eg: 1" required>
+          <label for="freqc">Message Frequency</label>
+          <input type="number" id="freqc" name="fm" class="input-bar" required>
       </div>
       <div class="input-wrapper">
-          <label for="am">Input Binary Sequence</label>
-          <input type="text" id="am" name="inputBinarySeq" placeholder="eg: 10010101" required>
+          <label for="freqc">Message Amplitude</label>
+          <input type="number" id="freqc" name="am" class="input-bar" required>
+      </div>
+      <div class="input-wrapper">
+          <label for="freqc">Message Phase</label>
+          <input type="number" id="freqc" name="pm" class="input-bar"  required>
+      </div>
+
+      <div class="input-wrapper">
+          <label for="freqc">Carrier Frequency</label>
+          <input type="number" id="freqc" name="fc" class="input-bar"  required>
+      </div>
+      <div class="input-wrapper">
+          <label for="freqc">Carrier Amplitude</label>
+          <input type="number" id="freqc" name="ac" class="input-bar" required>
+      </div>
+      <div class="input-wrapper">
+          <label for="freqc">Carrier Phase</label>
+          <input type="number" id="freqc" name="pc" class="input-bar" required>
       </div>
 
       <br>

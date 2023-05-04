@@ -337,3 +337,69 @@ def QPSK(Tb, fc, inputBinarySeq):
   plt.figure()
 
   return [msgSignal, carrier1, carrier2, modSignal]
+
+
+# ------- GMSK ---------------
+def GMSK(fm, Am, phi_m, fc, Ac, phi_c):
+    Tm = 1/fm
+    Tc = 1/fc
+    t = np.linspace(0, 2*Tm, 200)
+
+    m = Am*np.sin(2*np.pi*fm*t + phi_m)
+    c = Ac*np.sin(2*np.pi*fc*t + phi_c)
+
+    bpsk = np.zeros(len(t))
+    prev_bit = 0
+    for i in range(len(t)):
+        if m[i] > 0:
+            if prev_bit == 0:
+                bpsk[i] = np.pi
+                prev_bit = 1
+            else:
+                bpsk[i] = 0
+                prev_bit = 0
+        else:
+            bpsk[i] = bpsk[i-1]
+
+
+    plt.figure(figsize=(10,6))
+
+    plt.subplot(3,1,1)
+    plt.plot(t, m, 'b-', linewidth=2)
+    plt.xlabel('Time (s)')
+    plt.ylabel('Amplitude')
+    plt.title('Message Signal')
+    # Save
+    data = BytesIO()
+    plt.savefig(data,format="png",bbox_inches='tight' )
+    data.seek(0)
+    msgSignal = data.getvalue().hex()
+    plt.figure()
+    
+
+    plt.subplot(3,1,2)
+    plt.plot(t, c, 'r-', linewidth=2)
+    plt.xlabel('Time (s)')
+    plt.ylabel('Amplitude')
+    plt.title('Carrier Signal')
+    # Save
+    data = BytesIO()
+    plt.savefig(data,format="png",bbox_inches='tight' )
+    data.seek(0)
+    carrierSignal = data.getvalue().hex()
+    plt.figure()
+
+    plt.subplot(3,1,3)
+    plt.plot(t, Ac*np.sin(2*np.pi*fc*t+bpsk), 'g-', linewidth=2)
+    plt.xlabel('Time (s)')
+    plt.ylabel('Amplitude')
+    plt.title('DPSK Modulated Signal')
+    plt.tight_layout()
+    # Save
+    data = BytesIO()
+    plt.savefig(data,format="png",bbox_inches='tight' )
+    data.seek(0)
+    modSignal = data.getvalue().hex()
+    plt.figure()
+    
+    return [msgSignal, carrierSignal, modSignal]

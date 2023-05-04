@@ -4,6 +4,7 @@ import numpy as np
 
 def triangular(x,A):
     return np.absolute(np.fmod(np.absolute(x),2*A)-A)
+    
 
 def plot_graph(x,y,title,xlabel="Volts",ylabel="Frequncy",color="b",condition="scatter"):
     plt.style.use('seaborn')
@@ -32,10 +33,18 @@ def plot_axis(fig,ax):
     ax = fig.add_subplot(1, 1, 1)
     ax.spines['left'].set_position('center')
     ax.spines['bottom'].set_position('zero')
-    ax.spines['right'].set_color('none')
-    ax.spines['top'].set_color('none')
+    ax.spines['right'].set_color('black')
+    ax.spines['top'].set_color('black')
     ax.xaxis.set_ticks_position('bottom')
     ax.yaxis.set_ticks_position('left')
 
-
+def create_domain_AM(frequency):
+    x= np.linspace(-200,200,10000)
+    if frequency>=50 and frequency<=2000:
+        x = np.linspace(-200,200,10000)
+    elif frequency<50:
+        x = np.linspace(-200,200,500) 
+    elif frequency>2000:
+        x = np.linspace(-200,200,12000)
+    return x
 
