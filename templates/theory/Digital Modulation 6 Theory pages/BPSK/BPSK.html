@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BPSK</title>
+
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: rgb(255, 255, 255);
+        }
+
+        div {
+
+            padding-left: 15%;
+            padding-right: 15%;
+        }
+
+        h1 {
+            text-align: center;
+            background-color: rgb(8, 249, 249);
+
+            padding: 10px;
+            padding-top: 20px;
+        }
+
+
+
+        p {
+            text-align: justify;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: medium;
+
+        }
+
+        .homepage img {
+            height: 40px;
+            width: 40px;
+            border-radius: 10px;
+
+        }
+
+        .homepage {
+            display: float;
+            float: right;
+
+            margin-top: 40px;
+
+            margin-right: 10px;
+
+
+        }
+
+        .side_heading {
+            color: rgb(4, 4, 247);
+
+
+            text-align: center;
+
+        }
+
+        .am_1,
+        .am_2 {
+
+            padding: 10px;
+            display: float;
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <a class="homepage" href=""> <img src="home.jpg"> </a>
+        <h1>Binary phase shift keying (BPSK)</h1>
+
+
+        <P>• In binary phase-shift keying (BPSK), the pair of signals is used to represent
+            symbols 1 and O, respectively, are defined by <br>
+            • Tb denoting the bit duration and Eb denoting the transmitted signal energy
+            per bit. <br>
+            • A pair of sinusoidal waves, Sl(t) and s2(t)and which differ only in a relative
+            phase-shift of Tt radians as defined in Eq. (7.12), are referred to as antipodal
+            signals. <br>
+            • From the two lines of this equation, we see that BPSK is in actual fact a
+            special case of double-sideband suppressed-carried (DSB-SC) modulation. <br> </P>
+        <img src="/1.png" alt="">
+        <div class="side_heading">
+            <h3>GENERATION AND COHERENT DETECTION OF BPSK SIGNALS</h3>
+        </div>
+        <p>• Generation: BPSK signal is a special case of DSB-
+            SC modulation. Specifically, we use a product
+            modulator consisting of two components (see
+            Fig)): <br>
+            • Non-return-to-zero level encoder, whereby the
+            input binary data sequence is encoded in polar
+            form with symbols 1 and O represented by the
+            constant-amplitude levels: and respectively. QF-b
+            and -QEb , respectively. <br>
+            • Product modulator, which multiplies the
+            level-encoded binary wave by the sinusoidal
+            carrier c(t)of amplitude 42/'Tb to produce the
+            BPSK signal</p>
+        <img src="/2.png" alt="">
+        <div class="side_heading">
+            <h3>BPSK Detection</h3>
+        </div>
+
+        <P>• To detect the original binary sequence of Is and Os,
+            the BPSK signal at the channel output is applied
+            to a receiver that consists of four sections <br>
+            • (i) Product modulator, which is also supplied with a
+            locally generated reference signal that is a replica of
+            the carrier wave c(t). <br>
+            • (ii) Low-pass filter, designed to remove the double-
+            frequency components of the product modulator
+            output (i.e., the components centered on 2fc and
+            pass the zero-frequency components. <br>
+            iii) Sampler, which uniformly samples the output of the low-pass filter at t=iTb where i=O,±1; ±2....; the
+            local clock
+            governing the operation of the sampler is synchronized with the clock responsible for bit-timing in the
+            transmitter. <br>
+            (iv) Decision-making device, which compares the sampled value of the low-pass filter's output to an
+            externally supplied
+            threshold. If the threshold is exceeded, the device decides in favor of symbol I; otherwise, it decides in
+            favor of symbol O. <br>
+            The BPSK receiver described in Fig. is said to be coherent in the sense that the sinusoidal reference signal
+            applied to
+            the product modulator in the demodulator is synchronous in phase (and, of course, frequency) with the
+            carrier wave
+            used in the modulator. <br>
+            This requirement can be achieved by using a phase-locked loop.</P>
+        <img src="/3.png" alt="">
+
+
+
+    </div>
+
+
+
+</body>
+
+</html>

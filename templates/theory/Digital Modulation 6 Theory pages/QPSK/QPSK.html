@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QPSK</title>
+
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: rgb(255, 255, 255);
+        }
+
+        div {
+
+            padding-left: 15%;
+            padding-right: 15%;
+        }
+
+        h1 {
+            text-align: center;
+            background-color: rgb(8, 249, 249);
+
+            padding: 10px;
+            padding-top: 20px;
+        }
+
+
+
+        p {
+            text-align: justify;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: medium;
+
+        }
+
+        .homepage img {
+            height: 40px;
+            width: 40px;
+            border-radius: 10px;
+
+        }
+
+        .homepage {
+            display: float;
+            float: right;
+
+            margin-top: 40px;
+
+            margin-right: 10px;
+
+
+        }
+
+        .side_heading {
+            color: rgb(4, 4, 247);
+
+
+            text-align: center;
+
+        }
+
+        .am_1,
+        .am_2 {
+
+            padding: 10px;
+            display: float;
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <a class="homepage" href=""> <img src="home.jpg"> </a>
+        <h1>Quadriphase - shift keying (QPSK)</h1>
+
+
+        <img src="/2.png" alt="">
+
+
+        <p>4. The two binary waves defined in Eqs. (7.16) and (7.17) share a common value for the symbol
+            duration—namely, T. <br>
+            5. The two sinusoidal carrier waves identified under points 2 and 3 are in phase quadrature with respect to
+            each other. Moreover, they
+            both have unit energy per symbol duration. We may therefore state that these two carrier waves constitute an
+            orthonormal pair of basis
+            functions.</p>
+        <!-- <img src="/b.png" alt=""> -->
+        <img src="/4.png" alt="">
+
+        <div class="side_heading">
+            <h3>Pre-modulation Gaussian low pass filter</h3>
+        </div>
+        <p>• Generation: To generate the QPSK signal, the incoming binary data
+            stream is first converted into polar form by a non-return-to-zero level
+            encoder; the encoder output is denoted by b(t). <br>
+            • Symbols I and O are thereby represented <br>
+            • The resulting binary wave is next divided by means of a demultiplexer
+            (consisting Of a serial-to-parallel converter) into two separate binary
+            waves consisting of the odd- and even numbered input bits of b(t). <br>
+            • These two binary waves, referred to as the demultiplexed components Of
+            the input binary wave, are denoted by amt) and a2(t). <br>
+            • The demultiplexed binary waves and 02(t) are used to modulate the
+            pair of quadrature carriers—namely<br>
+            • Finally, the two BPSK signals are subtracted to produce the desired QPSK
+            signals.</p>
+        <img src="/5.png" alt="">
+        <div class="side_heading">
+         <H3> Detection</H3> 
+           
+</div>
+       
+        <p>
+            • The design of the QPSK receiver builds on the
+            strategy described for the coherent BPSK receiver. <br>
+            • The QPSK receiver consists of an in-phase (l)-channel
+            and quadrature (Q)-channel with a common input.  <br>
+            • Each channel is itself made up ofa product
+            modulator, low-pass filter, sampler, and decision-
+            making device. <br>
+            • Under ideal conditions, the l- and Q-channels of the
+            receiver, respectively, recover the demultiplexed
+            components and az(t) and responsible for
+            modulating the orthogonal pair of carriers in the
+            transmitter. <br>
+            • Accordingly, by applying the outputs of these two
+            channels to a multiplexer (consisting of a parallel-to-
+            serial converter), the receiver recovers the original
+            binary sequence. <br>
+            • Specifically, each of the two low-pass filters in the
+            coherent QPSK receiver of Fig. 7.7(b) must be
+            assigned a bandwidth equal to or greater than the
+            reciprocal of the symbol duration T for satisfactory
+            operation Of the receiver.</p>
+        <img src="/6.png" alt="">
+
+
+    </div>
+
+
+
+</body>
+
+</html>
