@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GMSK</title>
+
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: rgb(255, 255, 255);
+        }
+
+        div {
+
+            padding-left: 15%;
+            padding-right: 15%;
+        }
+
+        h1 {
+            text-align: center;
+            background-color: rgb(8, 249, 249);
+
+            padding: 10px;
+            padding-top: 20px;
+        }
+
+
+
+        p {
+            text-align: justify;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: medium;
+
+        }
+
+        .homepage img {
+            height: 40px;
+            width: 40px;
+            border-radius: 10px;
+        }
+
+        .homepage {
+            display: float;
+            float: right;
+
+            margin-top: 15px;
+
+            margin-right: 10px;
+
+
+        }
+
+        .pic{
+            text-align: center;
+
+        }
+
+        .side_heading {
+            color: rgb(4, 4, 247);
+            text-align: center;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <a class="homepage" href=""> <img src="home.jpg"> </a>
+        <h1>Gaussian Minimum Shift Keying (GMSK)</h1>
+
+
+
+
+        <p>
+            Minimum shift keying (MSK) is a special case of binary CPFSK with modulation index h = 0.5. It has features
+            such as constant envelope, compact spectrum and good error rate performance. The fundamental problem with
+            MSK is that the spectrum is not compact enough to satisfy the stringent requirements with respect to out-of
+            band radiation for technologies like GSM and DECT standard. These technologies have very high data rates
+            approaching the RF channel bandwidth. A plot of MSK spectrum will reveal that the sidelobes with significant
+            energy, extend well beyond the transmission data rate. This is problematic, since it causes severe
+            out-of-band interference in systems with closely spaced adjacent channels. To satisfy such requirements, the
+            MSK spectrum can be easily manipulated by using a pre-modulation low pass filter (LPF). The pre-modulation
+            LPF should have the following properties and it is found that a Gaussian LPF will satisfy all of them <br>
+            • Sharp cut-off and narrow bandwidth - needed to suppress high frequency components. <br>
+            • Lower overshoot in the impulse response - providing protection against excessive instantaneous frequency
+            deviations. <br>
+            • Preservation of filter output pulse area - thereby coherent detection can be applicable. 
+        </p>
+
+        <div class="side_heading">
+            <h3>Pre-modulation Gaussian low pass filter</h3>
+        </div>
+
+
+        <p>Gaussian Minimum Shift Keying (GMSK) is a modified MSK modulation technique, where the spectrum of MSK is
+            manipulated by passing the rectangular shaped information pulses through a Gaussian LPF prior to the
+            frequency modulation of the carrier. A typical Gaussian LPF, used in GMSK modulation standards, is defined
+            by the zero-mean Gaussian (bell-shaped) impulse response.
+        </p>
+        <!-- img1  -->
+        <div class="pic">
+        <img src="/1.jpg" alt="" class="center">
+        </div>
+
+        <p>The parameter B is the 3-dB bandwidth of the LPF, which is determined from a parameter called BTb</p>
+
+        <p> If the input to the filter is an isolated unit rectangular pulse (p(t) = 1,0 ≤ t ≤ Tb), the response of the
+            filter will be</p>
+
+        <!-- img2 -->
+        
+        <img src="/2.jpg" alt="">
+
+        <p>The equation for h(t) defines the impulse response of the LPF, whereas the equation for g(t), also called as
+            frequency pulse shaping function, defines the LPF’s output when the filter gets excited with a rectangular
+            pulse.</p>
+        <!-- img3 -->
+        <div class="pic">
+            <img src="/3.jpg" alt="">
+        
+        </div>
+        <!-- img4     -->
+        <div class="pic">
+        
+            <img src="./4.jpg" alt="">
+        </div>
+
+        <div class="side_heading">
+            <h3> Quadrature implementation of GMSK modulator</h3>
+        </div>
+        <p>Quadrature design is another implementation for GMSK modulator that can be easily realized in software. </p>
+        <p>Continuous Phase Modulation representation as:-</p>
+        <!-- img5 -->
+        
+            <img src="/5.jpg" alt="">
+        
+        <!-- img6 -->
+        
+            <img src="/6.png" alt="">
+        
+        <!-- img7 -->
+            
+            <img src="/7.png" alt="">
+           
+        
+
+
+
+
+        <div class="side_heading">
+            <h3>GMSK demodulator</h3>
+        </div>
+        <p>There exists numerous methods to demodulate a GMSK signal. We used cross-coupled IQ coherent demodulator.The
+            received signal, r(t), is first converted to an intermediate frequency (IF) using a band pass filter.
+
+            With the help of a recovered carrier, the IF signal is translated to baseband using the IQ implementation.
+            The LPF filters in the inphase and quadrature arms, are simply used to remove the 2 fi f frequency
+            components that result from the down conversion multipliers. The baseband signals I(t) and Q(t) can be used
+            by the decision algorithm (MLSE, parallel/serial type MSK detection etc..,) for data detection. From the
+            modulator structure shown in Figure 2.32, it can be readily seen that the baseband inphase and quadrature
+            components are correlated as:-
+        </p>
+
+        <!-- 2 typed formula  -->
+
+        <!-- img8  -->
+        <div class="pic">
+            <img src="/8.png" alt="">
+        </div>
+        <!-- img9  -->
+        <div class="pic">
+            <img src="/9.png" alt="">
+        </div>
+
+
+
+
+        <p>At this stage, it is tempting to deduce the phase information φ(t) directly from the baseband quadrature
+            components as</p>
+
+        <!-- img10  -->
+        <div class="pic">
+            <img src="/10.png" alt="">
+        </div>
+        <p>Though, the above equation is mathematically correct, applying this direct approach for the detection at the
+            receiver, is not a good solution, especially when the received signal is mixed with noise. Due to the
+            addition of noise, any slight deviation in the detected instantaneous phase, leads to error propagation.
+            Since the GMSK is a continuous phase modulation scheme, the correct method is to find the phase difference
+            over a single bit interval and then build a decision logic using that phase difference. The phase difference
+            over one bit interval (Tb) is given as
+        </p>
+
+        <!-- img11  -->
+        <div class="pic">
+            <img src="/11.png" alt="">
+        </div>
+
+        <p>Taking sin() on both sides and applying trigonometric identity for sin(a−b),</p>
+
+        <!-- img12  -->
+        <div class="pic">
+            <img src="/12.png" alt="">
+        </div>
+
+
+        <p>The data bits are decided by applying hard decision on the sign of the above cross-coupled term (now you can
+            relate how the demodulator in Figure 2.35 got the cross-coupled structure).</p>
+
+
+
+
+
+
+
+        </DIV>
+
+</body>
+
+</html>
