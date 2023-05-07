@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AM theory</title>
+
+    <style>
+
+        body{
+            font-family: 'Times New Roman', Times, serif;
+            background-color:whitesmoke;
+        }
+        div{
+             
+            padding-left: 15%;
+            padding-right: 15%;
+        }
+
+        h1{
+            text-align: center;
+            background-color: rgb(8, 249, 249);
+            
+            padding: 10px;
+            padding-top:20px;
+        }
+
+         
+
+        p{
+            text-align: justify;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: medium;
+            
+        }
+
+        .homepage img{
+        height: 40px;
+        width: 40px;
+        border-radius: 10px;
+        
+}
+
+.homepage{
+    display: float;
+    float: right;
+
+    margin-top: 40px;
+
+    margin-right: 10px;
+
+
+}
+
+.side_heading{
+    color: rgb(4, 4, 247);
+    
+
+    text-align: center;
+   
+}
+
+.am_1,.am_2{
+
+    padding: 10px;
+    display: float;
+    float: right;
+}
+    </style>
+</head>
+<body>
+
+    <div>
+        <a class="homepage" href=""> <img src="home.jpg"> </a>
+        <h1>Amplitude Modulation <br> 
+            &
+    <br> Demodulation</h1>
+
+    
+    <div class="side_heading"><h3>Amplitude Modulation</h3></div>
+
+    <img class="am_1" src="am_theory_2.png" alt="" width="270px">
+
+    
+    <p>Amplitude Modulation (AM) is a technique used to modulate a high-frequency carrier wave with a low-frequency message signal. The modulated signal contains the information from the message signal, which can be demodulated at the receiver to recover the original message signal.</p>
+
+     
+
+
+    <p>The process of deriving Amplitude Modulation (AM) involves multiplying a message signal with a high frequency carrier signal to generate a modulated signal. The mathematical expression for AM modulation can be derived as follows:</p>
+    
+    <p>Let m(t) be the message signal, c(t) be the carrier signal, and s(t) be the modulated signal.</p>
+    <p>The carrier signal can be represented as:</p>
+    <p>c(t) = A<sub>c</sub> cos(2πf<sub>c</sub>t)</p>
+    <p>where A<sub>c</sub>is the amplitude of the carrier signal and f<sub>c</sub> is the frequency of the carrier signal.</p>
+    <p>The message signal can be represented as:</p>
+    <p>m(t) = A<sub>m</sub> cos(2πf<sub>m</sub>t)</p>
+    <p>where A<sub>m</sub> is the amplitude of the message signal and f<sub>m</sub> is the frequency of the message signal.</p>
+    <p>To generate the modulated signal s(t), we multiply the message signal with the carrier signal:
+
+    </p>
+    <p>s(t) = (A<sub>c</sub> + A<sub>m</sub> cos(2πf<sub>m</sub>t)) cos(2πf<sub>c</sub>t)</p>
+    <p>Expanding this expression using the trigonometric identity for the product of two cosines, we get:</p>
+
+       
+    <p> s(t) = A<sub>c</sub> cos(2πf<sub>c</sub>t) + 0.5 A<sub>m</sub> cos(2π(f<sub>c</sub> + f<sub>m</sub>)t) + 0.5 A<sub>m</sub>cos(2π(f<sub>c</sub> - f<sub>m</sub>)t)</p>
+    <p>Thus, the modulated signal s(t) contains three components: the carrier signal, and two sidebands that are spaced apart from the carrier frequency by the frequency of the message signal</p>
+    <p>In the frequency domain, the AM signal has a spectrum that consists of a carrier signal and two sidebands, which are symmetrically placed around the carrier frequency.
+
+    </p>
+
+    <div class="side_heading"><h3>Amplitude De-Modulation</h3></div>
+    <img class="am_2" src="am_thoery_3.jpg" alt="" width="300px">
+
+    <p>The process of extracting an original message signal from the modulated wave is known as detection or demodulation. The circuit, which demodulates the modulated wave is known as the demodulator.<p></p>
+    <p>The following demodulators (detectors) are used for demodulating AM wave.</p> 
+
+        <li>Square Law Demodulator</li> 
+        <li>Envelope Detector</li>
+        
+    
+    
+    <p>One of the methods used to demodulate AM signals is square-law demodulation, which is based on the non-linear characteristic of a diode. The square-law demodulator circuit consists of a diode, a load resistor, and a capacitor.</p>
+    <p>Let the modulating and carrier signals be denoted as m(t) and A<sub>c</sub>cos(2πf<sub>c</sub>t)
+    respectively.</p>
+    <p>These two signals are applied as inputs to the summer (adder) block. This summer block produces an output, which is the addition of the modulating and the carrier signal. Mathematically, we can write it as</p>
+
+    <p>V<sub>1</sub>(t) = m(t) + A<sub>c</sub>cos(2πf<sub>c</sub>t)</p>
+
+    <p>This signal V<sub>1</sub>(t) is applied as an input to a nonlinear device like diode. The characteristics of the diode are closely related to square law.</p>
+
+    <p>V<sub>2</sub>(t) = k<sub>1</sub>V<sub>1</sub>(t) + k<sub>1</sub>V<sub>1</sub><sup>2</sup>(t)    ............. (Equation 1)</p>
+    <p>Where, k<sub>1</sub> and k<sub>2</sub> are constants.</p>
+    <p>Substitute V<sub>1</sub>(t) in Equation 1</p>
+
+    <p>V<sub>2</sub>(t) = k<sub>1</sub> [m(t) + A<sub>c</sub>cos(2πf<sub>c</sub>t)] + k<sub>2</sub> [m(t)+A<sub>c</sub>cos(2πf<sub>c</sub>t)]<sup>2</sup></p>
+
+    <p>V<sub>2</sub>(t) =k<sub>1</sub>m(t)+k<sub>1</sub>A<sub>c</sub>cos(2πf<sub>c</sub>t)+k<sub>2</sub>m<sup>2</sup>(t)+k<sub>2</sub>A<sub>c</sub><sup>2</sup>cos<sup>2</sup>(2πf<sub>c</sub>t)+2k<sub>2</sub>m(t)A<sub>c</sub>cos(2πf<sub>c</sub>t) </p>
+    
+    <p>V<sub>2</sub>(t) = k<sub>1</sub>m(t) + k<sub>2</sub>m<sup>2</sup>(t)+k<sub>2</sub>A<sub>c</sub><sup>2</sup>cos<sup>2</sup>(2πf<sub>c</sub>t)+k<sub>1</sub>A<sub>c</sub>[1+(2k<sub>2 / </sub>k<sub>1</sub>)m(t)]cos(2πf<sub>c</sub>t)
+    </p>
+
+    <p>The last term of the above equation represents the desired AM wave and the first three terms of the above equation are unwanted. So, with the help of band pass filter, we can pass only AM wave and eliminate the first three terms.</p>
+
+    <p>Therefore, the output of square law modulator is</p>
+
+    <p>s(t)= k<sub>1</sub>A<sub>c</sub>[1+(2k<sub>2 / </sub>k<sub>1</sub>)m(t)]cos(2πf<sub>c</sub>t)</p>
+
+    <p>The standard equation of AM wave is</p>
+
+    <p>s(t) = (A<sub>c</sub> + A<sub>m</sub> cos(2πf<sub>m</sub>t)) cos(2πf<sub>c</sub>t)</p>
+    
+    <p>Where, K<sub>a</sub> is the amplitude sensitivity</p>
+
+    <p>By comparing the output of the square law modulator with the standard equation of AM wave, we will get the scaling factor as k<sub>1</sub>
+    and the amplitude sensitivity k<sub>a</sub> as 2k<sub>2 / </sub>k<sub>1</sub>.</p>
+
+        
+    </div>
+
+     
+ 
+</body>
+</html>
