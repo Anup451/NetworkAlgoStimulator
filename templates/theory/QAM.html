@@ -1,126 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QAM</title>
+    <title>QAM theory</title>
+
 
     <style>
-
         body{
+            /* font-family: 'Times New Roman', Times, serif; */
+            background-color:whitesmoke;
             font-family: Arial, sans-serif;
-            background-color:rgb(255, 255, 255);
             font-size: 16px;
+            line-height: 1.5;
+            color: #333;
+            margin: 0;
+            padding: 0;
         }
         div{
-             
+            margin-bottom: 55px; 
             padding-left: 15%;
             padding-right: 15%;
         }
         h1{
             text-align: center;
-            background-color: rgb(8, 249, 249);
-            
+            background-color: rgb(157, 219, 219);
             padding: 10px;
             padding-top:20px;
+            font-size: 38px;
+        }
+        h3{
+            font-size: 25px;
+        }
+        h4{
+            font-size: larger;
         }
         p{
+            width: 65%;
             text-align: justify;
             font-family: 'Times New Roman', Times, serif;
             font-size: 17px;
-            width: 80%;
         }
+        ul{
+            font-size: 17px;
+			font-family: Arial, sans-serif;
+			margin-left: 5px;
+			line-height: 1.5;
+            width: 60%;
+        }
+        .section{
+            padding-left: 5%;
+            padding-right: 5%;
+            margin: 10px 5px 65px 0px;
+        }
+        .list_1,.list_2{
+            text-align: justify;
+            list-style:none;
+        }
+
         .homepage img{
-        height: 40px;
-        width: 40px;
-        border-radius: 10px;
+            height: 40px;
+            width: 40px;
+            border-radius: 10px;
         }
+
         .homepage{
             display: float;
             float: right;
             margin-top: 40px;
             margin-right: 10px;
+
         }
+
         .side_heading{
-            color: rgb(4, 4, 247);
+            color: blue;
             text-align: center;
-        
         }
+
         .am_1,.am_2{
             padding: 10px;
-            padding-left: 0px;
             display: float;
             float: right;
         }
-        ul{
-            font-family: Arial, sans-serif;
+
+        .wave{
+            padding-left: 10px;
+            padding-right: 10px;
+            float:right;
         }
-        code {
-            font-weight: bold;
-            font-size: large;
-            background-color: rgb(200, 196, 196);
-            padding: 0px 100px 3px 15px;
+        
+        @media screen and (max-width: 600px) {
+            main {
+                max-width: 100%;
+                padding: 10px;
+            }
         }
     </style>
 </head>
+
 <body>
 
+
     <div>
-        <a class="homepage" href=""> <img src="home.jpg"> </a>
-        <h1>Frequency Modulation <br> 
-            &
-    <br> Demodulation</h1>
+        <a class="homepage" href="demo_am.html"> <img src="home.jpg"> </a>
 
-    
-    <!-- <div class="side_heading"><h3>SSBSC Modulation</h3></div> -->
 
-    <!-- <img class="am_1" src="https://www.mathworks.com/help/examples/signal/win64/HilbertTransformExample_12.png" alt="" width="370px"> -->
-    <p>
-        SSB-SC signals are difficult to generate accurately, quadrature amplitude modulation (QAM) offers an attractive alternative to SSB-SC. QAM can be exactly generated without requiring 
-        sharp-cutoff bandpass filters. QAM operates by transmitting two DSB signals using carriers of the same frequency but in phase quadrature, as shown in Fig. This scheme is
-        known as quadrature amplitude modulation (QAM) or quadrature multiplexing.
-    </p>
-    <p>
-        As shown Figure 4.19, the boxes labeled —&pi;/2 are phase shifters that delay the phase of an input sinusoid by —&pi;/2 rad. If the two baseband message signals for transmission are
-        m<sub>1</sub>(t) and m<sub>2</sub>(t), the corresponding QAM signal &phi;<sub>QAM</sub>(t), the sum of the two DSB-modulated signals, is:<br>
-        <code>&phi;<sub>QAM</sub>(t) = m<sub>1</sub>(t) cos&omega;<sub>c</sub>t + m2(t) sin&omega;<sub>c</sub>t</code>
-    </p>
-    <p>
-        Both modulated signals occupy the same band. Yet two baseband signals can be separated at the receiver by synchronous detection if two local carriers are used in phase quadrature, as
-        shown in Fig. 4.19. This can be shown by considering the multiplier output Xl (t) of the upper arm of the receiver (Fig. 4.19):<br>
-        <code>x<sub>1</sub>(t) = 2&phi;<sub>QAM</sub>(t)cos&omega;<sub>c</sub>t = 2[m<sub>1</sub>(t) cos&omega;<sub>c</sub>t + m<sub>2</sub>(t) sin&omega;<sub>c</sub>t ] cos&omega;<sub>c</sub>t</code><br>or<br>
-        <code>x<sub>1</sub>(t) = m<sub>1</sub>(t) + m<sub>1</sub>(t) cos2&omega;<sub>c</sub>t +  m<sub>2</sub>(t) sin2&omega;<sub>c</sub>t</code>
-    </p>
-    <p>
-        The last two terms are bandpass signals centered around 2&omega;<sub>c</sub>. In fact, they actually form a
-        QAM signal with 2&omega;<sub>c</sub> as the carrier frequency. They are suppressed by the low-pass filter,
-        yielding the desired demodulation output m<sub>1</sub>(t). Similarly, the output of the lower receiver
-        branch can be shown to be m<sub>2</sub>(t).<br>
-        <code>x<sub>2</sub>(t) = 2&phi;<sub>QAM</sub>(t) sin&omega;<sub>c</sub>t = 2[m<sub>1</sub>(t) cos&omega;<sub>c</sub>t + m<sub>2</sub>(t) sin&omega;<sub>c</sub>t ] sin&omega;<sub>c</sub>t</code><br>or<br>
-        <code>x<sub>2</sub>(t) = m<sub>2</sub>(t) - m<sub>2</sub>(t) cos2&omega;<sub>c</sub>t +  m<sub>1</sub>(t) sin2&omega;<sub>c</sub>t</code>
-    </p>
-    <p>
-        Thus, two baseband signals, each of bandwidth B Hz, can be transmitted simultaneously over a bandwidth 2B by using DSB transmission and quadrature multiplexing. 
-        The upper channel is also known as the in-phase (I) channel and the lower channel is the quadrature (Q) channel. Both signals m<sub>1</sub>(t) and m<sub>2</sub>(t) can be separately demodulated.<br>
-        Note, however, that QAM demodulation must be totally synchronous. An ermr in the phase or the frequency of the carrier at the demodulator in QAM will result in loss and interference between the two 
-        channels. To show this, let the carrier at the demodulator be 2 cos (&omega;<sub>c</sub>t + &theta;). In this case,<br>
-        <code>x<sub>1</sub>(t) =  m<sub>1</sub>(t)cos&theta; — m<sub>2</sub>(t)sin&theta; + m<sub>1</sub>(t) cos(2&omega;<sub>c</sub>t + &theta;) + m<sub>2</sub>(t) sin(2&omega;<sub>c</sub>t + &theta;)</code>><br>
-        The low-pass filter suppresses the two signals modulated by carrier of angular frequency 2&omega;<sub>c</sub>, resulting in the first demodulator output<br>
-        <code>m<sub>1</sub>(t) cos&theta; - m<sub>2</sub>(t) sin&theta;</code>
-    </p>
-    <p>
-        Thus, in addition to the desired signal nil (t), we also receive signal nt2(t) in the upper receiver branch. A similar phenomenon can be shown for the lower branch. This so-called cochannel
-        interference is undesirable. Similar difficulties arise when the local frequency is in error (see Prob. 4.4-1). In addition, unequal attenuation of the USB and the LSB during transmission
-        leads to cross talk or cochannel interference. <br><br>Quadrature multiplexing is used in analog color television to multiplex the so-called chrominance signals, which carry the information 
-        about colors. There, the synchronization is achieved by periodic insertion of a short burst of carrier signal (called color burst in the transmitted signal). Digital satellite television transmission also applies QAM.
-    </p>
-    <p>
-        In terms of bandwidth requirement, SSB is similar to QAM but less exacting in terms of
-        the carrier frequency and phase or the requirement of a distortionless transmission medium.
-        However, SSB is difficult to generate if the baseband signal m(t) has significant spectral content
-        near the dc.
-    </p>
-    </div>
+
+
+        <div class="side_heading">
+            <h3></h3>
+        </div>
+
+
+
+
+        <h1>Quadrature Amplitude Modulation and Demodulation</h1>
+
+        <h2>QAM Modulator</h2>
+        <p>A QAM modulator combines two amplitude modulated signals into a single signal that can be transmitted through
+            a single channel. This allows for more efficient use of bandwidth.</p>
+            <img src="/5/images/quadrature-amplitude-modulation-concept-01.jpg" alt="">
+
+        <h2>QAM Demodulator</h2>
+        <p>A QAM demodulator separates the two amplitude modulated signals from the combined signal received from a
+            single channel. This allows for the original signals to be retrieved.</p>
+
+        <h2>QAM Working Principle</h2>
+        <p>The working principle of QAM is based on the combination of two amplitude modulated signals, where each
+            signal is shifted in phase by 90 degrees from the other. These two signals are then combined to form a
+            single signal with two separate amplitude and phase components. <br>
+            The below waveforms are indicating the two different carrier signals of the QAM technique:- </p>
+            <img src="/5/images/Input-waveforms-QAM.jpg" alt="below waveforms are indicating the two different carrier signals ">
+
+        <h2>Quadrature Amplitude Modulation Block Diagram</h2>
+        <img src="/5/images/QAM-modulator.jpg" alt="Quadrature Amplitude Modulation Block Diagram">
+
+        
+        <h2>Quadrature Amplitude Demodulation Block Diagram</h2>
+        <p>The block diagram of a Quadrature Amplitude Demodulator is as follows:</p>
+        <img src="/5/images/QAM-demodulator.jpg" alt="Quadrature Amplitude Demodulation Block Diagram">
+        <p>In the above diagram, the input signal is first passed through a bandpass filter to select the desired
+            frequency band. The filtered signal is then split into two signals by the 90 degree phase shifter. These two
+            signals are then multiplied with two local oscillators, one of which is in phase with the carrier signal,
+            and the other is 90 degrees out of phase. The two resulting signals are then low-pass filtered and added to
+            obtain the baseband signal.</p>
+
+
+<h2>Advantages of QAM</h2>
+<ul>
+    <li>Efficient use of bandwidth</li>
+    <li>Ability to transmit large amounts of data</li>
+    <li>Ability to transmit multiple signals through a single channel</li>
+    <li>Low error rates</li>
+</ul>
+
+<h2>Disadvantages of QAM</h2>
+<ul>
+    <li>Complexity of modulator and demodulator circuits</li>
+    <li>Greater susceptibility to noise and interference</li>
+    <li>Higher power requirements compared to other modulation techniques</li>
+</ul>
+
+<h2>Analog QAM:</h2>
+<p>They are used to allow more than one signal to be carried. Analog QAMs and AM (Amplitude Modulation) are the same
+    with two carrier signals transmitted together but are out of phase by 90 degrees.</p>
+
+<h2>Digital QAM:</h2>
+<p>Digital QAMs are generally described as a “ Quantized QAM ” and they’re generally used in radio dispatches systems
+    ranging from cellular technology to Wi-Fi. Digital QAM can carry advanced data rates compared to both amplitude and
+    phase-modulated schemes.
+</p>
+
+<h2>Quadrature Amplitude Modulation Applications</h2>
+<ul>
+    <li>Digital television broadcasting</li>
+    <li>Wireless communication systems</li>
+    <li>Satellite communication systems</li>
+    <li>Cable modems</li>
+    <li>Internet and data communication systems</li>
+</ul>
+
+
 </body>
+
 </html>
