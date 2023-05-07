@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-BPSK</title>
+
+    <style>
+
+        body{
+            font-family: 'Times New Roman', Times, serif;
+            background-color:rgb(255, 255, 255);  
+        }
+        div{
+             
+            padding-left: 15%;
+            padding-right: 15%;
+        }
+
+        h1{
+            text-align: center;
+            background-color: rgb(8, 249, 249);
+            
+            padding: 10px;
+            padding-top:20px;
+        }
+
+         
+
+        p{
+            text-align: justify;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: medium;
+            
+        }
+
+        .homepage img{
+        height: 40px;
+        width: 40px;
+        border-radius: 10px;
+        
+}
+.pic{
+    text-align: center;
+
+}
+
+.homepage{
+    display: float;
+    float: right;
+
+    margin-top: 40px;
+
+    margin-right: 10px;
+
+
+}
+
+.side_heading{
+    color: rgb(4, 4, 247);
+    
+
+    text-align: center;
+   
+}
+
+.am_1,.am_2{
+
+    padding: 10px;
+    display: float;
+    float: right;
+}
+    </style>
+</head>
+<body>
+    <div>
+
+  
+        <a class="homepage" href=""> <img src="home.jpg"> </a>
+     
+        <h1>Differential BPSK (D-BPSK)    </h1>
+    <p>The differential demodulation of DEBPSK signal is denoted as differential-BPSK or DBPSK, sometimes simply called as DPSK.</p>
+    
+    <!-- img13  -->
+    <img src="/13.png" alt="">
+
+    <div class="side_heading"><h3> Sub-optimum receiver for DBPSK </h3></div>    
+    <p>Coherent detection requires a reference signal with accurate frequency and phase information. However, in non-coherent communications, a coherent reference signal is not available at the receiver. Figure 2.7 illustrates a sub-optimum receiver, which differentially demodulates the DBPSK signal, where the previous symbol serves as a reference to demodulate the current symbol.
+    </p>
+
+    <!-- img14  -->
+    <div class="pic">
+        <img src="/14.png" alt="">
+    </div>
+
+    <p>In the sub-optimum receiver, the received signal is first passed through a narrow-band intermediate (IF) filter with bandwidth set to BW = 0.5Tb, where Tb is the bit duration. The IF filter not only reduces the noise in the received signal but also preserves the phase relationships contained in the signal. The filtered output is used to generate a differential signal that drives the integrator. The output of the integrator is given by:-</p>
+    <!-- img 15 -->
+    <img src="/15.png" alt="">
+
+    <p>In the absence of noise, the output of the integrator becomes:-
+    </p>
+
+    <!-- img 16 -->
+    <img src="/16.png" alt="">
+    <p>where sk(t) and sk−1(t) are the current and previous transmitted symbols. Thus, the receiver makes decisions based on the difference between two adjacent bits. As a result, a differentially encoded BPSK (DEBPSK) signal can be differentially demodulated using the method above and this receiver structure is termed as suboptimum DBPSK receiver. The bit error probability performance of the sub-optimum receiver is given by</p>
+    <!-- img  17  -->
+    <img src="/17.png" alt="">
+
+    <div class="side_heading"><h3> Optimum non-coherent receiver for DBPSK  </h3></div>  
+    <p>In differentially encoded BPSK (DEBPSK), each message bit is represented by two adjacent modulated symbols. If the transmitted bit is 0, the two modulated symbols are same and if the transmitted bit is 1, the two modulated symbols will be different. Since, the phase information is encoded in two adjacent modulated symbols, following signals can be defined for 2Tb duration. </p>
+
+    <!-- img 18 -->
+    <img src="/18.png" alt="">
+    <p>This method does not require phase synchronization between the transmitter and receiver. However, it does require an accurate frequency reference for the carrier. Any change in the carrier frequency must be tracked and synchronized. Therefore, the sub-optimum receiver is a more practical, less complex implementation but is slightly inferior to the optimum receiver. The error rate performance of the optimum non-coherent DBPSK receiver is given by</p>
+
+    <!-- img 19 -->
+    <img src="/19.png" alt="">
+    <br>
+    <!-- img 20 -->
+    <img src="/20.png" alt="">
+
+    <p>
+        Figure 2.9 shows the simulated points for the sub-optimum and the optimum receiver for DBPSK, together with the theoretical curves for conventional BPSK and coherently demodulated DEBPSK schemes.
+       </p>
+       <!-- img 21 -->
+       <img src="/21.png" alt="">
+        
+
+     
+    </div>
+</body>
+</html>
