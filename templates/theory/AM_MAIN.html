@@ -24,11 +24,6 @@
             
             padding: 10px;
             padding-top:20px;
-
-
-            
-          
-            
         }
 
          
@@ -59,7 +54,7 @@
 }
 
 .side_heading{
-    color: blue;
+    color: rgb(4, 4, 247);
     
 
     text-align: center;
@@ -77,7 +72,7 @@
 <body>
 
     <div>
-        <a class="homepage" href="am.html"> <img src="home.jpg"> </a>
+        <a class="homepage" href=""> <img src="home.jpg"> </a>
         <h1>Amplitude Modulation <br> 
             &
     <br> Demodulation</h1>
@@ -85,7 +80,7 @@
     
     <div class="side_heading"><h3>Amplitude Modulation</h3></div>
 
-    <img class="am_1" src="am_theory_2.png" alt="" width="270px">
+    <img class="am_1" src="/static/am_theory_2.png" alt="" width="270px">
 
     
     <p>Amplitude Modulation (AM) is a technique used to modulate a high-frequency carrier wave with a low-frequency message signal. The modulated signal contains the information from the message signal, which can be demodulated at the receiver to recover the original message signal.</p>
@@ -97,11 +92,11 @@
     
     <p>Let m(t) be the message signal, c(t) be the carrier signal, and s(t) be the modulated signal.</p>
     <p>The carrier signal can be represented as:</p>
-    <p>c(t) = A<sub>c</sub> cos(2πf<sub><!--  --></sub>t)</p>
-    <p>where Ac is the amplitude of the carrier signal and fc is the frequency of the carrier signal.</p>
+    <p>c(t) = A<sub>c</sub> cos(2πf<sub>c</sub>t)</p>
+    <p>where A<sub>c</sub>is the amplitude of the carrier signal and f<sub>c</sub> is the frequency of the carrier signal.</p>
     <p>The message signal can be represented as:</p>
     <p>m(t) = A<sub>m</sub> cos(2πf<sub>m</sub>t)</p>
-    <p>where Am is the amplitude of the message signal and fm is the frequency of the message signal.</p>
+    <p>where A<sub>m</sub> is the amplitude of the message signal and f<sub>m</sub> is the frequency of the message signal.</p>
     <p>To generate the modulated signal s(t), we multiply the message signal with the carrier signal:
 
     </p>
@@ -114,39 +109,53 @@
     <p>In the frequency domain, the AM signal has a spectrum that consists of a carrier signal and two sidebands, which are symmetrically placed around the carrier frequency.
 
     </p>
-    
-    <p>One of the methods used to demodulate AM signals is square-law demodulation, which is based on the non-linear characteristic of a diode. The square-law demodulator circuit consists of a diode, a load resistor, and a capacitor.</p>
-    <p>The mathematical derivaticn of AM demodulation using square-law detection is as follows:
-    <p>Let the received AM signal be:</p>  
-    <p>s(t) = (A<sub>c</sub>+ A<sub>m</sub> m(t)) cos(2πf<sub>c</sub>t)</p>
-    <p>where A<sub>c</sub> is the amplitude of the carrier wave, A<sub>m</sub> is the amplitude of the message signal, m(t) is the message signal, and f<sub>c</sub> is the frequency of the carrier wave.</p>
-
-    </p>    
-        
-         
-    
 
     <div class="side_heading"><h3>Amplitude De-Modulation</h3></div>
-    <img class="am_2" src="am_thoery_3.jpg" alt="" width="300px">
+    <img class="am_2" src="/static/am_thoery_3.jpg" alt="" width="300px">
+
+    <p>The process of extracting an original message signal from the modulated wave is known as detection or demodulation. The circuit, which demodulates the modulated wave is known as the demodulator.<p></p>
+    <p>The following demodulators (detectors) are used for demodulating AM wave.</p> 
+
+        <li>Square Law Demodulator</li> 
+        <li>Envelope Detector</li>
+        
     
     
-    <p>To demodulate the AM signal using a square law detector, we first pass the received signal through a diode to rectify it. The output of the diode is a half-wave rectified signal, which contains both the positive and negative half cycles of the modulated signal.</p>
-    <p>The rectified signal is then passed through a low-pass filter (LPF) to remove the high-frequency components and recover the original message signal. The LPF can be implemented using a capacitor and a resistor as shown in the figure below:</p>
-   
-    <p>The output voltage of the LPF can be derived as follows:</p>
-    <p>V<sub>out</sub>(t) = V<sub>c</sub> *(1/RC) * ∫[V<sub>diode</sub>(t) - V<sub>c</sub>/2] dt</p>
-    <p>where V<sub>c</sub> is the voltage across the capacitor, RC is the time constant of the LPF, and Vdiode(t) is the half-wave rectified output of the diode.</p>
-    <p>Using the trigonometric identity Cos<sup>2</sup>(x) = (1/2) * (1 + cos(2x)), we can express the output voltage of the diode as follows:</p>
-    <p>V<sub>diode</sub>(t) = (A<sub>c</sub>/2) * (1 + μ*m(t))<sup>2</sup></p>
-    <p>where μ = A<sub>m</sub>/A<sub>c</sub> is the modulation index.</p>
-    <p>Substituting Vdiode(t) into the above equation and simplifying, we get:</p>
-    <p>Vout(t) = (A<sub>m</sub>A<sub>c</sub>/4) * m(t) + (A<sub>c</sub>/2) * (1/RC) * ∫m<sup>2</sup>(t) dt</p>
-    <p>The first term in the above equation represents the demodulated message signal, while the second term represents a DC offset. Since the LPF removes the DC component, the output of the LPF is the demodulated message signal.</p>
-    <p>Therefore, the equation for the demodulated message signal can be written as:</p>
-    <p>m_demod(t) = (2/π) * Vout(t) / (Ac * μ * Am)</p>
-    <p>where Vout(t) is the output voltage of the LPF.</p>
-    <p>In summary, the demodulation of an AM signal using a square law detector involves rectifying the signal, passing it through a LPF to recover the message signal, and then scaling the output to obtain the demodulated message signal</p>
-     
+    <p>One of the methods used to demodulate AM signals is square-law demodulation, which is based on the non-linear characteristic of a diode. The square-law demodulator circuit consists of a diode, a load resistor, and a capacitor.</p>
+    <p>Let the modulating and carrier signals be denoted as m(t) and A<sub>c</sub>cos(2πf<sub>c</sub>t)
+    respectively.</p>
+    <p>These two signals are applied as inputs to the summer (adder) block. This summer block produces an output, which is the addition of the modulating and the carrier signal. Mathematically, we can write it as</p>
+
+    <p>V<sub>1</sub>(t) = m(t) + A<sub>c</sub>cos(2πf<sub>c</sub>t)</p>
+
+    <p>This signal V<sub>1</sub>(t) is applied as an input to a nonlinear device like diode. The characteristics of the diode are closely related to square law.</p>
+
+    <p>V<sub>2</sub>(t) = k<sub>1</sub>V<sub>1</sub>(t) + k<sub>1</sub>V<sub>1</sub><sup>2</sup>(t)    ............. (Equation 1)</p>
+    <p>Where, k<sub>1</sub> and k<sub>2</sub> are constants.</p>
+    <p>Substitute V<sub>1</sub>(t) in Equation 1</p>
+
+    <p>V<sub>2</sub>(t) = k<sub>1</sub> [m(t) + A<sub>c</sub>cos(2πf<sub>c</sub>t)] + k<sub>2</sub> [m(t)+A<sub>c</sub>cos(2πf<sub>c</sub>t)]<sup>2</sup></p>
+
+    <p>V<sub>2</sub>(t) =k<sub>1</sub>m(t)+k<sub>1</sub>A<sub>c</sub>cos(2πf<sub>c</sub>t)+k<sub>2</sub>m<sup>2</sup>(t)+k<sub>2</sub>A<sub>c</sub><sup>2</sup>cos<sup>2</sup>(2πf<sub>c</sub>t)+2k<sub>2</sub>m(t)A<sub>c</sub>cos(2πf<sub>c</sub>t) </p>
+    
+    <p>V<sub>2</sub>(t) = k<sub>1</sub>m(t) + k<sub>2</sub>m<sup>2</sup>(t)+k<sub>2</sub>A<sub>c</sub><sup>2</sup>cos<sup>2</sup>(2πf<sub>c</sub>t)+k<sub>1</sub>A<sub>c</sub>[1+(2k<sub>2 / </sub>k<sub>1</sub>)m(t)]cos(2πf<sub>c</sub>t)
+    </p>
+
+    <p>The last term of the above equation represents the desired AM wave and the first three terms of the above equation are unwanted. So, with the help of band pass filter, we can pass only AM wave and eliminate the first three terms.</p>
+
+    <p>Therefore, the output of square law modulator is</p>
+
+    <p>s(t)= k<sub>1</sub>A<sub>c</sub>[1+(2k<sub>2 / </sub>k<sub>1</sub>)m(t)]cos(2πf<sub>c</sub>t)</p>
+
+    <p>The standard equation of AM wave is</p>
+
+    <p>s(t) = (A<sub>c</sub> + A<sub>m</sub> cos(2πf<sub>m</sub>t)) cos(2πf<sub>c</sub>t)</p>
+    
+    <p>Where, K<sub>a</sub> is the amplitude sensitivity</p>
+
+    <p>By comparing the output of the square law modulator with the standard equation of AM wave, we will get the scaling factor as k<sub>1</sub>
+    and the amplitude sensitivity k<sub>a</sub> as 2k<sub>2 / </sub>k<sub>1</sub>.</p>
+
         
     </div>
 

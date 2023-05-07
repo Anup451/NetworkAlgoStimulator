@@ -11,7 +11,7 @@ def plot_graph(x,y,title,xlabel="Volts",ylabel="Frequncy",color="b",condition="s
     fig, ax = plt.subplots()
     fig = plt.figure(figsize=(20,3))
     plot_axis(fig,ax)
-    s = [1 for i in x]
+    s = [3 for i in x]
     plt.title(title)
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
@@ -39,11 +39,12 @@ def plot_axis(fig,ax):
     ax.yaxis.set_ticks_position('left')
 
 def create_domain_AM(frequency):
-    x= np.linspace(-200,200,10000)
-    if frequency>=50 and frequency<=2000:
-        x = np.linspace(-200,200,10000)
-    elif frequency<50:
-        x = np.linspace(-200,200,500) 
+    if frequency<100:
+        x = np.linspace(-200,200,2000) 
+    elif frequency>=100 and frequency<=500:
+        x = np.linspace(-200,200,4000)
+    elif frequency>500 and frequency<=1000:
+        x = np.linspace(-200,200,4000)
     elif frequency>2000:
         x = np.linspace(-200,200,12000)
     return x
