@@ -3,7 +3,7 @@ import numpy as np
 from .util import *
 
 def FM_MAIN(x,inputs):
-    [Am,Ac,fm,fc,message_signal,K] = inputs
+    Am,Ac,fm,fc,message_signal,K = inputs.values()
     if(message_signal=="sin"):
         y3= Ac*(np.cos((2*np.pi*fc*x))+((K*Am/fm)*np.sin(2*np.pi*fm*x)))
         y1 = Am*np.sin(2*np.pi*fm*x)#message signal
@@ -19,7 +19,7 @@ def FM_MAIN(x,inputs):
     
     
 def PHASE_MAIN(x,inputs):
-    [Am,Ac,fm,fc,message_signal,K] = inputs
+    Am,Ac,fm,fc,message_signal,K = inputs.values()
     if(message_signal=="sin"):
         y= Ac*np.cos(2*np.pi*fc*x+(K*Am)*np.cos(2*np.pi*fm*x))
         y1 = Am*np.sin(2*np.pi*fm*x)#message signal

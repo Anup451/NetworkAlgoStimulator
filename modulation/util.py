@@ -48,3 +48,5 @@ def create_domain_AM(frequency):
         x = np.linspace(-200,200,12000)
     return x
 
+def destructure_dict(d, *keys):
+    return (d[k] for k in keys)

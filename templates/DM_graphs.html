@@ -90,7 +90,22 @@
 </div>
 
 <div class="plot-wrapper">  
-  
+  {% if inputs|length%}
+    <div class="input-display-section">
+      {%for key, value in inputs.items()%}
+      <article class="selected-value">
+        <span>{{key}}</span>: 
+        <span>{{value}} 
+          {%if key=="Am" or key=="Ac"%}
+            Volts
+          {%elif key=="fm" or key=="fc" %}
+            KHz
+          {%endif%}
+        </span>
+      </article>
+      {%endfor%}
+    </div>
+  {%endif%}
   {% if plots | length == 0%}
   <p class="info">Please select the values to generate the graph</p>
   {% else %} 

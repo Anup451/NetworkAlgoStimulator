@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Network Algorithm simulator</title>
   <link rel="stylesheet" href="/static/base.css">
+  <link rel="stylesheet" href="/static/AM.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
@@ -89,6 +90,22 @@
   </form>
 </div>
 <div class="plot-wrapper"> 
+  {% if inputs|length%}
+    <div class="input-display-section">
+      {%for key, value in inputs.items()%}
+      <article class="selected-value">
+        <span>{{key}}</span>: 
+        <span>{{value}} 
+          {%if key=="Am" or key=="Ac"%}
+            Volts
+          {%elif key=="fm" or key=="fc" %}
+            KHz
+          {%endif%}
+        </span>
+      </article>
+      {%endfor%}
+    </div>
+  {%endif%}
   {% if plots | length == 0%}
   <p class="info">Please select the values to generate the graph</p>
   {% else %} 

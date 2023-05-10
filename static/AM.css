@@ -120,3 +120,13 @@ h1{
     object-fit: contain;
     border-radius: 10px;
 }
+
+.input-display-section{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 1rem;
+    border-bottom: 2px solid black;
+    align-items: center;
+    background-color: rgb(161, 163, 24);
+}

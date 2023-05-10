@@ -57,36 +57,30 @@ def AM_page():
 def Amplitutde_Modulation(am_type):  
     
     title = {"MAIN":"Amplitutde Modulation","SSB":"SSB Modulation","DSBSC":"DSB Modulation","QAM":"QAM Modulation"}
-    print(am_type)
     plots = []
     x_message = []
     x_carrier = []
-    content_type = request.headers.get('Content-Type')    
     if (request.method=='POST'):
-        if (content_type == 'application/json'):
-            content = request.json
-        else:
-            content = request.form
-        print(content)
-        fm=int (content['fm'])
-        fc=int (content['fc'])
-        Am=int (content['Am'])
-        Ac=int (content['Ac'])
+        content = request.form
+        fm=int(content['fm'])
+        fc=int(content['fc'])
+        Am=int(content['Am'])
+        Ac=int(content['Ac'])
         message_signal = str(content['message_signal'])
         
-        inputs = [Am,Ac,fm,fc,message_signal]            
-
+        inputs = {"Am":Am,"Ac":Ac,"fm":fm,"fc":fc,"message_signal":message_signal}
+        
         if am_type == "MAIN":
             plots = AM_main_graph(inputs)
         elif am_type == "SSB":
             plots = AM_ssb_modulation(inputs)
         elif am_type == "DSBSC":
             phi  = float(request.form['phi'])
-            inputs.append(phi)
+            inputs["phi"] = phi
             plots = AM_double_sideband_modulation(inputs)
         elif am_type == "QAM":
             message_signal_2 = request.form['message_signal_2']
-            inputs.append(message_signal_2)
+            inputs["message_signal_2"] = message_signal_2
             plots = AM_QAM(inputs) 
         return render_template('AM_graphs.html',am_type=am_type.upper(),title=title[am_type],plots = plots,inputs=inputs)
     return render_template('AM_graphs.html',am_type=am_type.upper(),title=title[am_type],plots = plots)
@@ -103,17 +97,14 @@ def FM(index):
         Ac=int (request.form['Ac'])
         message_signal = str(request.form['message_signal'])
         K = int(request.form['K'])
-        inputs = [Am,Ac,fm,fc,message_signal,K]
+        inputs = {"Am":Am,"Ac":Ac,"fm":fm,"fc":fc,"message_signal":message_signal,"K":K}
         x = np.linspace(-200,200,10000) #domain for the modulated_wave
         s = [1 for i in x]
         if(index==1):
-            images = FM_MAIN(x,inputs)
-            
+            images = FM_MAIN(x,inputs)           
         elif(index==2):
             images = PHASE_MAIN(x,inputs)   
-            
-        # elif(index==3):
-        #     PULSE_MAIN(x,inputs) 
+        return render_template('fm_graphs.html',title=title[index],index=index,plots=images,inputs=inputs)
     return render_template('fm_graphs.html',title=title[index],index=index,plots=images)
 
 # ---------- End of Analog Modulation ------------
@@ -137,6 +128,7 @@ def DigitalModulation(dmtype):
       Tb=float (request.form['Tb'])
       fc=int (request.form['fc'])
       binaryInput = str(request.form['inputBinarySeq'])
+      inputs = {"Tb":Tb,"fc":fc,"binaryInput":binaryInput}
       fc2=1
       if(dmtype=='BFSK'):
           fc2=int (request.form['fc2'])
@@ -152,7 +144,7 @@ def DigitalModulation(dmtype):
           plots = BPSK(Tb, fc, inputBinarySeq)
       elif dmtype.upper() == 'QPSK':
           plots = QPSK(Tb, fc, inputBinarySeq)
-
+      return render_template('DM_graphs.html',dmtype=dmtype.upper(),title=title[dmtype], plots=plots,inputs=inputs)
     return render_template('DM_graphs.html',dmtype=dmtype.upper(),title=title[dmtype], plots=plots)
 
 @app.route('/DM2/<dmtype>', methods=['GET','POST'])
@@ -169,10 +161,10 @@ def GMSK_Modulation(dmtype):
         ac=int (request.form['ac'])
         pc=int (request.form['pc'])
 
-        # --
+        inputs = {"fm":fm,"fc":fc,"Ac":am,"Am":ac,"Pc":pc}
         if dmtype.upper() == 'GMSK':
             plots = GMSK(fm, am, pm, fc, ac, pc)
-    
+        return render_template('GMSK_graphs.html',dmtype=dmtype.upper(),title=title[dmtype], plots=plots,inputs=inputs)    
     return render_template('GMSK_graphs.html',dmtype=dmtype.upper(),title=title[dmtype], plots=plots)
 
 

@@ -4,8 +4,7 @@ from .util import *
 
 def AM_main_graph(inputs):
     graphs = []
-
-    [Am,Ac,fm,fc,message_signal] = inputs
+    Am,Ac,fm,fc,message_signal = inputs.values()
     condition = "scatter"
     x_carrier = create_domain_AM(fc)
     x_message = create_domain_AM(fm)
@@ -39,7 +38,7 @@ def AM_main_graph(inputs):
 
 
 def AM_double_sideband_modulation(inputs):
-    [Am,Ac,fm,fc,message_signal,phi] = inputs
+    Am,Ac,fm,fc,message_signal,phi = inputs.values()
     condition = "scatter"
 
     x_carrier = create_domain_AM(fc)
@@ -74,7 +73,7 @@ def AM_double_sideband_modulation(inputs):
 
 
 def AM_ssb_modulation(inputs):
-    [Am,Ac,fm,fc,message_signal] = inputs
+    Am,Ac,fm,fc,message_signal = inputs.values()
     condition = "scatter"
     
     x_carrier = create_domain_AM(fc)
@@ -110,7 +109,7 @@ def AM_ssb_modulation(inputs):
     return [a,b,c,d,e]
 
 def AM_QAM(inputs):
-    [Am,Ac,fm,fc,message_signal,message_signal_2] = inputs
+    Am,Ac,fm,fc,message_signal,message_signal_2 = inputs.values()
     condition="scatter"
     x_carrier = create_domain_AM(fc)
     x_message = create_domain_AM(fc)
