@@ -11,7 +11,9 @@
         <div class="container">
             <div class="content" id="Amplitude-modulation-section">
                 {% for i in data %}
+                    {%if not i.display%}
                     {{macros.card(i.title,i.descritption,i.image_link,i.color,i.hasTheory,i.demoLink,i.theoryLink,i.pageLink)}}
+                    {%endif%}
                 {%endfor%}
             </div>
         </div>

@@ -159,7 +159,7 @@ def GMSK_Modulation(dmtype):
         osmp_factor= int (request.form['osmp_factor'])
         bt_prod= float (request.form['bt_prod'])
 
-        inputs = {"fm":fm,"fc":fc,"Ac":am,"Am":ac,"Pc":pc}
+        inputs = {"a":a,"fc":fc,"omsp_factor":osmp_factor,"bt_prod":bt_prod}
         if dmtype.upper() == 'GMSK':
             plots = GMSK(a, fc, osmp_factor, bt_prod)
     
@@ -179,11 +179,9 @@ def DPSK_Modulation(dmtype):
         Ac= int (request.form['ac'])
         phi_c= int (request.form['phi_c'])
         inputs = {'fm':fm,'Am':Am,'phi_m':phi_m,'phi_c':phi_c}
-        # --
         if dmtype.upper() == 'DPSK':
             plots = DPSK(fm, Am, phi_m, fc, Ac, phi_c)
-        return render_template('DPSK_graphs.html',dmtype=dmtype.upper(),title=title[dmtype], plots=plots,inputs=inputs)    
-    return render_template('DPSK_graphs.html',dmtype=dmtype.upper(),title=title[dmtype], plots=plots)
+    return render_template('DPSK_graphs.html',dmtype=dmtype.upper(),title=title[dmtype], plots=plots,inputs=inputs)    
 
 
 # ------------ End of Digital Modulation -------------
