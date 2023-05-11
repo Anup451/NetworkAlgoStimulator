@@ -154,19 +154,36 @@ def GMSK_Modulation(dmtype):
     plots = []
 
     if (request.method=='POST'):
-        fm=int (request.form['fm'])
-        am=int (request.form['am'])
-        pm=int (request.form['pm'])
-
-        fc=int (request.form['fc'])
-        ac=int (request.form['ac'])
-        pc=int (request.form['pc'])
+        a= str (request.form['data_stream'])
+        fc= int (request.form['fc'])
+        osmp_factor= int (request.form['osmp_factor'])
+        bt_prod= float (request.form['bt_prod'])
 
         inputs = {"fm":fm,"fc":fc,"Ac":am,"Am":ac,"Pc":pc}
         if dmtype.upper() == 'GMSK':
-            plots = GMSK(fm, am, pm, fc, ac, pc)
+            plots = GMSK(a, fc, osmp_factor, bt_prod)
+    
         return render_template('GMSK_graphs.html',dmtype=dmtype.upper(),title=title[dmtype], plots=plots,inputs=inputs)    
-    return render_template('GMSK_graphs.html',dmtype=dmtype.upper(),title=title[dmtype], plots=plots)
+
+
+@app.route('/DM3/<dmtype>', methods=['GET','POST'])
+def DPSK_Modulation(dmtype):
+    title = {"DPSK":"DPSK Modulation"}
+    plots = []
+
+    if (request.method=='POST'):
+        fm= int (request.form['fm'])
+        Am= int (request.form['am'])
+        phi_m= int (request.form['phi_m'])
+        fc= int (request.form['fc'])
+        Ac= int (request.form['ac'])
+        phi_c= int (request.form['phi_c'])
+
+        # --
+        if dmtype.upper() == 'DPSK':
+            plots = DPSK(fm, Am, phi_m, fc, Ac, phi_c)
+    
+    return render_template('DPSK_graphs.html',dmtype=dmtype.upper(),title=title[dmtype], plots=plots)
 
 
 # ------------ End of Digital Modulation -------------
