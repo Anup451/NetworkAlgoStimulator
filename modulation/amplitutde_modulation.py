@@ -48,7 +48,7 @@ def AM_double_sideband_modulation(inputs):
 
     carrier = Am*np.cos(2*np.pi*fc*x_carrier)
     if message_signal=="sin":
-        demodulated_wave = Ac**2/2*np.cos(phi)*np.sin(2*np.pi*fm*x_message)
+        demodulated_wave = Ac**2*Am/2*np.sin(2*np.pi*fm*x_message)
         message = Am*np.sin(2*np.pi*fm*x_message)
         modulated_wave = Am*np.sin(2*np.pi*fm*x_message)*Ac*np.cos(2*np.pi*fc*x_modulated)
     elif message_signal=='tri':
@@ -56,12 +56,11 @@ def AM_double_sideband_modulation(inputs):
         demodulated_wave = triangular(x, 0.01*Am*Ac)
         modulated_wave = Am*np.cos(2*np.pi*fm*x_message)*Ac*np.cos(2*np.pi*fc*x_modulated)
     elif message_signal=='cos':
-        demodulated_wave = Ac**2/2*np.cos(phi)*np.cos(2*np.pi*fm*x_message)
+        demodulated_wave = Ac**2*Am/2*np.cos(2*np.pi*fm*x_message)    
         message = Am*np.cos(2*np.pi*fm*x_message)
         modulated_wave = Am*np.cos(2*np.pi*fm*x_message)*Ac*np.cos(2*np.pi*fc*x_modulated)
 
-    modulated_wave = message*carrier
-
+    
 
     a = plot_graph(condition = condition, x = x_message, y = message, title = "Message Signal", color = 'y')
     b = plot_graph(condition = condition, x = x_carrier, y = carrier, title = "Carrier Signal", color = 'g')
@@ -86,7 +85,7 @@ def AM_ssb_modulation(inputs):
         demodulated_wave = (Am*Ac**2*np.sin(2*np.pi*fm*x_message))/4
         message = Am*np.sin(2*np.pi*fm*x_message)
         modulated_positive = 1/2*Am*Ac*(np.sin(2*(fc-fm)*np.pi*x_modulated))
-        modulated_negative = 1/2*Am*Ac*(np.sin(2*(fc-fm)*np.pi*x_modulated))
+        modulated_negative = 1/2*Am*Ac*(np.sin(2*(fc+fm)*np.pi*x_modulated))
     elif message_signal=="cos":
         message = Am*np.cos(2*np.pi*fm*x_message)
         demodulated_wave = Am*Ac**2*np.cos(2*np.pi*fm*x_message)/4

@@ -66,8 +66,10 @@ def Amplitutde_Modulation(am_type):
         fc=int(content['fc'])
         Am=int(content['Am'])
         Ac=int(content['Ac'])
+        errMsg = ""
         message_signal = str(content['message_signal'])
-        
+        if(Am>Ac or fm>fc):
+            errMsg = "The given plot is not possible. Because Fc <Fm or Ac<Am"
         inputs = {"Am":Am,"Ac":Ac,"fm":fm,"fc":fc,"message_signal":message_signal}
         
         if am_type == "MAIN":
@@ -75,14 +77,13 @@ def Amplitutde_Modulation(am_type):
         elif am_type == "SSB":
             plots = AM_ssb_modulation(inputs)
         elif am_type == "DSBSC":
-            phi  = float(request.form['phi'])
-            inputs["phi"] = phi
+            inputs["phi"] = 1
             plots = AM_double_sideband_modulation(inputs)
         elif am_type == "QAM":
             message_signal_2 = request.form['message_signal_2']
             inputs["message_signal_2"] = message_signal_2
             plots = AM_QAM(inputs) 
-        return render_template('AM_graphs.html',am_type=am_type.upper(),title=title[am_type],plots = plots,inputs=inputs)
+        return render_template('AM_graphs.html',am_type=am_type.upper(),title=title[am_type],plots = plots,inputs=inputs,errMsg=errMsg)
     return render_template('AM_graphs.html',am_type=am_type.upper(),title=title[am_type],plots = plots)
 
 @app.route('/FM/<index>',methods=['GET','POST'])
