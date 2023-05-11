@@ -127,8 +127,8 @@ def AM_ssb_modulation(inputs):
     
     a = plot_graph(condition = condition, x = x_message, y = message,color='g', title = "Message Signal")
     b = plot_graph(condition = condition, x = x_carrier, y = carrier,color='m', title = "Carrier Signal")
-    c = plot_graph(condition = condition, x = x_modulated, y = modulated_positive,color='r', title = "Modulated wave 1",text="postitve cycle")
-    d = plot_graph(condition = condition, x = x_modulated, y = modulated_negative,color='b', title = "Modulated wave 2",text="negative cycle")
+    c = plot_graph(condition = condition, x = x_modulated, y = modulated_positive,color='r', title = "Modulated wave 1",text="upper Sideband")
+    d = plot_graph(condition = condition, x = x_modulated, y = modulated_negative,color='b', title = "Modulated wave 2",text="lower Sideband")
     e = plot_graph(condition = condition, x = x_message, y=demodulated_wave,color='r', title="demodulated wave")
     
     return [a,b,c,d,e]
