@@ -54,24 +54,33 @@
   </nav>
 <div class="container-full">
 
-  <form action="/DM2/{{dmtype}}" method="POST">
+  <form action="/DM3/{{dmtype}}" method="POST">
     <div class="inputs"> 
 
       <div class="input-wrapper">
-        <label for="freqc">Binary Data Stream</label>
-        <input type="text" id="freqc" name="data_stream" class="input-bar" placeholder="eg: 1010010" required>
+        <label for="freqc">Message Frequency (Fm)</label>
+        <input type="number" id="freqc" name="fm" class="input-bar" placeholder="eg: 10" required>
       </div>
       <div class="input-wrapper">
-        <label for="freqc">Carrier Frequency</label>
-        <input type="number" id="freqc" name="fc" class="input-bar" placeholder="eg: 800"  required>
+        <label for="freqc">Message Amplitude (Am)</label>
+        <input type="number" id="freqc" name="am" class="input-bar" placeholder="eg: 1" required>
       </div>
       <div class="input-wrapper">
-        <label for="freqc">Oversampling Factor</label>
-        <input type="number" id="freqc" name="osmp_factor" class="input-bar" placeholder="eg: 16"  required>
+        <label for="freqc">Phase of the message</label>
+        <input type="number" id="freqc" name="phi_m" class="input-bar" placeholder="eg: 0" required>
+      </div>
+
+      <div class="input-wrapper">
+        <label for="freqc">Carrier Frequency (Fm)</label>
+        <input type="number" id="freqc" name="fc" class="input-bar" placeholder="eg: 100" required>
       </div>
       <div class="input-wrapper">
-          <label for="freqc">Bandwidth x Bit period</label>
-          <input type="number" step="any" id="freqc" name="bt_prod" class="input-bar" placeholder="eg: 0.25" required>
+        <label for="freqc">Carrier Amplitude (Am)</label>
+        <input type="number" id="freqc" name="ac" class="input-bar" placeholder="eg: 1" required>
+      </div>
+      <div class="input-wrapper">
+        <label for="freqc">Phase of the carrier</label>
+        <input type="number" id="freqc" name="phi_c" class="input-bar" placeholder="eg: 90" required>
       </div>
 
 
@@ -86,31 +95,11 @@
 
 </div>
 
-<div class="plot-wrapper">
-  {% if inputs|length%}
-    <div class="input-display-section">
-      {%for key, value in inputs.items()%}
-      <article class="selected-value">
-        <span>{{key}}</span>: 
-        <span>{{value}} 
-          {%if key=="Am" or key=="Ac"%}
-            Volts
-          {%elif key=="fm" or key=="fc" %}
-            KHz
-          {%endif%}
-        </span>
-      </article>
-      {%endfor%}
-    </div>
-  {%endif%}  
+<div class="plot-wrapper">  
   
-  {% if plots | length == 0%}
-  <p class="info">Please select the values to generate the graph</p>
-  {% else %} 
   {% for plot in plots %}
-  <img src="data:image/png;base64,{{ plot|decode_hex|b64encode }}" onclick="zoomin()" class="graph-plot" />
+    <img src="data:image/png;base64,{{ plot|decode_hex|b64encode }}" class="graph-plot" />
   {% endfor %}
-  {% endif %}
   
 </div>
 </body>
