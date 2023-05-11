@@ -146,6 +146,16 @@
             "demoLink":"/DM2/GMSK",
             "theoryLink":"/theory/GPSK",
             "pageLink":""
+        },
+        {
+            "title":"DPSK Modulation",
+            "descritption":"The early and simple form of modulation for radio communication. Explore AM modulator, demodulator, transmission examples, modulation trapeze ...",
+            "image_link":"https://www.tutorialspoint.com/digital_communication/images/model_waveform_of_dpsk.jpg",
+            "color":"#e6d850",
+            "hasTheory":"true",
+            "demoLink":"/DM3/DPSK",
+            "theoryLink":"/theory/GPSK",
+            "pageLink":""
         }
     ],
     "PM":[

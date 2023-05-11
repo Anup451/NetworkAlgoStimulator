@@ -152,7 +152,7 @@ def DigitalModulation(dmtype):
 def GMSK_Modulation(dmtype):
     title = {"GMSK":"GMSK Modulation"}
     plots = []
-
+    inputs = {}
     if (request.method=='POST'):
         a= str (request.form['data_stream'])
         fc= int (request.form['fc'])
@@ -163,14 +163,14 @@ def GMSK_Modulation(dmtype):
         if dmtype.upper() == 'GMSK':
             plots = GMSK(a, fc, osmp_factor, bt_prod)
     
-        return render_template('GMSK_graphs.html',dmtype=dmtype.upper(),title=title[dmtype], plots=plots,inputs=inputs)    
+    return render_template('GMSK_graphs.html',dmtype=dmtype.upper(),title=title[dmtype], plots=plots,inputs=inputs)    
 
 
 @app.route('/DM3/<dmtype>', methods=['GET','POST'])
 def DPSK_Modulation(dmtype):
     title = {"DPSK":"DPSK Modulation"}
     plots = []
-
+    inputs = {}
     if (request.method=='POST'):
         fm= int (request.form['fm'])
         Am= int (request.form['am'])
@@ -178,11 +178,11 @@ def DPSK_Modulation(dmtype):
         fc= int (request.form['fc'])
         Ac= int (request.form['ac'])
         phi_c= int (request.form['phi_c'])
-
+        inputs = {'fm':fm,'Am':Am,'phi_m':phi_m,'phi_c':phi_c}
         # --
         if dmtype.upper() == 'DPSK':
             plots = DPSK(fm, Am, phi_m, fc, Ac, phi_c)
-    
+        return render_template('DPSK_graphs.html',dmtype=dmtype.upper(),title=title[dmtype], plots=plots,inputs=inputs)    
     return render_template('DPSK_graphs.html',dmtype=dmtype.upper(),title=title[dmtype], plots=plots)
 
 
