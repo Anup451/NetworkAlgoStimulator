@@ -130,3 +130,8 @@ h1{
     align-items: center;
     background-color: rgb(161, 163, 24);
 }
+
+.input-wrapper.disabled{
+    cursor:none;
+    pointer-events: none;
+}

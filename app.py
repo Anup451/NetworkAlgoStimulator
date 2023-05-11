@@ -90,6 +90,8 @@ def Amplitutde_Modulation(am_type):
 def FM(index):
     images = []
     index = int(index)
+    inputs = {}
+    errMsg = ""
     title={1:"Frequency modulation",2:"Phase modulation"}
     if request.method == 'POST':
         fm=int (request.form['fm'])
@@ -98,15 +100,17 @@ def FM(index):
         Ac=int (request.form['Ac'])
         message_signal = str(request.form['message_signal'])
         K = int(request.form['K'])
+        if(fc<fm or Ac<Am):
+            errMsg = "Given graph is Not possible as Fc <Fm or Ac<Am." 
         inputs = {"Am":Am,"Ac":Ac,"fm":fm,"fc":fc,"message_signal":message_signal,"K":K}
         x = np.linspace(-200,200,10000) #domain for the modulated_wave
         s = [1 for i in x]
         if(index==1):
             images = FM_MAIN(x,inputs)           
         elif(index==2):
-            images = PHASE_MAIN(x,inputs)   
-        return render_template('fm_graphs.html',title=title[index],index=index,plots=images,inputs=inputs)
-    return render_template('fm_graphs.html',title=title[index],index=index,plots=images)
+            images = PHASE_MAIN(x,inputs) 
+      
+    return render_template('fm_graphs.html',title=title[index],index=index,plots=images,inputs=inputs,errMsg=errMsg)
 
 # ---------- End of Analog Modulation ------------
 
@@ -124,6 +128,7 @@ def DM_page():
 def DigitalModulation(dmtype):
     title = {"BPSK":"BPSK Modulation","BFSK":"BFSK Modulation","BASK":"BASK Modulation","QPSK":"QPSK Modulation"}
     plots = []
+    inputs = {}
 
     if (request.method=='POST'):
       Tb=float (request.form['Tb'])
@@ -145,8 +150,7 @@ def DigitalModulation(dmtype):
           plots = BPSK(Tb, fc, inputBinarySeq)
       elif dmtype.upper() == 'QPSK':
           plots = QPSK(Tb, fc, inputBinarySeq)
-      return render_template('DM_graphs.html',dmtype=dmtype.upper(),title=title[dmtype], plots=plots,inputs=inputs)
-    return render_template('DM_graphs.html',dmtype=dmtype.upper(),title=title[dmtype], plots=plots)
+    return render_template('DM_graphs.html',dmtype=dmtype.upper(),title=title[dmtype], plots=plots,inputs=inputs)
 
 @app.route('/DM2/<dmtype>', methods=['GET','POST'])
 def GMSK_Modulation(dmtype):
