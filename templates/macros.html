@@ -1,0 +1,50 @@
+{% macro card(title,description,image_link,color,hasTheory,demoLink,theoryLink,pageLink)%}
+
+<section class="new_card-wrapper">
+    <div class="new_card" style="background-color: {{color}}">
+        <div class="image-wrapper" style="background-image: url({{image_link}});">
+            <h1 class="title">{{title}}</h1>
+            <p class="description">{{description}}</p>
+            {%if hasTheory=="true"%}
+            <div class="card-buttons">
+              <a href="{{demoLink}}">
+                <button class="card-btn">Demo</button>
+              </a>
+              <a href={{theoryLink}}>
+                <button class="card-btn">view Theory</button>
+              </a>
+            </div>
+            {%else%}
+              <div class="card-buttons">
+                <a href={{pageLink}}>
+                  <button class="card-btn">
+                    View Modulation
+                  </button>
+                </a>
+              </div>
+            {%endif%}
+        </div>
+        <span class="overlay"></span>
+    </div>
+</section>
+
+{% endmacro %}
+
+
+{%macro nav(title,returnLink)%}
+<nav>
+    <h1 class="heading">{{title}}</h1>
+    <div class="buttons-nav">
+      <button class="back-button" style="right: calc(5vw + 45px);">
+        <a href="/AM">
+          <i class="fa-solid fa-arrow-left"></i>
+        </a>
+      </button>
+      <button class="back-button">
+        <a href="/">
+          <i class="fa-solid fa-home"></i>
+        </a>
+      </button>  
+    </div>
+</nav>
+{%endmacro%}

@@ -29,19 +29,13 @@
       gap: 1rem;
     }
   </style>
-
-  <script type = "text/JavaScript">
-     function AutoRefresh( t ) {
-        setTimeout("location.reload(true);", 5);
-     }
-</script>
 </head>
 <body>
   <nav>
     <h1 class="heading">{{title}}</h1>
     <div class="buttons-nav">
       <button class="back-button" style="right: calc(5vw + 45px);">
-        <a href="/DM">
+        <a href="/PM">
           <i class="fa-solid fa-arrow-left"></i>
         </a>
       </button>
@@ -54,30 +48,45 @@
   </nav>
 <div class="container-full">
 
-  <form action="/DM/{{dmtype}}" method="POST">
+  <form action="/PM/{{pmtype}}" method="POST">
     <div class="inputs"> 
 
       <div class="input-wrapper">
-          <label for="freqc">Carrier Frequency (Fc)</label>
-          <input type="number" id="freqc" name="fc" class="input-bar" placeholder="eg: 10" required>
+          <label for="freqc">Message Frequency</label>
+          <input type="number" id="freqc" name="fm" class="input-bar" required>
       </div>
-
-      {% if dmtype == 'BFSK' %}
-        <div class="input-wrapper">
-          <label for="freqc">Carrier Frequency 2 (Fc2)</label>
-          <input type="number" id="freqc" name="fc2" class="input-bar" placeholder="eg: 10" required>
-        </div>
+      <div class="input-wrapper">
+          <label for="freqc">Message Amplitude</label>
+          <input type="number" id="freqc" name="am" class="input-bar" required>
+      </div>
+      <div class="input-wrapper">
+        <label for="signal_type" class="form-label">Message_type</label>
+        <select name="message_signal" class="input-bar">
+          <option value="sin">Sin</option>
+          <option value="cos" selected>Cos</option>
+          <option value="tri">Triangle</option>
+          <option value="ramp">Ramp</option>
+        </select>
+      </div>  
+      <div class="input-wrapper">
+          <label for="freqc">Carrier Frequency</label>
+          <input type="number" id="freqc" name="fc" class="input-bar"  required>
+      </div>
+      <div class="input-wrapper">
+          <label for="freqc">Carrier Amplitude</label>
+          <input type="number" id="freqc" name="ac" class="input-bar" required>
+      </div>
+      {%if pmtype == "PPM"%}
+      <div class="input-wrapper">
+        <label for="ppm_ratio">ppm_ratio</label>
+        <input type="number" id="ppm_ratio" name="ppm_ratio" class="input-bar" step="0.01" required>
+      </div>
+      {% elif pmtype == "PAM"%}
+      <div class="input-wrapper">
+        <label for="Signal Frequency">Signal Frequency</label>
+        <input type="number" id="Signal Frequency" name="fs" class="input-bar" required>
+      </div>
       {% endif %}
-
-      <div class="input-wrapper">
-        <label for="freqm">Bit Duration (Tb)</label>
-        <input type="text" id="freqm" name="Tb" placeholder="eg: 1" required>
-      </div>
-      <div class="input-wrapper">
-          <label for="am">Input Binary Sequence</label>
-          <input type="text" id="am" name="inputBinarySeq" placeholder="eg: 10010101" required>
-      </div>
-
       <br>
     </div>
 
@@ -89,7 +98,7 @@
 
 </div>
 
-<div class="plot-wrapper">  
+<div class="plot-wrapper"> 
   {% if inputs|length%}
     <div class="input-display-section">
       {%for key, value in inputs.items()%}
@@ -114,6 +123,6 @@
   {% endfor %}
   {% endif %}
   
-</div>
+  </div>
 </body>
 </html>
