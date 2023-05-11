@@ -172,48 +172,48 @@ def GMSK_Modulation(dmtype):
 
 # ---------- Pulse Modulation ---------------------
 
-@app.route('/PM',methods=['GET'])
-def PM_page():
-    f = open('./data.json')
-    data = json.load(f)["PM"]
-    return render_template('Pulse_Modulation.html',data=data)
+# @app.route('/PM',methods=['GET'])
+# def PM_page():
+#     f = open('./data.json')
+#     data = json.load(f)["PM"]
+#     return render_template('Pulse_Modulation.html',data=data)
 
 
-@app.route('/PM/<pmtype>', methods=['GET','POST'])
-def PulseModulation(pmtype):
-    title = {"Sampling":"Sampling",
-             "Quantization":"Quantization",
-             "PAM":"Pulse Amplitude Modulation",
-             "PPM":"Pulse Phase Modulation",
-             "PCM":"Pulse Position Modulation",
-             "PWM":"Pulse Width Modulation"
-             }
-    plots = []
-    inputs = []
-    print(request.form)
-    if (request.method=='POST'):
-        fm = int (request.form['fm'])
-        am = int (request.form['am'])
-        fc = int (request.form['fc'])
-        ac = int (request.form['ac'])
-        message_type = str(request.form["message_signal"])
-        inputs = [am,ac,fm,fc,message_type]
+# @app.route('/PM/<pmtype>', methods=['GET','POST'])
+# def PulseModulation(pmtype):
+#     title = {"Sampling":"Sampling",
+#              "Quantization":"Quantization",
+#              "PAM":"Pulse Amplitude Modulation",
+#              "PPM":"Pulse Phase Modulation",
+#              "PCM":"Pulse Position Modulation",
+#              "PWM":"Pulse Width Modulation"
+#              }
+#     plots = []
+#     inputs = []
+#     print(request.form)
+#     if (request.method=='POST'):
+#         fm = int (request.form['fm'])
+#         am = int (request.form['am'])
+#         fc = int (request.form['fc'])
+#         ac = int (request.form['ac'])
+#         message_type = str(request.form["message_signal"])
+#         inputs = [am,ac,fm,fc,message_type]
 
-      # Change Binary string to array
-        print(pmtype)
-        if pmtype.upper() == 'PPM':
-            ppm_ratio = float(request.form['ppm_ratio'])        
-            inputs.append(ppm_ratio)
-            plots = PPM(inputs)
-        elif pmtype.upper() == 'PAM':
-          inputs.append(int(request.form['fs']))
-          plots = PAM(inputs)
-        elif pmtype.upper() == 'BPSK':
-          plots = BPSK(Tb, fc, inputBinarySeq)
-        elif pmtype.upper() == 'QPSK':
-          plots = QPSK(Tb, fc, inputBinarySeq)
+#       # Change Binary string to array
+#         print(pmtype)
+#         if pmtype.upper() == 'PPM':
+#             ppm_ratio = float(request.form['ppm_ratio'])        
+#             inputs.append(ppm_ratio)
+#             plots = PPM(inputs)
+#         elif pmtype.upper() == 'PAM':
+#           inputs.append(int(request.form['fs']))
+#           plots = PAM(inputs)
+#         elif pmtype.upper() == 'BPSK':
+#           plots = BPSK(Tb, fc, inputBinarySeq)
+#         elif pmtype.upper() == 'QPSK':
+#           plots = QPSK(Tb, fc, inputBinarySeq)
 
-    return render_template('PM_graphs.html',pmtype=pmtype.upper(),title=title[pmtype], plots=plots)
+#     return render_template('PM_graphs.html',pmtype=pmtype.upper(),title=title[pmtype], plots=plots)
 
 
 
