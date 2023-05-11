@@ -384,7 +384,7 @@ def GMSK(a,fc,L,BT):
     b_t = np.convolve(h_t,c_t,'full') # convolve c(t) with Gaussian LPF to get b(t)
     bnorm_t = b_t/max(abs(b_t)) # normalize the output of Gaussian LPF to +/-1
     
-    h = 0.5;
+    h = 0.5
     # integrate to get phase information
     phi_t = lfilter(b = [1], a = [1,-1], x = bnorm_t*Ts) * h*np.pi/Tb 
     

@@ -93,7 +93,7 @@ def AM_ssb_modulation(inputs):
     condition = "scatter"
     
     x_carrier = create_domain_AM(fc)
-    x_message = create_domain_AM(fc)
+    x_message = create_domain_AM(fm)
     x_modulated = x_carrier if(len(x_carrier)<len(x_message)) else x_message    
     
     carrier = Ac*np.cos(2*np.pi*fc*x_carrier)
