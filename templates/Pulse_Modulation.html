@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "head.html" %}
+{% import "macros.html" as macros%}
+<body>
+
+    <div class="wraper">
+        {% with title="Pulse Modulation", bgcolor="#348191" %}
+            {% include "nav.html" %}
+        {% endwith %}
+        <div class="container">
+            <div class="content" id="Amplitude-modulation-section">
+                {% for i in data %}
+                    {{macros.card(i.title,i.descritption,i.image_link,i.color,i.hasTheory,i.demoLink,i.theoryLink,i.pageLink)}}
+                {%endfor%}
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+
+

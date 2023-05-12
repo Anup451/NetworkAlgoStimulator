@@ -1,0 +1,22 @@
+<nav style="background-color: {{bgcolor}};">
+    <h1 class="heading">{{title}}</h1>
+    <div class="buttons-nav">
+      {%if path!="/" %}
+      <button class="back-button" style="right: calc(5vw + 45px);">
+        <a href="/{{back_link}}">
+          <i class="fa-solid fa-arrow-left"></i>
+        </a>
+      </button>
+      <button class="back-button">
+        <a href="/">
+          <i class="fa-solid fa-home"></i>
+        </a>
+      </button> 
+      {%endif%}
+      <a href="/references">
+        <button class="back-button" style="right: calc(5vw + 90px);">
+          View References
+        </button>
+      </a>
+    </div>
+</nav>

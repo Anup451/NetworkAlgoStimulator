@@ -1,64 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Network Algorithm simulator</title>
-  <link rel="stylesheet" href="/static/base.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <style>
-    .inputs{
-      display: flex;
-      gap: 1rem;
-      margin: 1rem auto;
-      align-items: center;
-      max-width: 100%;
-      width: 100vw;
-      flex-wrap: wrap;
-      justify-content: space-evenly;
-    }
-    .input-wrapper.wrap{
-      display: flex;
-      flex-direction: row;
-      gap: 1rem;
-    }
-    .wrap select{
-      width: 100px;
-    }
-    .container-full{
-      padding: 1rem;
-    }
-    nav{
-    background: green;
-    color: white;
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 4px );
-    -webkit-backdrop-filter: blur( 4px );
-    position: relative;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
-    padding: 1.25rem 1rem;
-    }
-    .buttons{
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-    }
-  </style>
-</head>
+{% include 'head.html' %}
 <body>
-  <nav>
-    <h1 class="heading">{{title}}</h1>
-    <button class="back-button">
-      <a href="/AM">
-        <i class="fa-solid fa-arrow-left"></i>
-      </a>
-    </button>
-  </nav>
+  {% with title= title %}
+    {% include 'nav.html' %}
+  {%endwith%}
 <div class="container-full">
   <form action="/AM/{{am_type}}" method="POST">
     <div class="inputs">
@@ -89,7 +35,9 @@
         <select name="message_signal" class="input-bar">
           <option value="sin">Sin</option>
           <option value="cos" selected>Cos</option>
-          <option value="tri">Triangle</option>
+          {% if am_type != "SSB" %}
+            <option value="tri">Triangle</option>
+            {% endif %}
           <option value="ramp">Ramp</option>
         </select>
       </div>  
@@ -106,43 +54,45 @@
           <label for="am">Message Amplitutde</label>
           <input required type="number" id="am" name="Am" placeholder="Am value..">
       </div>
-
-      {% if am_type == "DSBSC" %}
-      <div class="input-wrapper">
-        <label for="am">Phi</label>
-        <input required type="number" id="phi" name="phi" placeholder="phi">
-      </div>
-      {% endif %}
-
       <div class="input-wrapper">
           <label for="am">Carrier Amplitude</label>
           <input required type="number" id="am" name="Ac" placeholder="Ac value..">
       </div>
     </div>
     <div class="buttons">
-      <button type="submit">Get Graph</button>
-      <button type="submit">Download</button>
+      <button type="submit" id="submit-button">Show Resutls</button>
+      <!-- <button type="submit" id="Download-button">Download</button> -->
     </div>
   </form>
 </div>
-<div class="plot-wrapper">  
-  <img src='/static/results/AM_message.png' class="graph-plot"/>
-  {%if am_type == "QAM"%}
-  <img src='/static/results/AM_message_1.png' class="graph-plot"/>  
+<div class="plot-wrapper"> 
+  {% if inputs|length%}
+    <div class="input-display-section">
+      {%for key, value in inputs.items()%}
+      <article class="selected-value">
+        <span>{{key}}</span>: 
+        <span>{{value}} 
+          {%if key=="Am" or key=="Ac"%}
+            Volts
+          {%elif key=="fm" or key=="fc" %}
+            KHz
+          {%endif%}
+        </span>
+      </article>
+      {%endfor%}
+    </div>
   {%endif%}
-  <img src='/static/results/AM_carrier.png' class="graph-plot"/>
-  {%if am_type == "QAM"%}
-  <img src="/static/results/AM_carrier_1.png" class="graph-plot">
+  {%if errMsg%}
+     <span style="background-color: brown;width:100%;padding:10px;display: inline-block;text-align: center;color: white;">{{errMsg}}</span>
   {%endif%}
-  <img src='/static/results/AM_modulated1.png' class="graph-plot"/>
-  {% if am_type == "SSB" %}
-  <img src="/static/results/AM_modulated2.png" class="graph-plot">
-  {% endif %}
-  {%if am_type == "QAM"%}
-  <img src='/static/results/AM_demodulated_1.png' class="graph-plot"/>
-  {%endif%}
-  <img src='/static/results/AM_demodulated.png' class="graph-plot"/>
 
+  {% if plots | length == 0%}
+  <p class="info">Please select the values to generate the graph</p>
+  {% else %} 
+  {% for plot in plots %}
+  <img src="data:image/png;base64,{{ plot|decode_hex|b64encode }}" onclick="zoomin()" class="graph-plot" />
+  {% endfor %}
+  {% endif %}
 </div>
 </body>
 </html>

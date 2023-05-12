@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BASK</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Roboto+Condensed&family=Roboto+Mono&family=Roboto:wght@100&family=Space+Mono&family=Wix+Madefor+Display&display=swap');
+            *{
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+            }
+            .bordered{
+                border-radius: 10px;
+            }
+            body{
+                background-color:whitesmoke;
+                padding: 0;
+                font-family: 'Wix Madefor Display', sans-serif;
+            }
+            .theory-body{
+                width: 95vw;
+                max-width: 900px;
+                margin: auto;
+                padding-bottom: 2rem;
+            }
+            nav{
+                padding: 1rem 3rem;
+                width: 100vw;
+                width: 100%;
+                background-color:rgb(64, 198, 235) ;
+                display: flex;
+                justify-content: space-around;
+            }
+            .theory-title{
+                flex-grow: 1;
+                text-align: center;
+                flex-shrink: 0;
+            }
+            
+            .side_heading{
+                color: rgb(4, 4, 247);
+                text-align: center;
+                font-size: 20px;
+                margin: .5rem 0;
+            }
+            .side_heading_2{
+                background-color: blue;
+                border-radius: 10px;
+                color: white;
+                text-align: center;
+                margin-bottom: 1rem;
+            }
+            .side_heading_3{
+                color: rgb(4, 4, 247);
+                display: inline-block;
+                font-weight: bold;
+                font-size: 18px;
+            }
+            ul{
+                list-style-type:decimal;
+                width: fit-content;
+            }
+            .bordered{
+                border-radius: 15px;
+            }
+            .code {    
+                font:bold;
+                font-size: large;
+                background-color: rgb(204, 213, 210);                
+                display: flex;
+                font-family: 'Space Mono', monospace;
+                width: 90%;
+                white-space: nowrap;
+                margin: auto;
+                text-align: center;
+                padding: 1rem 2rem;
+            }
+            .code-inline{
+                margin-top: 5px;
+                display: inline-block;
+                width: fit-content;
+                font-family: 'Space Mono', monospace;
+                padding: .225rem .25rem;
+                font-weight: bold;
+                white-space: nowrap;
+                font-size: smaller;
+                background-color: rgb(204, 213, 210);                
+                text-align: center;
+                border-radius: 10px;
+            }
+            .point{
+                padding: .5rem 0;
+                display: flex;
+                flex-direction: column;
+                border-radius: 15px;
+            }
+            .point-list{
+                display: flex;
+                gap: 30px;
+                align-items: center;
+                padding: .5rem 0;
+                margin: auto;
+            }
+            .theory-nav-button{
+                padding: 10px;
+                background-color: rgba(4, 4, 247, 0.351);
+                border-radius: 10px;
+                color: rgb(4, 4, 247);
+                border: 2px solid rgba(4, 4, 247, 0.351);
+            }
+            .theory-content-and-image{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                flex-direction: row;
+                gap: 2rem;
+                padding-bottom: 1rem;
+                align-items: center;
+            }
+            .theory-content-and-image .left{
+                flex-grow: 1;
+                max-width: 500px;
+                margin: auto;
+            }
+            .theory-content-and-image .right{
+                margin: auto;
+            }
+            .theory-images{
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
+            }
+            .flex-column{
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+            .non-code{
+                font-family: 'Wix Madefor Display', sans-serif;
+            }
+            .double-equation{
+                display: flex;
+                align-items: center;
+                position: relative;
+            }
+            .double-equation .right{
+                flex: 1;
+                text-align: start;
+
+            }
+            .middle-bracket{
+                color: black;
+                font-size: 4rem;
+                font-family: 'Roboto', sans-serif;
+                font-weight: 100;
+                position: absolute;
+                top: 2.5px;
+                left: 97.5px;
+            }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1 class="theory-title">BASK Modulation</h1>
+        <div class="buttons">
+            <a href="/">
+                <button class="theory-nav-button">
+                    <i class="fa-solid fa-arrow-left">
+                    </i>
+                    Go Home
+                </button>  
+            </a>
+        </div>
+    </nav>
+
+    <section class="theory-body">
+
+        <div class="theory-content-and-image">
+            <div class="left">
+                <p>Binary amplitude shift-keying (BASK), in which the carrier frequency and carrier
+                    phase are both maintained constant, while the carrier amplitude is keyed between
+                    the two possible values used to represent symbols 0 and 1.</p>        
+            </div>
+            <div class="right">
+                <img class="graph" src="/static/images/BASK/2.png" alt="" width="300px">
+            </div>
+        </div>
+        <span class="point">
+            <span class="code bordered double-equation">
+                <span class="left">b(t) = &nbsp;&nbsp;</span>
+                <span class="right">      
+                    <p>&radic;E<sub><sub>b</sub></sub>&nbsp;&nbsp;<span class="non-code">for binary symbol 1</span>
+                    <br/>
+                    <span class="middle-bracket">{</span>
+                    &nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;<span class="non-code">for binary symbol 0</span>
+                    </p>
+                </span>
+            </span>
+            <p>Then, multiplying b(t) by the sinusoidal carrier wave of above Equation with phase <i> &phi;<sub>c</sub></i>  set equal to zero for convenience of presentation, we get the BASK wave</p>    
+        </span>
+
+        <span class="code bordered double-equation">
+            <span class="left">s(t) = &nbsp;&nbsp;</span>
+            <span class="right">      
+                <p>&radic;2*E<sub><sub>b</sub></sub>/T<sub><sub>b</sub></sub>cos(2&pi;f<sub><sub>c</sub></sub>t)&nbsp;&nbsp;<span class="non-code">for binary symbol 1</span>
+                <br/>
+                <span class="middle-bracket">{</span>
+                &nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="non-code">for binary symbol 0</span>
+                </p>
+            </span>
+        </span>
+
+        <span class="point">
+            <p>When a bit duration is occupied by symbol 1, the transmitted signal energy is E<sub>b</sub>.When the bit duration is occupied by
+                symbol 0, the transmitted signal energy is zero. On this basis, we may express the average transmitted signal energy as <br><br>
+                <span class="code-inline">E<sub>av</sub> = E<sub>b</sub>/2</span>
+            </p>
+        </span>
+
+        <span class="point">
+            <p>                                   
+                To hold this condition, the two binary symbols must be equiprobable. In other words, if we are given a long binary data stream, then symbols 1 and 0 occur in essentially equal numbers in that data stream. 
+                For this equality to hold, however, there must be no bias involved in the generation of the bit stream, either in favor of symbol 1 or symbol 0.
+            </p>
+        </span>
+        
+        <h4 class="side_heading_2">Graph of BASK</h4>
+        <span class="point">
+            <p> In graph I. Binary data stream, II. Carrier wave     and III. Amplitude-shift keying. </p>
+            <h5 class="side_heading_3">Binary data stream:</h5>
+            <p>A binary data stream is a sequence of digital bits (0s and 1s) that represents information in a digital form. This information could be anything from text, audio, images, or any other digital content. In the context of digital communication systems, a binary data stream is typically used as the input signal to be transmitted over a communication channel.</p>
+        </span>
+
+        <span class="point">
+            <h5 class="side_heading_3">Carrier wave:</h5>
+            <p>A carrier wave is a high-frequency sinusoidal waveform that is used to transmit the binary data stream over a communication channel. The carrier wave has a fixed frequency and amplitude, and its sole purpose is to modulate the binary data stream. The carrier wave is typically generated by an oscillator or a waveform generator, and its frequency is chosen to be higher than the highest frequency of the binary data stream to be transmitted.</p>
+        </span>
+
+        <span class="point">
+            <h4 class="side_heading_3">Amplitude-shift keying:</h4>
+            <p>Amplitude-shift keying (ASK) is a digital modulation technique that uses the amplitude of the carrier wave to transmit digital data. In ASK, the amplitude of the carrier wave is varied to represent the binary data stream. For example, a binary 0 could be represented by a carrier wave with a low amplitude, while a binary 1 could be represented by a carrier wave with a high amplitude.</p>
+            <p>To transmit a binary data stream using ASK, the binary data stream is first encoded into a series of digital bits, which are then used to modulate the amplitude of the carrier wave. At the receiver end, the modulated carrier wave is demodulated to recover the original binary data stream. ASK is a simple and easy-to-implement digital modulation technique, but it is not very efficient in terms of bandwidth utilization and is susceptible to noise and interference.</p>
+        </span>
+               
+        
+        <h4 class="side_heading">GENERATION AND DETECTION OF BASK SIGNALS</h4>
+        
+        <span class="point">
+            <p>BASK signal is generated by using a product modulator with two inputs. One input, the ON-OFF signal i.e., is the modulating signal, The sinusoidal carrier wave c(t). <p>
+            <p>From Fig., BASK modulated waveform envelop is not constant.</p>
+            <p>Detection of the BASK wave is concerned, the simplest way is to use an envelope detector, exploiting the nonconstant-envelope property of the BASK signal.</p>                
+        </span>
+        
+    </p>              
+   
+    </div>
+
+     
+ 
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AM theory</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Roboto+Condensed&family=Roboto+Mono&family=Space+Mono&family=Wix+Madefor+Display&display=swap');
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .bordered{
+            border-radius: 10px;
+        }
+        body{
+            background-color:whitesmoke;
+            padding: 0;
+            font-family: 'Wix Madefor Display', sans-serif;
+        }
+        .theory-body{
+            width: 95vw;
+            max-width: 900px;
+            margin: auto;
+            padding-bottom: 2rem;
+        }
+        nav{
+            padding: 1rem 3rem;
+            width: 100vw;
+            width: 100%;
+            background-color:rgb(64, 198, 235) ;
+            display: flex;
+            justify-content: space-around;
+        }
+        .theory-title{
+            flex-grow: 1;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        p{
+            text-align: justify;
+            font-family: 'Nunito Sans', sans-serif;
+            font-size: medium;
+        }
+
+        .side_heading{
+            color: rgb(4, 4, 247);
+            margin:.5rem 0;
+            text-align: center;
+            font-size: 20px;
+            
+        }
+
+        .am_1,.am_2{
+        
+            padding: 10px;
+            display: float;
+            float: right;
+        }
+        ul{
+            display: flex;
+            list-style-type:decimal;
+            width: fit-content;
+            justify-content: space-around;
+            flex: 1;
+        }
+        .code {    
+            font:bold;
+            font-size: medium;
+            background-color: rgb(204, 213, 210);                
+            display: flex;
+            width: 90%;
+            margin: auto;
+            font-family: 'Space Mono', monospace;
+            text-align: center;
+            padding: 1rem 2rem;
+       }
+        .point{
+            padding: .5rem 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .point-list{
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            padding: .5rem 0;
+            margin: auto;
+        }
+        .theory-nav-button{
+            padding: 10px;
+            background-color: rgba(4, 4, 247, 0.351);
+            border-radius: 10px;
+            color: rgb(4, 4, 247);
+            border: 2px solid rgba(4, 4, 247, 0.351);
+        }
+        .theory-content-and-image{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            flex-direction: row;
+            gap: 2rem;
+            padding-bottom: 1rem;
+        }
+        .theory-content-and-image .left{
+            width: 300px;
+            width: 100%;
+            flex: 1;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h1 class="theory-title">Amplitude Modulation & Demodulation</h1>
+        <div class="buttons">
+            <a href="/">
+                <button class="theory-nav-button">
+                    <i class="fa-solid fa-arrow-left">
+                    </i>
+                    Go Home
+                </button>  
+            </a>
+        </div>
+    </nav>
+
+    <section class="theory-body">
+
+    
+    <div class="side_heading">
+        <h3>Amplitude Modulation</h3>
+    </div>
+    <div class="theory-content-and-image">
+        <div class="left">
+            <p>Amplitude Modulation (AM) is a technique used to modulate a high-frequency carrier wave with a low-frequency message signal. The modulated signal contains the information from the message signal, which can be demodulated at the receiver to recover the original message signal.</p>
+
+            <p>The process of deriving Amplitude Modulation (AM) involves multiplying a message signal with a high frequency carrier signal to generate a modulated signal.</p>        
+        </div>
+        <img class="right" src="/static/images/AM_MAIN/am_theory_2.png" alt="">
+    </div>
+
+    
+    <span class="derivation">
+        <h3 class="side_heading">Derivation</h3>
+    <p>The mathematical expression for AM modulation can be derived as follows:</p>
+    </span>
+    <span class="point">
+        <p>Let m(t) be the message signal, c(t) be the carrier signal, and s(t) be the modulated signal.</p>
+        <p>The carrier signal can be represented as:</p>
+        <p class="code bordered">c(t) = A<sub><sub>c</sub></sub> cos(2πf<sub><sub>c</sub></sub>t)</p>
+        <p>where A<sub><sub>c</sub></sub>is the amplitude of the carrier signal and f<sub><sub>c</sub></sub> is the frequency of the carrier signal.</p>    
+    </span>
+    <span class="point">
+        <p>The message signal can be represented as:</p>
+        <p class="code bordered">m(t) = A<sub><sub>m</sub></sub> cos(2πf<sub><sub>m</sub></sub>t)</p>
+        <p>where A<sub><sub>m</sub></sub> is the amplitude of the message signal and f<sub>m</sub> is the frequency of the message signal.</p>    
+    </span>
+    <span class="point">
+        <p>To generate the modulated signal s(t), we multiply the message signal with the carrier signal:</p>
+        <p class="code bordered">s(t) = (A<sub><sub>c</sub></sub> + A<sub><sub>m</sub></sub> cos(2πf<sub><sub>m</sub></sub>t)) cos(2πf<sub><sub>c</sub></sub>t)</p>    
+    </span>
+    <span class="point">
+        <p>Expanding this expression using the trigonometric identity for the product of two cosines, we get:</p>
+        <p class="code bordered"> s(t) = A<sub><sub>c</sub></sub> cos(2πf<sub><sub>c</sub></sub>t) + 0.5 A<sub><sub>m</sub></sub> cos(2π(f<sub><sub>c</sub></sub> + f<sub><sub>m</sub></sub>)t) + 0.5 A<sub><sub>m</sub></sub>cos(2π(f<sub><sub>c</sub></sub> - f<sub><sub>m</sub></sub>)t)</p>
+        <p>Thus, the modulated signal s(t) contains three components: the carrier signal, and two sidebands that are spaced apart from the carrier frequency by the frequency of the message signal</p>    
+    </span>
+    <p>In the frequency domain, the AM signal has a spectrum that consists of a carrier signal and two sidebands, which are symmetrically placed around the carrier frequency.</p>
+
+    <div class="side_heading"><h3>Amplitude De-Modulation</h3></div>
+    <div class="theory-content-and-image">
+        <div class="left">
+            <p>The process of extracting an original message signal from the modulated wave is known as detection or demodulation. The circuit, which demodulates the modulated wave is known as the demodulator.</p>
+            <span class="point">
+                <p>The following demodulators (detectors) are used for demodulating AM wave.</p>
+                <ul class="point-list">
+                    <li>Square Law Demodulator</li> 
+                    <li>Envelope Detector</li>    
+                </ul>
+            </span>     
+        </div>
+        <img class="right" src="/static/images/AM_MAIN/am_theory_3.jpg" alt="" width="300px">                    
+    </div>
+    
+    <p>One of the methods used to demodulate AM signals is square-law demodulation, which is based on the non-linear characteristic of a diode. The square-law demodulator circuit consists of a diode, a load resistor, and a capacitor.</p>
+    <p>Let the modulating and carrier signals be denoted as m(t) and A<sub>c</sub>cos(2πf<sub>c</sub>t)
+    respectively.</p>
+    <p>These two signals are applied as inputs to the summer (adder) block. This summer block produces an output, which is the addition of the modulating and the carrier signal. Mathematically, we can write it as</p>
+
+    <p class="code bordered">V<sub><sub>1</sub></sub>(t) = m(t) + A<sub><sub>c</sub></sub>cos(2πf<sub><sub>c</sub></sub>t)</p>
+
+    <p>This signal V<sub><sub>1</sub></sub>(t) is applied as an input to a nonlinear device like diode. The characteristics of the diode are closely related to square law.</p>
+
+    <p class="code bordered">V<sub><sub>2</sub></sub>(t) = k<sub><sub>1</sub></sub>V<sub><sub>1</sub></sub>(t) + k<sub><sub>1</sub></sub>V<sub><sub>1</sub></sub><sup><sup>2</sup></sup>(t)    ............. (Equation 1)</p>
+    <p>Where, k<sub>1</sub> and k<sub>2</sub> are constants.</p>
+    <p>Substitute V<sub>1</sub>(t) in Equation 1</p>
+    <span  class="point">
+        <p class="code bordered">V<sub><sub>2</sub></sub>(t) = k<sub><sub>1</sub></sub> [m(t) + A<sub><sub>c</sub></sub>cos(2πf<sub><sub>c</sub></sub>t)] + k<sub><sub>2</sub></sub> [m(t)+A<sub><sub>c</sub></sub>cos(2πf<sub><sub>c</sub></sub>t)]<sup><sup>2</sup></sup></p>        
+    </span>
+    <span  class="point">        
+        <p class="code bordered">V<sub><sub>2</sub></sub>(t) =k<sub><sub>1</sub></sub>m(t)+k<sub><sub>1</sub></sub>A<sub><sub>c</sub></sub>cos(2πf<sub><sub>c</sub></sub>t)+k<sub><sub>2</sub></sub>m<sup><sup>2</sup></sup>(t)+k<sub><sub>2</sub></sub>A<sub><sub>c</sub></sub><sup><sup>2</sup></sup>cos<sup><sup>2</sup></sup>(2πf<sub><sub>c</sub></sub>t)+2k<sub><sub>2</sub></sub>m(t)A<sub><sub>c</sub></sub>cos(2πf<sub><sub>c</sub></sub>t) </p>
+    </span>
+    <span  class="point">
+        <p class="code bordered">V<sub><sub>2</sub></sub>(t) = k<sub><sub>1</sub></sub>m(t) + k<sub><sub>2</sub></sub>m<sup><sup>2</sub></sup>(t)+k<sub>2</sub>A<sub>c</sub><sup>2</sup>cos<sup>2</sup>(2πf<sub>c</sub>t)+k<sub>1</sub>A<sub>c</sub>[1+(2k<sub>2</sub>/k<sub>1</sub>)m(t)]cos(2πf<sub>c</sub>t)    </p>
+    </span>
+
+
+    
+
+    <p>The last term of the above equation represents the desired AM wave and the first three terms of the above equation are unwanted. So, with the help of band pass filter, we can pass only AM wave and eliminate the first three terms.</p>
+<span class="point">
+    <p>Therefore, the output of square law modulator is</p>
+
+    <p class="code bordered">s(t)= k<sub><sub>1</sub></sub>A<sub><sub>c</sub></sub>[1+(2k<sub><sub>2</sub></sub> / k<sub><sub>1</sub></sub>)m(t)]cos(2πf<sub><sub>c</sub></sub>t)</p>
+
+    <p>The standard equation of AM wave is</p>
+
+    <p class="code bordered">s(t) = (A<sub><sub>c</sub></sub> + A<sub><sub>m</sub></sub> cos(2πf<sub><sub>m</sub></sub>t)) cos(2πf<sub><sub>c</sub></sub>t)</p>
+    
+    <p>Where, K<sub><sub>a</sub></sub> is the amplitude sensitivity</p>
+
+</span>
+
+    <p>By comparing the output of the square law modulator with the standard equation of AM wave, we will get the scaling factor as k<sub>1</sub>
+    and the amplitude sensitivity k<sub><sub>a</sub></sub> as 2k<sub><sub>2</sub></sub>/k<sub><sub>1</sub></sub>.</p>
+
+        
+    </div>
+
+     
+ 
+</body>
+</html>

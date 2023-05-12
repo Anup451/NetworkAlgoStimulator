@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QAM theory</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Roboto+Condensed&family=Roboto+Mono&family=Space+Mono&family=Wix+Madefor+Display&display=swap');
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .bordered{
+            border-radius: 10px;
+        }
+        body{
+            background-color:whitesmoke;
+            padding: 0;
+            font-family: 'Wix Madefor Display', sans-serif;
+        }
+        .theory-body{
+            width: 95vw;
+            max-width: 900px;
+            margin: auto;
+            padding-bottom: 2rem;
+        }
+        nav{
+            padding: 1rem 3rem;
+            width: 100vw;
+            width: 100%;
+            background-color:rgb(64, 198, 235) ;
+            display: flex;
+            justify-content: space-around;
+        }
+        .theory-title{
+            flex-grow: 1;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        
+        .side_heading{
+            color: rgb(4, 4, 247);
+            text-align: center;
+            font-size: 20px;
+            margin: .5rem 0;
+        }
+        .side_heading_2{
+            background-color: blue;
+            border-radius: 10px;
+            color: white;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        ul{
+            list-style-type:decimal;
+            width: fit-content;
+        }
+        .bordered{
+            border-radius: 15px;
+        }
+        .code {    
+            font:bold;
+            font-size: large;
+            background-color: rgb(204, 213, 210);                
+            display: flex;
+            font-family: 'Space Mono', monospace;
+            width: 90%;
+            white-space: nowrap;
+            margin: auto;
+            text-align: center;
+            padding: 1rem 2rem;
+        }
+        .code-inline{
+            margin-top: 5px;
+            display: inline-block;
+            width: fit-content;
+            font-family: 'Space Mono', monospace;
+            padding: .225rem .25rem;
+            font-weight: bold;
+            white-space: nowrap;
+            font-size: smaller;
+            background-color: rgb(204, 213, 210);                
+            text-align: center;
+            border-radius: 10px;
+        }
+        .point{
+            padding: .5rem 0;
+            display: flex;
+            flex-direction: column;
+            border-radius: 15px;
+        }
+        .point-list{
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            padding: .5rem 0;
+            margin: auto;
+        }
+        .theory-nav-button{
+            padding: 10px;
+            background-color: rgba(4, 4, 247, 0.351);
+            border-radius: 10px;
+            color: rgb(4, 4, 247);
+            border: 2px solid rgba(4, 4, 247, 0.351);
+        }
+        .theory-content-and-image{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            flex-direction: row;
+            gap: 2rem;
+            padding-bottom: 1rem;
+            align-items: center;
+        }
+        .theory-content-and-image .left{
+            flex-grow: 1;
+            max-width: 500px;
+            margin: auto;
+        }
+        .theory-content-and-image .right{
+            margin: auto;
+        }
+        .theory-images{
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+        .flex-column{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        code {
+            font-weight: bold;
+            font-size: large;
+            background-color: rgb(255, 255, 255);
+            padding: 0px 100px 3px 15px;
+        }
+
+        .plt{
+            padding-left: 50px;
+            width:400px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1 class="theory-title">Quadrature Modulation & Demodulation</h1>
+        <div class="buttons">
+            <a href="/">
+                <button class="theory-nav-button">
+                    <i class="fa-solid fa-arrow-left">
+                    </i>
+                    Go Home
+                </button>    
+            </a>
+        </div>
+    </nav>
+    <section class="theory-body">
+        <h4 class="side_heading">Quadrature Modulation</h4>
+        <div class="theory-content-and-image">
+                <span class="point">
+                    <p>
+                        SSB-SC signals are difficult to generate accurately, quadrature amplitude modulation (QAM) offers an attractive alternative to SSB-SC. QAM can be exactly generated without requiring 
+                        sharp-cutoff bandpass filters. QAM operates by transmitting two DSB signals using carriers of the same frequency but in phase quadrature, as shown in Fig. This scheme is
+                        known as quadrature amplitude modulation (QAM) or quadrature multiplexing.
+                    </p>            
+                </span>
+            <div class="right">
+                <img  class="block" src="/static/images/QAM/QAM_block.png" alt="" width="570px">
+            </div>
+
+        </div>   
+        <span class="point">
+            <p>
+                As shown Figure, the boxes labeled —&pi;/2 are phase shifters that delay the phase of an input sinusoid by —&pi;/2 rad. If the two baseband message signals for transmission are
+                m<sub><sub>1</sub></sub>(t) and m<sub><sub>2</sub></sub>(t), the corresponding QAM signal &phi;<sub><sub>QAM</sub></sub>(t), the sum of the two DSB-modulated signals, is:<br><br>
+                <span class="code bordered">&phi;<sub><sub>QAM</sub></sub>(t) = m<sub><sub>1</sub></sub>(t)cos&omega;<sub><sub>c</sub></sub>t + m<sub><sub>2</sub></sub>(t)sin&omega;<sub><sub>c</sub></sub>t</span>
+            </p>        
+        </span> 
+        <span class="point">
+            <p>
+                Both modulated signals occupy the same band. Yet two baseband signals can be separated at the receiver by synchronous detection if two local carriers are used in phase quadrature, as
+                shown in Fig. This can be shown by considering the multiplier output x<sub><sub>1</sub></sub>(t) of the upper arm of the receiver (Fig):<br><br>
+                <span class="code" style="border-radius:10px 10px 0 0">x<sub><sub>1</sub></sub>(t) = 2&phi;<sub><sub>QAM</sub></sub>(t)cos&omega;<sub><sub>c</sub></sub>t = 2[m<sub><sub>1</sub></sub>(t) cos&omega;<sub><sub>c</sub></sub>t + m<sub><sub>2</sub></sub>(t)sin&omega;<sub><sub>c</sub></sub>t ]cos&omega;<sub><sub>c</sub></sub>t</span>
+                <span class="code" style="border-radius:0px 0px 10px 10px">x<sub><sub>1</sub></sub>(t) = m<sub><sub>1</sub></sub>(t) + m<sub><sub>1</sub></sub>(t)cos2&omega;<sub><sub>c</sub></sub>t +  m<sub><sub>2</sub></sub>(t)sin2&omega;<sub><sub>c</sub></sub>t</span>
+            </p>        
+        </span>
+        <span class="point">
+            <p>
+                The last two terms are bandpass signals centered around 2&omega;<sub><sub>c</sub></sub>. In fact, they actually form a
+                QAM signal with 2&omega;<sub><sub>c</sub></sub> as the carrier frequency. They are suppressed by the low-pass filter,
+                yielding the desired demodulation output m<sub><sub>1</sub></sub>(t). Similarly, the output of the lower receiver
+                branch can be shown to be m<sub><sub>2</sub></sub>(t).<br>
+                <span class="code" style="border-radius: 10px 10px 0 0;">x<sub><sub>2</sub></sub>(t) = 2&phi;<sub><sub>QAM</sub></sub>(t) sin&omega;<sub><sub>c</sub></sub>t = 2[m<sub><sub>1</sub></sub>(t) cos&omega;<sub><sub>c</sub></sub>t + m<sub><sub>2</sub></sub>(t) sin&omega;<sub><sub>c</sub></sub>t ] sin&omega;<sub><sub>c</sub></sub>t</span>
+                <span class="code" style="border-radius: 0 0 10px 10px;">x<sub><sub>2</sub></sub>(t) = m<sub><sub>2</sub></sub>(t) - m<sub><sub>2</sub></sub>(t) cos2&omega;<sub><sub>c</sub></sub>t +  m<sub><sub>1</sub></sub>(t) sin2&omega;<sub><sub>c</sub></sub>t</span>
+            </p>        
+        </span>
+        <span class="point">
+            <p>
+                Thus, two baseband signals, each of bandwidth B Hz, can be transmitted simultaneously over a ban
+                <sub>dwidth 2B by using DSB transmission and quadrature multiplexing. </sub>
+                The upper channel is also known as the in-phase (I) channel and the lower channel is the quadrature (Q) channel. Both signals m<sub><sub>1</sub></sub>(t) and m<sub><sub>2</sub></sub>(t) can be separately demodulated.<br>
+                Note, however, that QAM demodulation must be totally synchronous. An error in the phase or the frequency of the carrier at the demodulator in QAM will result in loss and interference between the two 
+                channels. To show this, let the carrier at the demodulator be 2cos(&omega;<sub><sub>c</sub></sub>t + &theta;). In this case,<br>
+               <br> 
+               <span class="code" style="border-radius: 10px 10px 0 0;"> x<sub><sub>1</sub></sub>(t)=2[m<sub><sub>1</sub></sub>(t)cos&omega;<sub><sub>c</sub></sub>t  + m<sub><sub>2</sub></sub>(t)sin&omega;<sub><sub>c</sub></sub>t] cos(&omega;<sub><sub>c</sub></sub>t + &theta;)</span>
+                <span class="code" style="border-radius: 0 0 10px 10px;">x<sub><sub>1</sub></sub>(t) =  m<sub><sub>1</sub></sub>(t)cos&theta; — m<sub><sub>2</sub></sub>(t)sin&theta; + m<sub><sub>1</sub></sub>(t)cos(2&omega;<sub><sub>c</sub></sub>t + &theta;) + m<sub><sub>2</sub></sub>(t)sin(2&omega;<sub><sub>c</sub></sub>t + &theta;)</span>
+                <br>The low-pass filter suppresses the two signals modulated by carrier of angular frequency 2&omega;<sub><sub>c</sub></sub>, resulting in the first demodulator output
+                <span class="code bordered">m<sub><sub>1</sub></sub>(t)cos&theta; - m<sub><sub>2</sub></sub>(t)sin&theta;</span>
+            </p>        
+        </span>
+        <span class="point">
+            <p>
+                Thus, in addition to the desired signal m<sub><sub>1</sub></sub>(t), we also receive signal m<sub><sub>2</sub></sub>(t) in the upper receiver branch. A similar phenomenon can be shown for the lower branch. This so-called cochannel interference is undesirable. Similar difficulties arise when the local frequency is in error (see Prob. 4.4-1 in B. P. Lathi text book). In addition, unequal attenuation of the USB and the LSB during transmission
+                leads to cross talk or cochannel interference. <br><br>Quadrature multiplexing is used in analog color television to multiplex the so-called chrominance signals, which carry the information 
+                about colors. There, the synchronization is achieved by periodic insertion of a short burst of carrier signal (called color burst in the transmitted signal). Digital satellite television transmission also applies QAM.
+            </p>        
+        </span>
+        <span class="point">
+            <p>
+                In terms of bandwidth requirement, SSB is similar to QAM but less exacting in terms of
+                the carrier frequency and phase or the requirement of a distortionless transmission medium.
+                However, SSB is difficult to generate if the baseband signal m(t) has significant spectral content
+                near the dc.
+            </p>        
+        </span>
+    </section>
+
+</body>
+</html>

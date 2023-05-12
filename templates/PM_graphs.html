@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Network Algorithm simulator</title>
+  <link rel="stylesheet" href="/static/base.css">
+  <link rel="stylesheet" href="/static/AM.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    .inputs{
+      display: flex;
+      gap: .5rem;
+      margin: 1rem auto;
+      max-width: 100%;
+      width: 100vw;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+    
+    }
+    .buttons{
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <h1 class="heading">{{title}}</h1>
+    <div class="buttons-nav">
+      <button class="back-button" style="right: calc(5vw + 45px);">
+        <a href="/PM">
+          <i class="fa-solid fa-arrow-left"></i>
+        </a>
+      </button>
+      <button class="back-button">
+        <a href="/">
+          <i class="fa-solid fa-home"></i>
+        </a>
+      </button>  
+    </div>
+  </nav>
+<div class="container-full">
+
+  <form action="/PM/{{pmtype}}" method="POST">
+    <div class="inputs"> 
+
+      <div class="input-wrapper">
+          <label for="freqc">Message Frequency</label>
+          <input type="number" id="freqc" name="fm" class="input-bar" required>
+      </div>
+      <div class="input-wrapper">
+          <label for="freqc">Message Amplitude</label>
+          <input type="number" id="freqc" name="am" class="input-bar" required>
+      </div>
+      <div class="input-wrapper">
+        <label for="signal_type" class="form-label">Message_type</label>
+        <select name="message_signal" class="input-bar">
+          <option value="sin">Sin</option>
+          <option value="cos" selected>Cos</option>
+          <option value="tri">Triangle</option>
+          <option value="ramp">Ramp</option>
+        </select>
+      </div>  
+      <div class="input-wrapper">
+          <label for="freqc">Carrier Frequency</label>
+          <input type="number" id="freqc" name="fc" class="input-bar"  required>
+      </div>
+      <div class="input-wrapper">
+          <label for="freqc">Carrier Amplitude</label>
+          <input type="number" id="freqc" name="ac" class="input-bar" required>
+      </div>
+      {%if pmtype == "PPM"%}
+      <div class="input-wrapper">
+        <label for="ppm_ratio">ppm_ratio</label>
+        <input type="number" id="ppm_ratio" name="ppm_ratio" class="input-bar" step="0.01" required>
+      </div>
+      {% elif pmtype == "PAM"%}
+      <div class="input-wrapper">
+        <label for="Signal Frequency">Signal Frequency</label>
+        <input type="number" id="Signal Frequency" name="fs" class="input-bar" required>
+      </div>
+      {% endif %}
+      <br>
+    </div>
+
+    <div class="buttons">
+      <button type="submit" id="submit-button">Show Resutls</button>
+      <!-- <button type="submit" id="Download-button">Download</button> -->
+    </div>
+  </form>
+
+</div>
+
+<div class="plot-wrapper"> 
+  {% if inputs|length%}
+    <div class="input-display-section">
+      {%for key, value in inputs.items()%}
+      <article class="selected-value">
+        <span>{{key}}</span>: 
+        <span>{{value}} 
+          {%if key=="Am" or key=="Ac"%}
+            Volts
+          {%elif key=="fm" or key=="fc" %}
+            KHz
+          {%endif%}
+        </span>
+      </article>
+      {%endfor%}
+    </div>
+  {%endif%}
+  {% if plots | length == 0%}
+  <p class="info">Please select the values to generate the graph</p>
+  {% else %} 
+  {% for plot in plots %}
+  <img src="data:image/png;base64,{{ plot|decode_hex|b64encode }}" onclick="zoomin()" class="graph-plot" />
+  {% endfor %}
+  {% endif %}
+  
+  </div>
+</body>
+</html>

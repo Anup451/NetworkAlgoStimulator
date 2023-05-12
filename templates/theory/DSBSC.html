@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSM theory</title>
+    <style>
+
+        body{
+            /* font-family: 'Times New Roman', Times, serif; */
+            background-color:whitesmoke;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            margin-bottom: 65px;
+            padding-left: 15%;
+            padding-right: 15%;
+        }
+        h1{
+            text-align: center;
+            background-color: rgb(157, 219, 219);
+            padding: 10px;
+            padding-top:20px;
+            font-size: 38px;
+        }
+        h3{
+            font-size: 25px;
+        }
+        h4{
+            font-size: larger;
+        }
+        p{
+            width: 65%;
+            text-align: justify;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 17px;
+        }
+        ul{
+            font-size: 17px;
+			font-family: Arial, sans-serif;
+			margin-left: 5px;
+			line-height: 1.5;
+            width: 60%;
+        }
+        .section{
+            padding-left: 5%;
+            padding-right: 5%;
+            margin: 10px 5px 65px 0px;
+        }
+        .list_1,.list_2{
+            text-align: justify;
+            list-style:none;
+        }
+
+        .homepage img{
+            height: 40px;
+            width: 40px;
+            border-radius: 10px;
+        }
+
+        .homepage{
+            display: float;
+            float: right;
+            margin-top: 40px;
+            margin-right: 10px;
+
+        }
+
+        .side_heading{
+            color: blue;
+            text-align: center;
+        }
+
+        .am_1,.am_2{
+            padding: 10px;
+            display: float;
+            float: right;
+        }
+
+        .wave{
+            padding-left: 10px;
+            padding-right: 10px;
+            float:right;
+        }
+        
+        @media screen and (max-width: 600px) {
+            main {
+                max-width: 100%;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <a class="homepage" href="demo_am.html"> <img src="home.jpg"> </a>
+        <h1>Double sideband Modulation & De-modulation</h1>
+    </div>
+    <img class="am_1" src="/static/images/DSBSC/am_theory_2.png" alt="" width="270px">
+
+    <ol style="list-style-type: decimal; margin-left: 40px;">
+        <li>
+            <div class="section">
+                <h3>Definition :</h3>
+                <img class="am_1" src="https://www.tutorialspoint.com/analog_communication/images/double_sideband_full_carrier.jpg" alt="" width="350px" height="230px">
+                <p> <strong>Double Sideband (DSB) modulation</strong> is a type of amplitude modulation (AM) technique where the message signal is modulated onto the carrier wave by multiplying it with a double-sided bandpass filter that contains both the upper and lower sidebands of the modulated signal. The resulting modulated signal contains both the upper 
+                    and lower sidebands and the carrier wave, which are transmitted through the communication channel to the receiver. At the receiver, the original message signal can be extracted by demodulating the received signal using a demodulator that recovers the message signal by filtering out one of the sidebands and the carrier wave.<br><br>
+                    <strong>Double Sideband (DSB) demodulation</strong> is the process of recovering the original message signal from a DSB modulated signal at the receiver. DSB demodulation involves multiplying the received signal with a local oscillator signal that has the same frequency as the carrier wave used in the transmitter, 
+                    which results in the production of an intermediate frequency (IF) signal. The IF signal is then passed through a bandpass filter that removes one of the sidebands and the carrier wave, leaving behind only the message signal. Finally, the message signal is amplified and output for further processing or playback.
+                </p>
+            </div>
+        </li>
+    
+        <li>
+            <div class="section">
+                <h3>Principle of DSB</h3>
+                <img class="am_1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Spectrum_DSBSC.svg/450px-Spectrum_DSBSC.svg.png" alt="" width="270px">
+                <p>
+                    DSB modulation involves multiplying the carrier signal with the message signal, which is a low-frequency analog signal, to produce the modulated signal. The resulting signal has two sidebands that are mirror images of each other and 
+                    a carrier frequency. The bandwidth of the DSB modulated signal is twice the bandwidth of the message signal.<br><br>
+                    Double-sideband suppressed-carrier transmission (DSB-SC) is transmission in which frequencies produced by amplitude modulation (AM) are symmetrically spaced above and below the carrier frequency and the 
+                    carrier level is reduced to the lowest practical level, ideally being completely suppressed.<br>
+                    DSB-SC is basically an amplitude modulation wave without the carrier, therefore reducing power waste, giving it a 50% efficiency. This is an increase compared to normal AM transmission (DSB) that has a maximum efficiency of 33.333%, 
+                    since 2/3 of the power is in the carrier which conveys no useful information and both sidebands containing identical copies of the same information. Single Side Band Suppressed Carrier (SSB-SC) is 100% efficient.
+                    The figure in the right shows the Spectrum plot of a DSB-SC signal.<br>
+                </p>
+            </div>
+        </li>
+
+        <li>
+            <div class="section">
+                <h3>Expression for DSB</h3>
+                <h4 >Modulation</h4>
+                <p>
+                    The expression for DSB-SC modulation is given by:<br>
+                    s(t) = A<sub>c</sub> [m(t) cos(2πf<sub>c</sub> t)]
+                    <br><br>The expression for DSB-FC modulation is given by:<br>
+                    s(t) = [A + m(t)] cos(2πf<sub>c</sub> t)]
+                    <br>where A<sub>c</sub> is the amplitude of the carrier signal, m(t) is the message signal, f<sub>c</sub> is the carrier frequency, and s(t) is the modulated signal.
+                </p>
+                <h4>Demodulation</h4>
+                <p>
+                    The expression for DSB-SC demodulation is given by:<br>
+                    v(t) = m(t) cos(2πf<sub>c</sub> t)
+                    <br><br>The expression for DSB-FC modulation is given by:<br>
+                    v(t) = s(t) cos(2πf<sub>c</sub> t + &phi;)
+                    <br>where v(t) is the demodulated output signal, m(t) is the message signal, f<sub>c</sub> is the carrier frequency,s(t) is the received DSB modulated signal, φ is the phase difference.
+                    
+                </p>
+            </div>
+        </li>
+
+        <li>
+            <div class="section">
+                <img class="am_1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/DSBSC_Modulation.svg/1920px-DSBSC_Modulation.svg.png" alt="" width="270px">
+                <h3>Generation</h3>
+                <p>DSB-SC is generated by a mixer. This consists of a message signal multiplied by a carrier signal. The mathematical representation of this process is shown below, where the product-to-sum trigonometric identity is used. <br> The figure (i) shows how DSB-SC generates:<br></p>
+                <em>V<sub>m</sub> cos(&omega;<sub>m</sub>t) * V<sub>c</sub> cos(&omega;<sub>c</sub>t) = V<sub>m</sub>V<sub>c</sub>[cos((&omega;<sub>m</sub> + &omega;<sub>c</sub>)t) + cos((&omega;<sub>m</sub> - &omega;<sub>c</sub>)t)]/2</sub></em>
+            </div>
+        </li>
+
+        <li>
+            <div class="section">
+                <h3>Advantages of DSM</h3><br>
+                <ul>
+                    <li>
+                        Simplicity: DSB modulation is a simple modulation technique, as it involves multiplying the carrier signal with the message signal to produce the modulated signal. This makes it easy to implement and less expensive.
+                    </li>
+                    <li>
+                        Low distortion: DSB modulation has low distortion because the amplitude of the modulated signal is directly proportional to the amplitude of the message signal. This means that the modulated signal carries the same information as the message signal without introducing much distortion.
+                    </li>
+                    <li>
+                        Compatibility: DSB modulation is compatible with existing AM radio receivers, which means that it can be used in radio communication systems for broadcasting information in the form of audio or video signals without requiring any major changes to the receiving equipment.
+                    </li>
+                    <li>
+                        Bandwidth efficiency: The bandwidth of the DSB modulated signal is twice the bandwidth of the message signal, which means that it can transmit more information in a given frequency band compared to other AM techniques.
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <li>
+            <div class="section">
+                <h3>Disdvantages of DSM</h3><br>
+                <ul>
+                    <li>
+                        Low power efficiency: DSB modulation requires twice the power of other AM techniques such as SSB modulation to transmit the same amount of information. This makes it less power-efficient and more susceptible to noise and interference.
+                    </li>
+                    <li>
+                        Limited frequency spectrum: DSB modulation occupies a limited frequency spectrum, which can cause interference with adjacent channels in the frequency band. This limits the number of channels that can be used for communication.
+                    </li>
+                    <li>
+                        Need for synchronous detection: Demodulation of DSB signals requires synchronous detection, which means that the carrier frequency at the receiver must be exactly the same as that used in the transmitter. Any deviation in frequency can cause significant distortion in the demodulated signal.
+                    </li>
+                    <li>
+                        High bandwidth requirement: DSB modulation requires a high bandwidth to transmit the modulated signal, which can be a limitation in some communication systems where bandwidth is limited.
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+    </ol>
+</body>
+</html>

@@ -1,0 +1,219 @@
+{
+    "Home":[
+        {
+            "title":"Analog Modulation",
+            "descritption":"The early and simple form of modulation for radio communication. Explore AM modulator, demodulator, transmission examples, modulation trapeze ...",
+            "image_link":"https://upload.wikimedia.org/wikipedia/commons/9/97/Amplitudemodulation.gif?20150401022946",
+            "color":"#e6d850",
+            "hasTheory":"false",
+            "demoLink":"-",
+            "theoryLink":"-",
+            "pageLink":"/AM"
+        },
+        {
+            "title":"Digital Modulation",
+            "descritption":"Digital modulation is the process of encoding a digital information signal into the amplitude, phase, or frequency of the transmitted signal.",
+            "image_link":"https://reviseomatic.org/help/2-modulation/Digimod-PAM.gif",
+            "color":"#e6d850",
+            "hasTheory":"false",
+            "demoLink":"-",
+            "theoryLink":"-",
+            "pageLink":"/DM"
+        },
+        {
+            "title":"Pulse Modulation",
+            "descritption":"Pulse modulation is a type of modulation technique used in communication systems to transmit analog signals over a digital communication channel.The analog signal is sampled at regular intervals and each sample is converted into a series of pulses",
+            "image_link":"https://wiki.analog.com/_media/university/courses/electronics/pwm_ref_voltage-wav.gif",
+            "color":"#e6d850",
+            "hasTheory":"false",
+            "demoLink":"-",
+            "theoryLink":"-",
+            "pageLink":"/PM",
+            "display":"none"
+        }
+    ],
+    "AM":[
+        {
+            "title":"Amplitude Modulation",
+            "descritption":"The early and simple form of modulation for radio communication. Explore AM modulator, demodulator, transmission examples, modulation trapeze ...",
+            "image_link":"https://upload.wikimedia.org/wikipedia/commons/9/97/Amplitudemodulation.gif?20150401022946",
+            "color":"#e6d850",
+            "hasTheory":"true",
+            "demoLink":"/AM/MAIN",
+            "theoryLink":"/theory/AM_MAIN",
+            "pageLink":""
+        },
+        {
+            "title":"SSB Modulation",
+            "descritption":"Amplitude modulation made radio broadcasting possible.Single sideband modulation made it possible to improve it, by saving bandwidth. Analyze a SSB-signal in time and frequency domain and change parameters... ",
+            "image_link":"http://3.bp.blogspot.com/-wRxe6tbz-7k/UAvJ_prUTiI/AAAAAAAAARA/SuhXKxshaU4/s400/aa-ssb.gif",
+            "color":"#e6d850",
+            "hasTheory":"true",
+            "demoLink":"/AM/SSB",
+            "theoryLink":"/theory/SSBSC",
+            "pageLink":""
+
+        },
+        {
+            "title":"DSBSC Modulation",
+            "descritption":"Double-sideband suppressed-carrier transmission (DSB-SC) is transmission in which frequencies produced by amplitude modulation (AM) are symmetrically spaced above and below the carrier frequency and the carrier level is reduced.",
+            "image_link":"/static/images/DSBSC.png",
+            "color":"#e6d850",
+            "hasTheory":"true",
+            "demoLink":"/AM/DSBSC",
+            "theoryLink":"/theory/DSBSC",
+            "pageLink":""
+
+        },
+        {
+            "title":"QAM Modulation",
+            "descritption":"QAM (quadrature amplitude modulation) is a method of combining two amplitude modulation (AM) signals into a single channel. This approach helps double its effective bandwidth.",
+            "image_link":"https://www.zhinst.com/sites/default/files/blogs/migrate/Constellation_QAM64.gif",
+            "color":"#e6d850",
+            "hasTheory":"true",
+            "demoLink":"/AM/QAM",
+            "theoryLink":"/theory/QAM",
+            "pageLink":""
+        },
+        {
+            "title":"Frequency Modulation",
+            "descritption":"Frequency modulation signal spectra show sidebands for sinewave modulation. In this experiment we take a look how they change with the modulating signal amplitude.",
+            "image_link":"https://upload.wikimedia.org/wikipedia/commons/9/94/Amfm2.gif",
+            "color":"#e6d850",
+            "hasTheory":"true",
+            "demoLink":"/FM/1",
+            "theoryLink":"/theory/FREQMOD",
+            "pageLink":""
+        },
+        {
+            "title":"Phase Modulation",
+            "descritption":"Phase modulation (PM) is a modulation pattern for conditioning communication signals for transmission. It encodes a message signal as variations in the instantaneous phase of a carrier wave.",
+            "image_link":"https://pages.vassar.edu/magnes/files/2012/04/phase4.gif",
+            "color":"green",
+            "hasTheory":"true",
+            "demoLink":"/FM/2",
+            "theoryLink":"/theory/PHASEMOD",
+            "pageLink":""
+        }
+    ],
+    "DM":[
+        {
+            "title":"BASK Modulation",
+            "descritption":"BASK Modulator BASK (Binary Amplitude shift keying) is a Modulation that mirrors the digital data as variations in the amplitude of a carrier wave.As per the modulating signal the amplitude of an analog carrier changes",
+            "image_link":"https://schaumont.dyn.wpi.edu/ece4703b21/_images/bpskinterpolate.png",
+            "color":"#e6d850",
+            "hasTheory":"true",
+            "demoLink":"/DM/BASK",
+            "theoryLink":"/theory/BASK",
+            "pageLink":""
+        },
+        {
+            "title":"BFSK Modulation",
+            "descritption":"Binary FSK is a constant-envelope form of angle modulation similar to conventional frequency modulation except that the modulating signal varies between two discrete voltage levels (i.e., 1's and 0's).",
+            "image_link":"https://eus-www.sway-cdn.com/s/kcfJQ8HIpjTFBth1/images/6TXGLmHe-v25mQ?quality=1280&allowAnimation=true&embeddedHost=true",
+            "color":"#e6d850",
+            "hasTheory":"true",
+            "demoLink":"/DM/BFSK",
+            "theoryLink":"/theory/BFSK",
+            "pageLink":""
+
+        },
+        {
+            "title":"BPSK Modulation",
+            "descritption":"The early and simple form of modulation for radio communication. Explore AM modulator, demodulator, transmission examples, modulation trapeze ...",
+            "image_link":"https://www.researchgate.net/publication/323559089/figure/fig2/AS:779407505518618@1562836638494/The-PDF-of-received-symbols-with-BPSK-modulation-and-AWGN-channel-the-red-region.gif",
+            "color":"#e6d850",
+            "hasTheory":"true",
+            "demoLink":"/DM/BPSK",
+            "theoryLink":"/theory/BFSK",
+            "pageLink":""
+        },
+        {
+            "title":"QPSK Modulation",
+            "descritption":"The early and simple form of modulation for radio communication. Explore AM modulator, demodulator, transmission examples, modulation trapeze ...",
+            "image_link":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSLhNGbU1NvxhkpLqEpJGavlD4BOPB9W3YAA&usqp=CAU",
+            "color":"#e6d850",
+            "hasTheory":"true",
+            "demoLink":"/DM/QPSK",
+            "theoryLink":"/theory/QPSK",
+            "pageLink":""
+        },
+        {
+            "title":"GMSK Modulation",
+            "descritption":"Gaussian Minimum Shift Keying, GMSK is a form of modulation based on frequency shift keying that has no phase discontinuities and provides efficient use of spectrum as well as enabling high efficiency radio power amplifiers.",
+            "image_link":"https://upload.wikimedia.org/wikipedia/commons/4/4f/MSK_modulation.gif",
+            "color":"#e6d850",
+            "hasTheory":"true",
+            "demoLink":"/DM2/GMSK",
+            "theoryLink":"/theory/GMSK",
+            "pageLink":""
+        },
+        {
+            "title":"DPSK Modulation",
+            "descritption":"Differential phase shift keying (DPSK) is a common form of phase modulation that conveys data by changing the phase of the carrier wave.",
+            "image_link":"https://www.tutorialspoint.com/digital_communication/images/model_waveform_of_dpsk.jpg",
+            "color":"#e6d850",
+            "hasTheory":"true",
+            "demoLink":"/DM3/DPSK",
+            "theoryLink":"/theory/D-BPSK",
+            "pageLink":""
+        }
+    ],
+    "PM":[
+        {
+            "title":"Sampling",
+            "descritption":"The early and simple form of modulation for radio communication. Explore AM modulator, demodulator, transmission examples, modulation trapeze ...",
+            "image_link":"https://upload.wikimedia.org/wikipedia/commons/9/97/Amplitudemodulation.gif?20150401022946",
+            "color":"#e6d850",
+            "hasTheory":"true",
+            "demoLink":"-",
+            "theoryLink":"-"
+        },
+        {
+            "title":"Quantization",
+            "descritption":"The early and simple form of modulation for radio communication. Explore AM modulator, demodulator, transmission examples, modulation trapeze ...",
+            "image_link":"https://upload.wikimedia.org/wikipedia/commons/9/97/Amplitudemodulation.gif?20150401022946",
+            "color":"#e6d850",
+            "hasTheory":"true",
+            "demoLink":"-",
+            "theoryLink":"-"
+        },
+        {
+            "title":"PAM(Pulse Amplitude Modulation)",
+            "descritption":"The early and simple form of modulation for radio communication. Explore AM modulator, demodulator, transmission examples, modulation trapeze ...",
+            "image_link":"https://upload.wikimedia.org/wikipedia/commons/9/97/Amplitudemodulation.gif?20150401022946",
+            "color":"#e6d850",
+            "hasTheory":"true",
+            "demoLink":"-",
+            "theoryLink":"-"
+        },
+        {
+            "title":"PPM(Pulse Position Modulation)",
+            "descritption":"The early and simple form of modulation for radio communication. Explore AM modulator, demodulator, transmission examples, modulation trapeze ...",
+            "image_link":"https://upload.wikimedia.org/wikipedia/commons/9/97/Amplitudemodulation.gif?20150401022946",
+            "color":"#e6d850",
+            "hasTheory":"true",
+            "demoLink":"-",
+            "theoryLink":"-"
+        },
+        {
+            "title":"PWM(Pulse Width Modulation)",
+            "descritption":"The early and simple form of modulation for radio communication. Explore AM modulator, demodulator, transmission examples, modulation trapeze ...",
+            "image_link":"https://upload.wikimedia.org/wikipedia/commons/9/97/Amplitudemodulation.gif?20150401022946",
+            "color":"#e6d850",
+            "hasTheory":"true",
+            "demoLink":"-",
+            "theoryLink":"-"
+        },
+        {
+            "title":"PCM(Pulse Code Modulation)",
+            "descritption":"The early and simple form of modulation for radio communication. Explore AM modulator, demodulator, transmission examples, modulation trapeze ...",
+            "image_link":"https://upload.wikimedia.org/wikipedia/commons/9/97/Amplitudemodulation.gif?20150401022946",
+            "color":"#e6d850",
+            "hasTheory":"true",
+            "demoLink":"-",
+            "theoryLink":"-"
+        }
+
+    ]
+}

@@ -7,7 +7,11 @@
     text-decoration: none;
     list-style-type: none;
 }
-
+.buttons-nav{
+    display: flex;
+    margin: auto;
+    justify-content: center;
+}
 .container{
     background-color: rgb(232, 231, 227);
     max-width: 100vw;
@@ -115,4 +119,19 @@ h1{
     height: 150px;
     object-fit: contain;
     border-radius: 10px;
+}
+
+.input-display-section{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 1rem;
+    border-bottom: 2px solid black;
+    align-items: center;
+    background-color: rgb(161, 163, 24);
+}
+
+.input-wrapper.disabled{
+    cursor:none;
+    pointer-events: none;
 }

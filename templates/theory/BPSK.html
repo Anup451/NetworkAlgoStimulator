@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BPSK</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Roboto+Condensed&family=Roboto+Mono&family=Roboto:wght@100&family=Space+Mono&family=Wix+Madefor+Display&display=swap');
+                *{
+                    padding: 0;
+                    margin: 0;
+                    box-sizing: border-box;
+                }
+                .bordered{
+                    border-radius: 10px;
+                }
+                body{
+                    background-color:whitesmoke;
+                    padding: 0;
+                    font-family: 'Wix Madefor Display', sans-serif;
+                }
+                .theory-body{
+                    width: 95vw;
+                    max-width: 900px;
+                    margin: auto;
+                    padding-bottom: 2rem;
+                }
+                nav{
+                    padding: 1rem 3rem;
+                    width: 100vw;
+                    width: 100%;
+                    background-color:rgb(64, 198, 235) ;
+                    display: flex;
+                    justify-content: space-around;
+                }
+                .theory-title{
+                    flex-grow: 1;
+                    text-align: center;
+                    flex-shrink: 0;
+                }
+                
+                .side_heading{
+                    color: rgb(4, 4, 247);
+                    text-align: center;
+                    font-size: 20px;
+                    margin: .5rem 0;
+                }
+                .side_heading_2{
+                    background-color: blue;
+                    border-radius: 10px;
+                    color: white;
+                    text-align: center;
+                    margin-bottom: 1rem;
+                }
+                .side_heading_3{
+                    color: rgb(4, 4, 247);
+                    display: inline-block;
+                    font-weight: bold;
+                    font-size: 18px;
+                }
+                ul{
+                    list-style-type:decimal;
+                    width: fit-content;
+                }
+                .bordered{
+                    border-radius: 15px;
+                }
+                .code {    
+                    font:bold;
+                    font-size: large;
+                    background-color: rgb(204, 213, 210);                
+                    display: flex;
+                    font-family: 'Space Mono', monospace;
+                    width: 90%;
+                    white-space: nowrap;
+                    font-size: 100%;
+                    margin: auto;
+                    text-align: center;
+                    padding: 1rem 2rem;
+                }
+                .code-inline{
+                    margin-top: 5px;
+                    display: inline-block;
+                    width: fit-content;
+                    font-family: 'Space Mono', monospace;
+                    padding: .225rem .25rem;
+                    font-weight: bold;
+                    white-space: nowrap;
+                    font-size: smaller;
+                    background-color: rgb(204, 213, 210);                
+                    text-align: center;
+                    border-radius: 10px;
+                }
+                .point{
+                    padding: .5rem 0;
+                    display: flex;
+                    flex-direction: column;
+                    border-radius: 15px;
+                }
+                .point-list{
+                    display: flex;
+                    gap: 30px;
+                    align-items: center;
+                    padding: .5rem 0;
+                    margin: auto;
+                }
+                .theory-nav-button{
+                    padding: 10px;
+                    background-color: rgba(4, 4, 247, 0.351);
+                    border-radius: 10px;
+                    color: rgb(4, 4, 247);
+                    border: 2px solid rgba(4, 4, 247, 0.351);
+                }
+                .theory-content-and-image{
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    flex-direction: row;
+                    gap: 2rem;
+                    padding-bottom: 1rem;
+                    align-items: center;
+                }
+                .theory-content-and-image .left{
+                    flex-grow: 1;
+                    max-width: 500px;
+                    margin: auto;
+                }
+                .theory-content-and-image .right{
+                    margin: auto;
+                }
+                .theory-images{
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-around;
+                }
+                .flex-column{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                }
+                .non-code{
+                    font-family: 'Wix Madefor Display', sans-serif;
+                }
+                .double-equation{
+                    display: flex;
+                    align-items: center;
+                    position: relative;
+                }
+                .double-equation .right{
+                    flex: 1;
+                    text-align: start;
+    
+                }
+                .middle-bracket{
+                    color: black;
+                    font-size: 4rem;
+                    font-family: 'Roboto', sans-serif;
+                    font-weight: 100;
+                    position: absolute;
+                    top: 2.5px;
+                    left: 97.5px;
+                }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <h1 class="theory-title">Binary phase shift keying (BPSK)</h1>
+        <div class="buttons">
+            <a href="/">
+                <button class="theory-nav-button">
+                    <i class="fa-solid fa-arrow-left">
+                    </i>
+                    Go Home
+                </button>  
+            </a>
+        </div>
+    </nav>
+
+    <section class="theory-body">
+        <span class="point">
+            <p>Binary phase-shift keying (BPSK), in which the carrier amplitude and carrier frequency
+                are both maintained constant, while the carrier phase is keyed between the two
+                possible values (e.g., 0° and 180°) used to represent symbols 0 and 1.
+            </p>    
+        </span>
+
+
+
+            <span class="point">
+                <p>In binary phase-shift keying (BPSK), the pair of signals is used to represent
+                    symbols 1 and 0, respectively, are defined by </p>
+                <span class="code bordered double-equation">
+                    <span class="left">b(t) = &nbsp;&nbsp;</span>
+                    <span class="right">      
+                        <p>&radic;2*E<sub><sub>b</sub></sub>/&radic;T<sub><sub>b</sub></sub>cos(2&pi;f<sub><sub>c</sub></sub>t)&nbsp;&nbsp;<span class="non-code">for symbol 1 corresponding to i = 1</span>
+                        <br/>
+                        <span class="middle-bracket">{</span>
+                        &radic;2*E<sub><sub>b</sub></sub>/&radic;T<sub><sub>b</sub></sub>cos(2&pi;f<sub><sub>c</sub></sub>t)-&radic;2*E<sub><sub>b</sub></sub>/&radic;T<sub><sub>b</sub></sub>cos(2&pi;f<sub><sub>c</sub></sub>t)&nbsp;&nbsp;<span class="non-code">for symbol 0 corresponding to i = 2</span>
+                        </p>
+                    </span>
+                </span>
+                <p>T<sub><sub>b</sub></sub> denoting the bit duration and E<sub><sub>b</sub></sub> denoting the transmitted signal energyper bit. </p>
+            
+            </span>
+
+            <span class="point">
+                <p>
+                    A pair of sinusoidal waves, S<sub><sub>1</sub></sub>(t) and s<sub><sub>2</sub></sub>(t) and which differ only in a relative
+                    phase-shift of &pi; radians as defined in Equation, are referred to as antipodal
+                    signals. 
+                </p>
+                <p>                            
+                    From the two lines of this equation, we see that BPSK is in actual fact a
+                    special case of double-sideband suppressed-carried (DSB-SC) modulation.
+                </p>
+            </span>
+    
+            <h3 class="side_heading">GENERATION AND COHERENT DETECTION OF BPSK SIGNALS</h3>
+        <div class="theory-images">
+            <img class="block" src="/static/images/BPSK/6.png" alt="" width="700px">
+        </div>
+        <span class="point">
+            <h3 class="side_heading_2">Generation</h3>
+            <p>
+                BPSK signal is a special case of DSB-
+                SC modulation. Specifically, we use a product
+                modulator consisting of two components (see
+                Fig):
+            </p>
+            <p>
+                1. Non-return-to-zero level encoder, whereby the
+                input binary data sequence is encoded in polar
+                form with symbols 1 and 0 represented by the
+                constant-amplitude levels: &radic;E<sub><sub>b</sub></sub> 
+                and  -&radic;E<sub><sub>b</sub></sub>, respectively. <br>
+            </p>
+            <p>   
+                2. Product modulator, which multiplies the
+                level-encoded binary wave by the sinusoidal
+                carrier c(t)of amplitude  &radic;2/T<sub><sub>b</sub></sub> to produce the
+                BPSK signal
+            </p>
+        </span>
+         
+         
+        <span class="point">
+            <h5 class="side_heading_3">Detection</h5>
+            <ul class="points-list-column">
+                <li>To detect the original binary sequence of 1s and 0s,
+                    the BPSK signal at the channel output is applied
+                    to a receiver that consists of four sections 
+                </li>
+                <li>
+                    Product modulator, which is also supplied with a
+                    locally generated reference signal that is a replica of
+                    the carrier wave c(t). 
+                </li>
+                <li>
+                    Low-pass filter, designed to remove the double-
+                    frequency components of the product modulator
+                    output (i.e., the components centered on 2f<sub>c</sub> and
+                    pass the zero-frequency components.
+                </li>
+                <li>
+                    Sampler, which uniformly samples the output of the low-pass filter at t=iT<sub>b</sub> where i=0,±1; ±2....; the
+                    local clock governing the operation of the sampler is synchronized with the clock responsible for bit-timing in the
+                    transmitter.
+                </li>
+                <li>
+                    Decision-making device, which compares the sampled value of the low-pass filter's output to an
+                    externally supplied
+                </li>
+                <li>
+                    threshold. If the threshold is exceeded, the device decides in favor of symbol 1; otherwise, it decides in
+                    favor of symbol 0. 
+                </li>
+            </ul>
+            
+        </span>
+        <div class="theory-content-and-image">
+            <div class="left">
+                <span class="point">        
+                    <p>
+                    The BPSK receiver described in Fig. is said to be coherent in the sense that the sinusoidal reference signal
+                    applied to the product modulator in the demodulator is synchronous in phase (and, of course, frequency) with the
+                    carrier wave used in the modulator.This requirement can be achieved by using a phase-locked loop.</p>
+                </span>
+            </div>
+            <div class="right">
+                <img  class="block" src="/static/images/BPSK/bpsk signal.jpg" ali=""  width="280px">
+            </div>
+        </div>
+
+      <h3 class="side_heading_2">Graph of BPSK</h3>
+      <span class="point">
+        <h4 class="side_heading_3">Binary data stream:</h4>
+        <p>A binary data stream is a sequence of digital bits (0s and 1s) that represents information in a digital form. This information could be anything from text, audio, images, or any other digital content. In the context of digital communication systems, a binary data stream is typically used as the input signal to be transmitted over a communication channel.</p>
+      </span>
+      <span class="point">
+        <h4 class="side_heading_3">
+            Carrier wave:
+        </h4>
+        <p>A carrier wave is a high-frequency sinusoidal waveform that is used to transmit the binary data stream over a communication channel. The carrier wave has a fixed frequency and amplitude, and its sole purpose is to modulate the binary data stream. The carrier wave is typically generated by an oscillator or a waveform generator, and its frequency is chosen to be higher than the highest frequency of the binary data stream to be transmitted.</p>
+      </span>
+      <span class="point">
+        <h4 class="side_heading_3">Phase-shift keying:</h4>
+        <p>Phase-shift keying (PSK) is a digital modulation technique that uses the phase of the carrier wave to transmit digital data. In PSK, the phase of the carrier wave is varied to represent the binary data stream. For example, a binary 0 could be represented by a carrier wave with a phase of 0 degrees, while a binary 1 could be represented by a carrier wave with a phase of 180 degrees.</p>
+      </span>
+      <span class="point">
+        <p>To transmit a binary data stream using PSK, the binary data stream is first encoded into a series of digital bits, which are then used to modulate the phase of the carrier wave. At the receiver end, the modulated carrier wave is demodulated to recover the original binary data stream. PSK is a more efficient modulation technique compared to ASK since it requires less bandwidth to transmit the same amount of data. However, it is more complex to implement and is also susceptible to noise and interference.</p>
+      </span>
+    </section>
+</body>
+
+</html>

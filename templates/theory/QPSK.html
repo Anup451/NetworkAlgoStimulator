@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QPSK</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Roboto+Condensed&family=Roboto+Mono&family=Roboto:wght@100&family=Space+Mono&family=Wix+Madefor+Display&display=swap');
+                *{
+                    padding: 0;
+                    margin: 0;
+                    box-sizing: border-box;
+                }
+                .bordered{
+                    border-radius: 10px;
+                }
+                nav{
+                    margin-bottom: 1rem;
+                }
+                body{
+                    background-color:whitesmoke;
+                    padding: 0;
+                    font-family: 'Wix Madefor Display', sans-serif;
+                }
+                .theory-body{
+                    width: 95vw;
+                    max-width: 900px;
+                    margin: auto;
+                    padding-bottom: 2rem;
+                }
+                nav{
+                    padding: 1rem 3rem;
+                    width: 100vw;
+                    width: 100%;
+                    background-color:rgb(64, 198, 235) ;
+                    display: flex;
+                    justify-content: space-around;
+                }
+                .theory-title{
+                    flex-grow: 1;
+                    text-align: center;
+                    flex-shrink: 0;
+                }
+                
+                .side_heading{
+                    color: rgb(4, 4, 247);
+                    text-align: center;
+                    font-size: 20px;
+                    margin: .5rem 0;
+                }
+                .side_heading_2{
+                    background-color: blue;
+                    border-radius: 10px;
+                    color: white;
+                    text-align: center;
+                    margin-bottom: 1rem;
+                }
+                .side_heading_3{
+                    color: rgb(4, 4, 247);
+                    display: inline-block;
+                    font-weight: bold;
+                    font-size: 18px;
+                }
+                ul{
+                    list-style-type:decimal;
+                    width: fit-content;
+                }
+                .bordered{
+                    border-radius: 15px;
+                }
+                .code {    
+                    font:bold;
+                    font-size: large;
+                    background-color: rgb(204, 213, 210);                
+                    display: flex;
+                    font-family: 'Space Mono', monospace;
+                    width: 90%;
+                    white-space: nowrap;
+                    font-size: 100%;
+                    margin: auto;
+                    text-align: center;
+                    padding: 1rem 2rem;
+                }
+                .code-inline{
+                    margin-top: 5px;
+                    display: inline-block;
+                    width: fit-content;
+                    font-family: 'Space Mono', monospace;
+                    padding: .225rem .25rem;
+                    font-weight: bold;
+                    white-space: nowrap;
+                    font-size: smaller;
+                    background-color: rgb(204, 213, 210);                
+                    text-align: center;
+                    border-radius: 10px;
+                }
+                .point{
+                    padding: .5rem 0;
+                    display: flex;
+                    flex-direction: column;
+                    border-radius: 15px;
+                }
+                .point-list{
+                    display: flex;
+                    gap: 30px;
+                    align-items: center;
+                    padding: .5rem 0;
+                    margin: auto;
+                }
+                .theory-nav-button{
+                    padding: 10px;
+                    background-color: rgba(4, 4, 247, 0.351);
+                    border-radius: 10px;
+                    color: rgb(4, 4, 247);
+                    border: 2px solid rgba(4, 4, 247, 0.351);
+                }
+                .theory-content-and-image{
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    flex-direction: row;
+                    gap: 2rem;
+                    padding-bottom: 1rem;
+                    align-items: center;
+                }
+                .theory-content-and-image .left{
+                    flex-grow: 1;
+                    max-width: 500px;
+                    margin: auto;
+                }
+                .theory-content-and-image .right{
+                    margin: auto;
+                }
+                .theory-images{
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-around;
+                }
+                .flex-column{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                }
+                .non-code{
+                    font-family: 'Wix Madefor Display', sans-serif;
+                }
+                .double-equation{
+                    display: flex;
+                    align-items: center;
+                    position: relative;
+                }
+                .double-equation .right{
+                    flex: 1;
+                    text-align: start;
+    
+                }
+                .middle-bracket{
+                    color: black;
+                    font-size: 4rem;
+                    font-family: 'Roboto', sans-serif;
+                    font-weight: 100;
+                    position: absolute;
+                    top: 2.5px;
+                    left: 97.5px;
+                }
+                img{
+                    margin: auto;
+                }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <h1 class="theory-title">Quadriphase - shift keying (QPSK)</h1>
+        <div class="buttons">
+            <a href="/">
+                <button class="theory-nav-button">
+                    <i class="fa-solid fa-arrow-left">
+                    </i>
+                    Go Home
+                </button>  
+            </a>
+        </div>
+    </nav>
+
+    <section class="theory-body">
+<p>An important goal of digital communication is the efficient utilization of channel bandwidth.This goal is attained by a bandwidth-conserving modulation scheme known as quadriphase-shift keying.</p>
+<p>In QPSK, as with BPSK, information carried by the transmitted signal is contained in the phase of a sinusoidal carrier.</p>
+<p>Phase of the sinusoidal carrier takes on one of four equally spaced values, such as π/4, 3π/4, 5π/4, and 7π/4. For this set of values, we
+ define the transmitted signal as</p>   
+        
+ <img src="/static/images/QPSK/first.png" alt="" width="500px">
+   <p>where i=1,2,3,4, E is the transmitted signal energy per symbol and T is the symbol duration.</p> 
+<p>Each one of the four equally spaced phase values corresponds to a unique pair of bits called a dibit.</p>
+<p>For example, Gray encoded set of dibits: 10, 00, 01, and 11. In this form of encoding, we see that only a single bit is changed from one
+    dibit to the next.</p>
+<p>Note that the symbol duration (i.e., the duration of each dibit) is twice the bit duration, as shown by</p>
+<p>T = 2T<sub>b</sub></p>
+<p><b>Using trigonometric identity</b></p>
+
+<img src="/static/images/QPSK/second.png" alt="" width="500px"><br><br>
+where i = 1, 2, 3, 4. Based on the expanded form of above Equation, we can make some important
+observations:<br>
+<p>1. In reality, the QPSK signal consists of the sum of two BPSK signals.<br>
+   <br> 2. One BPSK signal, represented by the first term</p>
+<img src="/static/images/QPSK/third.png" alt="" width="300px"><br>
+defines the product of modulating a binary wave by the sinusoidal carrier
+&radic;2/T cos(2πf<sub>c</sub>t), which has unit energy over the symbol duration T. We also recognize
+that<br>
+<img src="/static/images/QPSK/fourth.png" alt="" width="350px"><br>
+<p>We therefore see that this binary wave has an amplitude equal to ±&radic;E/2. </p>
+<p>3.The other BPSK signal, represented by the second term</p><br>
+<img src="/static/images/QPSK/fifth.png" alt="" width="300px"><br>
+<p>defines the product of modulating a different binary wave by the sinusoidal carrier
+    &radic;2/T sin(2πf<sub>c</sub>t) which also has unit energy per symbol. This time, we recognize that</p>
+    <img src="/static/images/QPSK/sixth.png" alt="" width="350px">   
+<p>We therefore see that this second binary wave also has an amplitude equal to
+    ±&radic;E/2 albeit in a different way with respect to the index i.</p>
+
+
+<p>4.The two binary waves defined in last two  Equations share a common value for the
+    symbol duration-namely, T.</p>
+
+    <p>5.The two sinusoidal carrier waves identified under points 2 and 3 are in phase quadrature
+        with respect to each other. Moreover, they both have unit energy per symbol
+        duration. We may therefore state that these two carrier waves constitute an orthonormal
+        pair of basis functions.</p>
+        <p>6.For each possible value of the index i, last two Equations identity the corresponding
+            dibit, as outlined in Table. This table also includes other related entries
+            pertaining to the phase of the QPSK signal, and the amplitudes of the two binary
+            waves identified under points 2 and 3.</p>
+
+
+
+     
+        <div class="side_heading">
+            <h3>GENERATION AND COHERENT DETECTION OF QPSK SIGNALS</h3>
+
+        </div>
+        <img class="b1" src="/static/images/QPSK/block_1.png" alt="" width="600px">
+        <p><b>Generation:</b> To generate the QPSK signal, the incoming binary data stream is first converted into polar form by a non-return-to-zero level encoder; the encoder output is denoted by b(t).<br>
+            
+        • Symbols 1 and 0 are thereby represented by  &radic;E<sub>b</sub> and  -&radic;E<sub>b</sub> where E<sub>b</sub> = E/2. <br>
+        • The resulting binary wave is next divided by means of a demultiplexer(consisting of a serial-to-parallel converter) into two separate binary waves consisting of the odd- and even numbered input bits of b(t). <br>
+        • These two binary waves, referred to as the demultiplexed components of the input binary wave, are denoted by a<sub>1</sub>(t) and a<sub>2</sub>(t). <br>
+        • The demultiplexed binary waves and a<sub>1</sub>(t) and a<sub>2</sub>(t) are used to modulate the pair of quadrature carriers-namely   &radic;2/T cos(2πf<sub>c</sub>t) and &radic;2/T sin(2πf<sub>c</sub>t).<br>
+        • Finally, the two BPSK signals are subtracted to produce the desired QPSK signals.</p>
+        
+    
+       
+        <p>   <img class="b2" src="/static/images/QPSK/block_2.png" alt="" width="600px">
+        <h4 class="side_heading_2">Detection:</h4> 
+        The design of the QPSK receiver builds on the
+            strategy described for the coherent BPSK receiver. <br>
+            • The QPSK receiver consists of an in-phase (I)-channel
+            and quadrature (Q)-channel with a common input.  <br>
+            • Each channel is itself made up of a product
+            modulator, low-pass filter, sampler, and decision-
+            making device. <br>
+            • Under ideal conditions, the I- and Q-channels of the
+            receiver, respectively, recover the demultiplexed
+            components a<sub>1</sub>(t) and a<sub>2</sub>(t) responsible for modulating the orthogonal pair of carriers in the
+            transmitter. <br>
+            • Accordingly, by applying the outputs of these two
+            channels to a multiplexer (consisting of a parallel-to-
+            serial converter), the receiver recovers the original
+            binary sequence. <br>
+            • Specifically, each of the two low-pass filters in the
+            coherent QPSK receiver of Fig. must be
+            assigned a bandwidth equal to or greater than the
+            reciprocal of the symbol duration T for satisfactory
+            operation Of the receiver.</p>
+     
+
+
+    </section>
+
+
+
+</body>
+
+</html>
