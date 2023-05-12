@@ -58,30 +58,22 @@
     <div class="inputs"> 
 
       <div class="input-wrapper">
-          <label for="freqc">Message Frequency</label>
-          <input type="number" id="freqc" name="fm" class="input-bar" required>
+        <label for="freqc">Binary Data Stream</label>
+        <input type="text" id="freqc" name="data_stream" class="input-bar" placeholder="eg: 1010010" required>
       </div>
       <div class="input-wrapper">
-          <label for="freqc">Message Amplitude</label>
-          <input type="number" id="freqc" name="am" class="input-bar" required>
+        <label for="freqc">Carrier Frequency</label>
+        <input type="number" id="freqc" name="fc" class="input-bar" placeholder="eg: 800"  required>
       </div>
       <div class="input-wrapper">
-          <label for="freqc">Message Phase</label>
-          <input type="number" id="freqc" name="pm" class="input-bar"  required>
+        <label for="freqc">Oversampling Factor</label>
+        <input type="number" id="freqc" name="osmp_factor" class="input-bar" placeholder="eg: 16"  required>
+      </div>
+      <div class="input-wrapper">
+          <label for="freqc">Bandwidth x Bit period</label>
+          <input type="number" step="any" id="freqc" name="bt_prod" class="input-bar" placeholder="eg: 0.25" required>
       </div>
 
-      <div class="input-wrapper">
-          <label for="freqc">Carrier Frequency</label>
-          <input type="number" id="freqc" name="fc" class="input-bar"  required>
-      </div>
-      <div class="input-wrapper">
-          <label for="freqc">Carrier Amplitude</label>
-          <input type="number" id="freqc" name="ac" class="input-bar" required>
-      </div>
-      <div class="input-wrapper">
-          <label for="freqc">Carrier Phase</label>
-          <input type="number" id="freqc" name="pc" class="input-bar" required>
-      </div>
 
       <br>
     </div>
@@ -94,7 +86,23 @@
 
 </div>
 
-<div class="plot-wrapper">  
+<div class="plot-wrapper">
+  {% if inputs|length%}
+    <div class="input-display-section">
+      {%for key, value in inputs.items()%}
+      <article class="selected-value">
+        <span>{{key}}</span>: 
+        <span>{{value}} 
+          {%if key=="Am" or key=="Ac"%}
+            Volts
+          {%elif key=="fm" or key=="fc" %}
+            KHz
+          {%endif%}
+        </span>
+      </article>
+      {%endfor%}
+    </div>
+  {%endif%}  
   
   {% if plots | length == 0%}
   <p class="info">Please select the values to generate the graph</p>

@@ -1,7 +1,7 @@
 {
     "Home":[
         {
-            "title":"Amplitude Modulation",
+            "title":"Analog Modulation",
             "descritption":"The early and simple form of modulation for radio communication. Explore AM modulator, demodulator, transmission examples, modulation trapeze ...",
             "image_link":"https://upload.wikimedia.org/wikipedia/commons/9/97/Amplitudemodulation.gif?20150401022946",
             "color":"#e6d850",
@@ -28,7 +28,8 @@
             "hasTheory":"false",
             "demoLink":"-",
             "theoryLink":"-",
-            "pageLink":"/PM"
+            "pageLink":"/PM",
+            "display":"none"
         }
     ],
     "AM":[
@@ -139,12 +140,22 @@
         },
         {
             "title":"GMSK Modulation",
-            "descritption":"The early and simple form of modulation for radio communication. Explore AM modulator, demodulator, transmission examples, modulation trapeze ...",
-            "image_link":"https://upload.wikimedia.org/wikipedia/commons/9/97/Amplitudemodulation.gif?20150401022946",
+            "descritption":"Gaussian Minimum Shift Keying, GMSK is a form of modulation based on frequency shift keying that has no phase discontinuities and provides efficient use of spectrum as well as enabling high efficiency radio power amplifiers.",
+            "image_link":"https://upload.wikimedia.org/wikipedia/commons/4/4f/MSK_modulation.gif",
             "color":"#e6d850",
             "hasTheory":"true",
             "demoLink":"/DM2/GMSK",
             "theoryLink":"/theory/GMSK",
+            "pageLink":""
+        },
+        {
+            "title":"DPSK Modulation",
+            "descritption":"Differential phase shift keying (DPSK) is a common form of phase modulation that conveys data by changing the phase of the carrier wave.",
+            "image_link":"https://www.tutorialspoint.com/digital_communication/images/model_waveform_of_dpsk.jpg",
+            "color":"#e6d850",
+            "hasTheory":"true",
+            "demoLink":"/DM3/DPSK",
+            "theoryLink":"/theory/GPSK",
             "pageLink":""
         }
     ],

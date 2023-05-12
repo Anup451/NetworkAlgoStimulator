@@ -340,66 +340,164 @@ def QPSK(Tb, fc, inputBinarySeq):
 
 
 # ------- GMSK ---------------
-def GMSK(fm, Am, phi_m, fc, Ac, phi_c):
-    Tm = 1/fm
-    Tc = 1/fc
-    t = np.linspace(0, 2*Tm, 200)
+def gaussianLPF(BT, Tb, L, k):
+    """
+    Generate filter coefficients of Gaussian low pass filter (used in gmsk_mod)
+    Parameters:
+        BT : BT product - Bandwidth x bit period
+        Tb : bit period
+        L : oversampling factor (number of samples per bit)
+        k : span length of the pulse (bit interval)        
+    Returns:
+        h_norm : normalized filter coefficients of Gaussian LPF
+    """
+    B = BT/Tb # bandwidth of the filter
+    # truncated time limits for the filter
+    t = np.arange(start = -k*Tb, stop = k*Tb + Tb/L, step = Tb/L)
+    h = B*np.sqrt(2*np.pi/(np.log(2)))*np.exp(-2 * (t*np.pi*B)**2 /(np.log(2)))
+    h_norm=h/np.sum(h)
+    return h_norm
 
-    m = Am*np.sin(2*np.pi*fm*t + phi_m)
-    c = Ac*np.sin(2*np.pi*fc*t + phi_c)
+def GMSK(a,fc,L,BT):
+    """
+    Function to modulate a binary stream using GMSK modulation
+    Parameters:
+        a : input binary data stream (0's and 1's) to modulate (string)
+        fc : RF carrier frequency in Hertz
+        L : oversampling factor
+        BT : BT product (bandwidth x bit period) for GMSK
+    Returns:
+        (s_t,s_complex) : tuple containing the following variables
+            s_t : GMSK modulated signal with carrier s(t)
+            s_complex : baseband GMSK signal (I+jQ)
+    """
+    from scipy.signal import upfirdn,lfilter
+    
+    # Change String of DataStream to numpy array
+    a = np.array(list(a), dtype=int)
 
-    bpsk = np.zeros(len(t))
-    prev_bit = 0
-    for i in range(len(t)):
-        if m[i] > 0:
-            if prev_bit == 0:
-                bpsk[i] = np.pi
-                prev_bit = 1
-            else:
-                bpsk[i] = 0
-                prev_bit = 0
-        else:
-            bpsk[i] = bpsk[i-1]
+    fs = L*fc; Ts=1/fs;Tb = L*Ts; # derived waveform timing parameters
+    c_t = upfirdn(h=[1]*L, x=2*a-1, up = L) #NRZ pulse train c(t)
+    
+    k=1 # truncation length for Gaussian LPF
+    h_t = gaussianLPF(BT,Tb,L,k) # Gaussian LPF with BT=0.25
+    b_t = np.convolve(h_t,c_t,'full') # convolve c(t) with Gaussian LPF to get b(t)
+    bnorm_t = b_t/max(abs(b_t)) # normalize the output of Gaussian LPF to +/-1
+    
+    h = 0.5
+    # integrate to get phase information
+    phi_t = lfilter(b = [1], a = [1,-1], x = bnorm_t*Ts) * h*np.pi/Tb 
+    
+    I = np.cos(phi_t)
+    Q = np.sin(phi_t) # cross-correlated baseband I/Q signals
+    
+    s_complex = I - 1j*Q # complex baseband representation
+    t = Ts* np.arange(start = 0, stop = len(I)) # time base for RF carrier
+    sI_t = I*np.cos(2*np.pi*fc*t); sQ_t = Q*np.sin(2*np.pi*fc*t)
+    s_t = sI_t - sQ_t # s(t) - GMSK with RF carrier
+    
+    
+    fig, axs = plt.subplots(2, 4, figsize=(15, 5))
 
+    # Adjust vertical spacing between subplots
+    fig.subplots_adjust(hspace=0.4)
 
-    plt.figure(figsize=(10,6))
+    axs[0,0].plot(np.arange(0,len(c_t))*Ts,c_t);
+    axs[0,0].set_title('c(t)');axs[0,0].set_xlim(0,40*Tb)
 
-    plt.subplot(3,1,1)
-    plt.plot(t, m, 'b-', linewidth=2)
-    plt.xlabel('Time (s)')
-    plt.ylabel('Amplitude')
-    plt.title('Message Signal')
+    axs[0,1].plot(np.arange(-k*Tb,k*Tb+Ts,Ts),h_t);
+    axs[0,1].set_title('$h(t): BT_b$='+str(BT))
+
+    axs[0,2].plot(t,I,'--');axs[0,2].plot(t,sI_t,'r');
+    axs[0,2].set_title('$I(t)cos(2 \pi f_c t)$');axs[0,2].set_xlim(0,10*Tb)
+
+    axs[0,3].plot(t,Q,'--');axs[0,3].plot(t,sQ_t,'r');
+    axs[0,3].set_title('$Q(t)sin(2 \pi f_c t)$');axs[0,3].set_xlim(0,10*Tb)
+
+    axs[1,0].plot( np.arange(0,len(bnorm_t))*Ts,bnorm_t);
+    axs[1,0].set_title('b(t)');axs[1,0].set_xlim(0,40*Tb)
+
+    axs[1,1].plot(np.arange(0,len(phi_t))*Ts, phi_t);
+    axs[1,1].set_title('$\phi(t)$')
+
+    axs[1,2].plot(t,s_t);axs[1,2].set_title('s(t)');
+    axs[1,2].set_xlim(0,20*Tb)
+    axs[1,3].plot(I,Q);axs[1,3].set_title('constellation')
+
+    # fig.show()
+
     # Save
     data = BytesIO()
     plt.savefig(data,format="png",bbox_inches='tight' )
     data.seek(0)
-    msgSignal = data.getvalue().hex()
+    All_plots = data.getvalue().hex()
     plt.figure()
     
+    return [All_plots]
 
-    plt.subplot(3,1,2)
-    plt.plot(t, c, 'r-', linewidth=2)
-    plt.xlabel('Time (s)')
-    plt.ylabel('Amplitude')
-    plt.title('Carrier Signal')
-    # Save
-    data = BytesIO()
-    plt.savefig(data,format="png",bbox_inches='tight' )
-    data.seek(0)
-    carrierSignal = data.getvalue().hex()
-    plt.figure()
 
-    plt.subplot(3,1,3)
-    plt.plot(t, Ac*np.sin(2*np.pi*fc*t+bpsk), 'g-', linewidth=2)
-    plt.xlabel('Time (s)')
-    plt.ylabel('Amplitude')
-    plt.title('DPSK Modulated Signal')
+# -------DPSK ----------
+def DPSK(fm, Am, phi_m, fc, Ac, phi_c):
+    # Define the time domain
+    t_start = 0
+    t_stop = 1
+    t_step = 0.00001 
+    t = np.arange(t_start, t_stop, t_step)
+
+    # # Get user input values
+    # fm = float(input("Enter the frequency of the message signal (in Hz): "))
+    # Am = float(input("Enter the amplitude of the message signal: "))
+    # phi_m = float(input("Enter the phase of the message signal (in radians): "))
+    # fc = float(input("Enter the frequency of the carrier signal (in Hz): "))
+    # Ac = float(input("Enter the amplitude of the carrier signal: "))
+    # phi_c = float(input("Enter the phase of the carrier signal (in radians): "))
+
+    # fm = 10
+    # Am = 1
+    # phi_m = 0
+    # fc = 100
+    # Ac = 1
+    # phi_c = 90
+
+    m = Am * np.cos(2 * np.pi * fm * t + phi_m)
+
+    c = Ac * np.cos(2 * np.pi * fc * t + phi_c)
+
+    delta_phi = np.pi / 2
+    s = Ac * np.cos(2 * np.pi * fc * t + phi_c + delta_phi * (m > 0))
+
+    c_demod = Ac * np.cos(2 * np.pi * fc * t)
+
+    r = s * c_demod
+
+    fig, axs = plt.subplots(5, 1, figsize=(20, 20))
+
+    axs[0].plot(t, m)
+    axs[0].set_title("Message signal")
+
+    axs[1].plot(t, c)
+    axs[1].set_title("Carrier signal")
+
+    axs[2].plot(t, s)
+    axs[2].set_title("DPSK-modulated signal")
+
+    axs[3].plot(t, c_demod)
+    axs[3].set_title("Carrier signal for demodulation")
+
+    axs[4].plot(t, r)
+    axs[4].set_title("DPSK-demodulated signal")
+
+    for ax in axs:
+        ax.set_xlabel("Time (s)")
+        ax.set_ylabel("Amplitude")
+
     plt.tight_layout()
+    
     # Save
     data = BytesIO()
     plt.savefig(data,format="png",bbox_inches='tight' )
     data.seek(0)
-    modSignal = data.getvalue().hex()
+    All_plots = data.getvalue().hex()
     plt.figure()
     
-    return [msgSignal, carrierSignal, modSignal]
+    return [All_plots]

@@ -1,16 +1,23 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import math
 from .util import *
 
 def AM_main_graph(inputs):
     graphs = []
-
-    [Am,Ac,fm,fc,message_signal] = inputs
+    Am,Ac,fm,fc,message_signal = inputs.values()
     condition = "scatter"
     x_carrier = create_domain_AM(fc)
     x_message = create_domain_AM(fm)
     x_modulated = x_carrier if(len(x_carrier)<len(x_message)) else x_message
-
+    if(fm<50): 
+        fm = int(math.ceil(fm / 10.0)) * 10
+    if(fc<50):
+        fc = int(math.ceil(fc / 10.0)) * 10
+    if(fm>50): 
+        fm = int(math.ceil(fm / 50.0)) * 50
+    if(fc>50):
+        fc = int(math.ceil(fc / 50.0)) * 50
     carrier = Ac*np.cos(2*np.pi*fc*x_carrier)
 
     if(message_signal=="sin"):
@@ -39,17 +46,26 @@ def AM_main_graph(inputs):
 
 
 def AM_double_sideband_modulation(inputs):
-    [Am,Ac,fm,fc,message_signal,phi] = inputs
+    
+    Am,Ac,fm,fc,message_signal,phi = inputs.values()
     condition = "scatter"
 
     x_carrier = create_domain_AM(fc)
     x_message = create_domain_AM(fm)
     x_modulated = x_carrier if(len(x_carrier)<len(x_message)) else x_message
 
+    if(fm<50): 
+        fm = int(math.ceil(fm / 10.0)) * 10
+    if(fc<50):
+        fc = int(math.ceil(fc / 10.0)) * 10
+    if(fm>50): 
+        fm = int(math.ceil(fm / 50.0)) * 50
+    if(fc>50):
+        fc = int(math.ceil(fc / 50.0)) * 50
 
     carrier = Am*np.cos(2*np.pi*fc*x_carrier)
     if message_signal=="sin":
-        demodulated_wave = Ac**2/2*np.cos(phi)*np.sin(2*np.pi*fm*x_message)
+        demodulated_wave = Ac**2*Am/2*np.sin(2*np.pi*fm*x_message)
         message = Am*np.sin(2*np.pi*fm*x_message)
         modulated_wave = Am*np.sin(2*np.pi*fm*x_message)*Ac*np.cos(2*np.pi*fc*x_modulated)
     elif message_signal=='tri':
@@ -57,12 +73,11 @@ def AM_double_sideband_modulation(inputs):
         demodulated_wave = triangular(x, 0.01*Am*Ac)
         modulated_wave = Am*np.cos(2*np.pi*fm*x_message)*Ac*np.cos(2*np.pi*fc*x_modulated)
     elif message_signal=='cos':
-        demodulated_wave = Ac**2/2*np.cos(phi)*np.cos(2*np.pi*fm*x_message)
+        demodulated_wave = Ac**2*Am/2*np.cos(2*np.pi*fm*x_message)    
         message = Am*np.cos(2*np.pi*fm*x_message)
         modulated_wave = Am*np.cos(2*np.pi*fm*x_message)*Ac*np.cos(2*np.pi*fc*x_modulated)
 
-    modulated_wave = message*carrier
-
+    
 
     a = plot_graph(condition = condition, x = x_message, y = message, title = "Message Signal", color = 'y')
     b = plot_graph(condition = condition, x = x_carrier, y = carrier, title = "Carrier Signal", color = 'g')
@@ -74,20 +89,29 @@ def AM_double_sideband_modulation(inputs):
 
 
 def AM_ssb_modulation(inputs):
-    [Am,Ac,fm,fc,message_signal] = inputs
+    Am,Ac,fm,fc,message_signal = inputs.values()
     condition = "scatter"
     
     x_carrier = create_domain_AM(fc)
-    x_message = create_domain_AM(fc)
+    x_message = create_domain_AM(fm)
     x_modulated = x_carrier if(len(x_carrier)<len(x_message)) else x_message    
     
     carrier = Ac*np.cos(2*np.pi*fc*x_carrier)
+
+    if(fm<50): 
+        fm = int(math.ceil(fm / 10.0)) * 10
+    if(fc<50):
+        fc = int(math.ceil(fc / 10.0)) * 10
+    if(fm>50): 
+        fm = int(math.ceil(fm / 50.0)) * 50
+    if(fc>50):
+        fc = int(math.ceil(fc / 50.0)) * 50
 
     if message_signal=="sin":
         demodulated_wave = (Am*Ac**2*np.sin(2*np.pi*fm*x_message))/4
         message = Am*np.sin(2*np.pi*fm*x_message)
         modulated_positive = 1/2*Am*Ac*(np.sin(2*(fc-fm)*np.pi*x_modulated))
-        modulated_negative = 1/2*Am*Ac*(np.sin(2*(fc-fm)*np.pi*x_modulated))
+        modulated_negative = 1/2*Am*Ac*(np.sin(2*(fc+fm)*np.pi*x_modulated))
     elif message_signal=="cos":
         message = Am*np.cos(2*np.pi*fm*x_message)
         demodulated_wave = Am*Ac**2*np.cos(2*np.pi*fm*x_message)/4
@@ -103,18 +127,27 @@ def AM_ssb_modulation(inputs):
     
     a = plot_graph(condition = condition, x = x_message, y = message,color='g', title = "Message Signal")
     b = plot_graph(condition = condition, x = x_carrier, y = carrier,color='m', title = "Carrier Signal")
-    c = plot_graph(condition = condition, x = x_modulated, y = modulated_positive,color='r', title = "Modulated wave 1")
-    d = plot_graph(condition = condition, x = x_modulated, y = modulated_negative,color='b', title = "Modulated wave 2")
+    c = plot_graph(condition = condition, x = x_modulated, y = modulated_positive,color='r', title = "Modulated wave 1",text="upper Sideband")
+    d = plot_graph(condition = condition, x = x_modulated, y = modulated_negative,color='b', title = "Modulated wave 2",text="lower Sideband")
     e = plot_graph(condition = condition, x = x_message, y=demodulated_wave,color='r', title="demodulated wave")
     
     return [a,b,c,d,e]
 
 def AM_QAM(inputs):
-    [Am,Ac,fm,fc,message_signal,message_signal_2] = inputs
+    Am,Ac,fm,fc,message_signal,message_signal_2 = inputs.values()
     condition="scatter"
     x_carrier = create_domain_AM(fc)
     x_message = create_domain_AM(fc)
     x_modulated = x_carrier if(len(x_carrier)<len(x_message)) else x_message
+
+    if(fm<50): 
+        fm = int(math.ceil(fm / 10.0)) * 10
+    if(fc<50):
+        fc = int(math.ceil(fc / 10.0)) * 10
+    if(fm>50): 
+        fm = int(math.ceil(fm / 50.0)) * 50
+    if(fc>50):
+        fc = int(math.ceil(fc / 50.0)) * 50
 
     c1 = Ac*np.cos(2*np.pi*fc*x_carrier)
     c2 = Ac*np.sin(2*np.pi*fc*x_carrier)

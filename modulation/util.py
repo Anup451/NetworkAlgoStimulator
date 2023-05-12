@@ -6,7 +6,7 @@ def triangular(x,A):
     return np.absolute(np.fmod(np.absolute(x),2*A)-A)
     
 
-def plot_graph(x,y,title,xlabel="Volts",ylabel="Frequncy",color="b",condition="scatter"):
+def plot_graph(x,y,title,xlabel="Volts",ylabel="Frequncy",color="b",condition="scatter",text=""):
     plt.style.use('seaborn')
     fig, ax = plt.subplots()
     fig = plt.figure(figsize=(20,3))
@@ -15,7 +15,8 @@ def plot_graph(x,y,title,xlabel="Volts",ylabel="Frequncy",color="b",condition="s
     plt.title(title)
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
-
+    if text!="":
+        plt.text(-210, 5, text, fontsize=14, ha='center', va='center',rotation=90)
     if(condition=="scatter"):
         plt.scatter(x,y,c=color,s=s)        
     else: 
@@ -39,13 +40,14 @@ def plot_axis(fig,ax):
     ax.yaxis.set_ticks_position('left')
 
 def create_domain_AM(frequency):
-    if frequency<100:
-        x = np.linspace(-200,200,2000) 
-    elif frequency>=100 and frequency<=500:
-        x = np.linspace(-200,200,4000)
-    elif frequency>500 and frequency<=1000:
-        x = np.linspace(-200,200,4000)
+    x= np.linspace(-200,200,10000)
+    if frequency>=50 and frequency<=2000:
+        x = np.linspace(-200,200,10000)
+    elif frequency<50:
+        x = np.linspace(-200,200,1000) 
     elif frequency>2000:
         x = np.linspace(-200,200,12000)
     return x
 
+def destructure_dict(d, *keys):
+    return (d[k] for k in keys)
