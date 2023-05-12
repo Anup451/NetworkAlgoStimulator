@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frequency modulation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Roboto+Condensed&family=Roboto+Mono&family=Space+Mono&family=Wix+Madefor+Display&display=swap');
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .bordered{
+            border-radius: 10px;
+        }
+        body{
+            background-color:whitesmoke;
+            padding: 0;
+            font-family: 'Wix Madefor Display', sans-serif;
+        }
+        .theory-body{
+            width: 95vw;
+            max-width: 900px;
+            margin: auto;
+            padding-bottom: 2rem;
+        }
+        nav{
+            padding: 1rem 3rem;
+            width: 100vw;
+            width: 100%;
+            background-color:rgb(64, 198, 235) ;
+            display: flex;
+            justify-content: space-around;
+        }
+        .theory-title{
+            flex-grow: 1;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        
+        .side_heading{
+            color: rgb(4, 4, 247);
+            text-align: center;
+            font-size: 20px;
+            margin: .5rem 0;
+        }
+        .side_heading_2{
+            background-color: blue;
+            border-radius: 10px;
+            color: white;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        ul{
+            list-style-type:decimal;
+            width: fit-content;
+        }
+        .bordered{
+            border-radius: 15px;
+        }
+        .code {    
+            font:bold;
+            font-size: large;
+            background-color: rgb(204, 213, 210);                
+            display: flex;
+            font-family: 'Space Mono', monospace;
+            width: 90%;
+            margin: auto;
+            text-align: center;
+            padding: 1rem 2rem;
+        }
+        .code-inline{
+            margin-top: 5px;
+            display: inline-block;
+            width: fit-content;
+            font-family: 'Space Mono', monospace;
+            padding: .225rem .25rem;
+            font-weight: bold;
+            font-size: smaller;
+            background-color: rgb(204, 213, 210);                
+            text-align: center;
+            border-radius: 10px;
+        }
+        .point{
+            padding: .5rem 0;
+            display: flex;
+            flex-direction: column;
+            border-radius: 15px;
+        }
+        .point-list{
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            padding: .5rem 0;
+            margin: auto;
+        }
+        .theory-nav-button{
+            padding: 10px;
+            background-color: rgba(4, 4, 247, 0.351);
+            border-radius: 10px;
+            color: rgb(4, 4, 247);
+            border: 2px solid rgba(4, 4, 247, 0.351);
+        }
+        .theory-content-and-image{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            flex-direction: row;
+            gap: 2rem;
+            padding-bottom: 1rem;
+            align-items: center;
+        }
+        .theory-content-and-image .left{
+            flex-grow: 1;
+            max-width: 500px;
+            margin: auto;
+        }
+        .theory-content-and-image .right{
+            margin: auto;
+        }
+        .theory-images{
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+        .flex-column{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        code {
+            font-weight: bold;
+            font-size: large;
+            background-color: rgb(255, 255, 255);
+            padding: 0px 100px 3px 15px;
+        }
+
+        .plt{
+            padding-left: 50px;
+            width:400px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h1 class="theory-title">Frequency Modulation</h1>
+        <div class="buttons">
+            <a href="/">
+                <button class="theory-nav-button">
+                    <i class="fa-solid fa-arrow-left">
+                    </i>
+                    Go Home
+                </button>  
+            </a>
+        </div>
+    </nav>
+
+
+    <section class="theory-body">
+        <h3 class="side_heading">Frequency Modulation</h3>
+        <div class="theory-content-and-image">
+            <div class="left">
+                <span class="point">
+                    <p>
+                        Frequency Modulation is the process of varying the frequency of the carrier signal linearly with the message signal.<br>
+                        <br>In amplitude modulation, the amplitude of the carrier signal varies. Whereas, in Frequency Modulation (FM), the frequency of the carrier signal varies in accordance with the instantaneous amplitude of the modulating signal.<br>
+                        <br>Hence, in frequency modulation, the amplitude and the phase of the carrier signal remains constant. This can be better understood by observing the following figures.<br>
+                    </p>                
+                </span>
+            </div>
+            <div class="right">
+                <img src="/static/images/FREQMOD/freq1.png" alt="freq mod" width="270px;">
+            </div>
+        </div>
+        <div class="theory-images">
+            <img class="plt"  src="/static/images/FREQMOD/freq2.png" alt="freq mod" width="270px;">
+            <img class="plt"  src="/static/images/FREQMOD/freq3.png" alt="freq mod" width="270px;">
+        </div>
+        <span class="point">
+            <p>
+                The frequency of the modulated wave increases, when the amplitude of the modulating or message signal increases. Similarly, the frequency of the modulated wave decreases, when the amplitude of the modulating signal decreases.
+                <br>Note that, the frequency of the modulated wave remains constant and it is equal to the frequency of the carrier signal, when the amplitude of the modulating signal is zero.
+            </p>        
+        </span>
+
+        <h4 class="side_heading">Derivation</h4>
+    <span class="point">
+        <p>
+            The equation for instantaneous frequency f<sub><sub>i</sub></sub> in FM modulation is:
+        </p>
+        <p class="code bordered">
+            f<sub><sub>i</sub></sub> = f<sub><sub>c</sub></sub> + k<sub><sub>f</sub></sub> m(t)</code>
+        </p>
+    </span>
+    <span class="point">
+        <p>Where, fc is the carrier frequency, k<sub><sub>f</sub></sub> is the frequency sensitivity m(t) is the message signal.</p>
+        <p>We know the relationship between angular frequency &omega;<sub><sub>i</sub></sub> and angle &theta;<sub><sub>i</sub></sub>(t) as</p>
+        <p class="code bordered">&omega;<sub><sub>i</sub></sub> = d&theta;<sub><sub>i</sub></sub>(t)/dt</p>
+    </span>
+    <span class="point">
+        <p class="code" style="border-radius:10px 10px 0px 0px ;">2&pi;f<sub><sub>i</sub></sub> = d&theta;<sub><sub>i</sub></sub>(t)/dt </p>
+        <p class="code" style="border-radius:0px 0px 10px 10px ;">&theta;<sub><sub>i</sub></sub>(t) = 2&pi; &Integral;f<sub><sub>i</sub></sub>dt </p>
+    </span>
+    <span class="point">
+        <p>Substitute, f<sub><sub>i</sub></sub> value in the above equation.</p>
+        <p class="code bordered">&theta;<sub><sub>i</sub></sub>(t) = 2&pi; &Integral;( f<sub><sub>c</sub></sub> + k<sub><sub>f</sub></sub> m(t) )dt</p>
+    </span>
+    <span class="point">
+        <p>Substitute, &theta;<sub><sub>i</sub></sub>(t) value in the standard equation of angle modulated wave.</p>
+        <p class="code bordered">
+            s(t) = A<sub><sub>c</sub></sub>cos( 2&pi;f<sub><sub>c</sub></sub>t + 2&pi;k<sub><sub>f</sub></sub> &Integral;m(t)dt )
+        </p>
+    </span>
+    <span class="point">
+        <p>
+            This is the <strong>equation of FM wave</strong>. <br>If the modulating signal is m(t) = A<sub><sub>m</sub></sub> cos(2&pi;f<sub><sub>m</sub></sub>t) , then the equation of FM wave will be:<br>
+        </p>
+        <p class="code bordered">
+            s(t) = A<sub><sub>c</sub></sub>cos( 2&pi;f<sub><sub>c</sub></sub>t + &beta;sin(2&pi;f<sub><sub>m</sub></sub>t )
+        </p>
+        <p>
+            where <span class="code-inline"> &beta; = modulation index = &Delta;f/f<sub><sub>m</sub></sub> = k<sub><sub>f</sub></sub>A<sub><sub>m</sub></sub>/f<sub><sub>m</sub></sub></span>
+        </p>
+
+    </span>
+    <span class="point">
+        <p>
+            The difference between FM modulated frequency (instantaneous frequency) and normal carrier frequency is termed as 
+            <strong>Frequency Deviation</strong>. It is denoted by &Delta;f , which is equal to the product of k<sub><sub>f</sub></sub> and A<sub><sub>m</sub></sub>.<br>
+            FM can be divided into <strong>Narrowband FM</strong> and <strong>Wideband FM</strong> based on the values of modulation index &beta;
+        </p>    
+    </span>
+
+    <h3 class="side_heading_2">Narrowband FM</h3>
+    <p>
+        Following are the features of Narrowband FM.
+        <ul style="margin: auto;padding: .5rem 0rem;">
+            <li>This frequency modulation has a small bandwidth when compared to wideban.</li>
+            <li>The modulation index &beta; is small, i.e., less than 1.</li>
+            <li>Its spectrum consists of the carrier, the upper sideband and the lower side.</li>
+            <li>This is used in mobile communications such as police wireless, ambulances, taxicabs,.</li>
+        </ul>
+    </p>
+    <h3 class="side_heading_2">Wideband FM</h3>
+    <p>
+        Following are the features of Wideband FM.
+        <ul style="margin: auto;padding-top: .5rem 0rem;">
+            <li>This frequency modulation has infinite bandwidth.</li>
+            <li>The modulation index &beta; is large, i.e., higher than 1.</li>
+            <li>Its spectrum consists of a carrier and infinite number of sidebands, which are located around it.</li>
+            <li>This is used in entertainment, broadcasting applications such as FM radio, TV, etc.</li>
+        </ul>
+    </p>
+
+    </section>
+</body>
+</html>

@@ -50,7 +50,7 @@
             "color":"#e6d850",
             "hasTheory":"true",
             "demoLink":"/AM/SSB",
-            "theoryLink":"/theory/SSB",
+            "theoryLink":"/theory/SSBSC",
             "pageLink":""
 
         },
@@ -82,7 +82,7 @@
             "color":"#e6d850",
             "hasTheory":"true",
             "demoLink":"/FM/1",
-            "theoryLink":"/theory/FM1",
+            "theoryLink":"/theory/FREQMOD",
             "pageLink":""
         },
         {
@@ -92,7 +92,7 @@
             "color":"green",
             "hasTheory":"true",
             "demoLink":"/FM/2",
-            "theoryLink":"/theory/FM2",
+            "theoryLink":"/theory/PHASEMOD",
             "pageLink":""
         }
     ],
@@ -155,7 +155,7 @@
             "color":"#e6d850",
             "hasTheory":"true",
             "demoLink":"/DM3/DPSK",
-            "theoryLink":"/theory/GPSK",
+            "theoryLink":"/theory/D-BPSK",
             "pageLink":""
         }
     ],
